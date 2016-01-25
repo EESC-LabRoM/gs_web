@@ -1,4 +1,7 @@
 GS.Interface = function() {
+  
+  // ros connect
+  // -----------
   this.rosConnect = function(connected) {
     ros_connected = connected;
     $("#btn_server_connect").html(connected ? "Disconnect" : "Connect");
@@ -8,19 +11,19 @@ GS.Interface = function() {
       $("#txt_ros_server_address").removeAttr("readonly");
     }
   };
-
+  
+  // log message
+  // -----------
   this.logMessage = function(msg) {
     $("#messages-list").append("<li>" + msg + "</li>");
   };
   
-  
   // ros nodes
   // ---------
-  this.cleanNodes = function(){
+  this.clearNodes = function(){
     $("#nodes-list").html("");
   };
   this.listNodes = function(nodes) {
-    $("#nodes-list").html("");
     for(i in nodes) {
       $("#nodes-list").append("<li>" + nodes[i] + "</li>"); 
     }
@@ -28,12 +31,24 @@ GS.Interface = function() {
   
   // ros topics
   // ----------
-  this.cleanTopics = function(){
+  this.clearTopics = function(){
     $("#topics-list").html("");
   };
-  this.listTopics = function(nodes) {
+  this.listTopics = function(topics) {
     for(i in topics) {
       $("#topics-list").append("<li>" + topics[i] + "</li>"); 
     }
   }
+  
+  // ros services
+  // ----------
+  this.clearServices = function(){
+    $("#services-list").html("");
+  };
+  this.listServices = function(services) {
+    for(i in services) {
+      $("#services-list").append("<li>" + services[i] + "</li>"); 
+    }
+  }
+  
 }

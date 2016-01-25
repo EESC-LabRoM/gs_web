@@ -11,8 +11,11 @@ GS.Routines = function() {
   var getNodes = function() {
     if(ros.isConnected) {
       ros.getNodes(function(nodes) {
+        interface.clearNodes();
         interface.listNodes(nodes);
       });
+    } else {
+      interface.clearNodes();
     }
   };
   // get topics
@@ -20,8 +23,23 @@ GS.Routines = function() {
   var getTopics = function() {
     if(ros.isConnected) {
       ros.getTopics(function(topics) {
+        interface.clearTopics();
         interface.listTopics(topics);
       });
+    } else {  
+      interface.clearTopics();
+    }
+  };
+  // get services
+  // ----------
+  var getServices = function() {
+    if(ros.isConnected) {
+      ros.getServices(function(services) {
+        interface.clearServices();
+        interface.listServices(services);
+      });
+    } else {  
+      interface.clearServices();
     }
   };
   
@@ -32,5 +50,6 @@ GS.Routines = function() {
   this.do = function() {
     getNodes();
     getTopics();
+    getServices();
   };
 }
