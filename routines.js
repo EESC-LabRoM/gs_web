@@ -1,17 +1,36 @@
 GS.Routines = function() {
   
-  window.setInterval(this.getNodes, 1000);
-  window.setInterval(this.getTopics, 1000);
+  // ===== Private variables =====
+  // =============================
+  var interface = new GS.Interface();
   
-  this.getNodes = function() {
+  // ===== Private methods =====
+  // ===========================
+  // get nodes
+  // ---------
+  var getNodes = function() {
     if(ros.isConnected) {
-      ros.getNodes();
+      ros.getNodes(function(nodes) {
+        interface.listNodes(nodes);
+      });
+    }
+  };
+  // get topics
+  // ----------
+  var getTopics = function() {
+    if(ros.isConnected) {
+      ros.getTopics(function(topics) {
+        interface.listTopics(topics);
+      });
     }
   };
   
-  this.getTopics = function() {
-    if(ros.isConnected) {
-      
-    }
+  // ===== Public methods =====
+  // ==========================
+  // main routine
+  // ------------
+  this.do = function() {
+    getNodes();
+    getTopics();
   };
 }

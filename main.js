@@ -22,6 +22,7 @@ $(document).ready(function() {
   // ===== Calling routines function =====
   // =====================================
   routines = new GS.Routines();
+  window.setInterval(routines.do, 1000);
 });
 
 function getObjects() {
