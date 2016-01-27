@@ -55,11 +55,11 @@ GS.Interface = function() {
       $("#topics-list").append(tr);
     }
   };
-  this.showTopicType = function(topicName, topicType) {
-    if($("tr[data-topic-name='" + topicName + "']").children(".jsTopicType").length == 0){
-      var tdTopicType = html.e("td", topicType, {"class":"jsTopicType"});
-      $("tr[data-topic-name='" + topicName + "']").append(tdTopicType);
-    }
+  this.showTopicDetails = function(topicName, topicType, messageDetails) {
+    $(".rosDetails").hide();
+    $("#topicDetails").show();
+    $("#topicDetails p#name span").html(topicName);
+    $("#topicDetails p#type span").html(topicType);
   };
   
   // ros services
@@ -76,6 +76,11 @@ GS.Interface = function() {
       $("#services-list").append(tr);
     }
   };
+  this.showServiceDetails = function(serviceName) {
+    $(".rosDetails").hide();
+    $("#serviceDetails").show();
+    $("#serviceDetails p#name span").html(serviceName);
+  };
   
   // ros params
   // ----------
@@ -90,6 +95,13 @@ GS.Interface = function() {
       var tr = html.e("tr", td, {"data-param-name":paramName, "class":"jsParam"});
       $("#params-list").append(tr);
     }
+  };
+  this.showParamDetails = function(paramName, paramValue) {
+    $(".rosDetails").hide();
+    $("#paramDetails").show();
+    $("#paramDetails #hdnParamName").val(paramName);
+    $("#paramDetails p#name span").html(paramName);
+    $("#paramDetails p#type span").html(paramValue);
   };
   
 }

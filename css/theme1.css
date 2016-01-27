@@ -1,4 +1,12 @@
+div#header{}
+div#header h1 {
+  height:50px;
+  line-height:50px;
+  text-align:left;
+}
+
 .content-side{
+  border:1px solid #333;
   background-color:#eee;
 }
 .content-side div{
@@ -8,9 +16,14 @@
 .content-side h3{
   margin-top:10px;
   font-size:16px;
+  text-decoration:underline;
 }
+
 #content-main{
+  border:1px solid #333;
   margin:0 1%;
   width:48%;
   background-color:#eee;
+  height:524px;
+  text-overflow: auto;
 }

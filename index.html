@@ -20,11 +20,12 @@
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/theme1.css" />
+    <link rel="stylesheet" type="text/css" href="css/ros.css" />
   </head>
 
   <body>
     <div id="header">
-      <h1>web gs</h1>
+      <h1>ROS web</h1>
       <label>Server address</label>
       <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.81.128:9090" />
       <button id="btn_server_connect" value="Connect">Connect</button>
@@ -35,7 +36,7 @@
       <div class="content-side fleft w20p p5">
         
         <h3>Log messages</h3>
-        <div id="log" class="w100p h200">
+        <div id="log" class="w100p h100">
           <ul id="messages-list"></ul>
         </div>
 
@@ -49,30 +50,74 @@
         <h3>Topics</h3>
         <div id="topics" class="w100p mh200">
           <table id="topics-list" class="w100p p5">
-            <tr><th>topic name</th><th>msg type</th></tr>
+            <tr><th>topic name</th></tr>
           </table>
         </div>
       </div>
       
       
       <div id=content-main class="fleft w45p p5">
-        a
+        <div id="details">
+          <div id="nodeDetails" class="rosDetails">
+          </div>
+          
+          <div id="topicDetails" class="rosDetails">
+            <h3>Topic details</h3>
+            <p id="name">
+              <label>Topic</label>
+              <span></span>
+            </p>
+            <p id="type">
+              <label>Type</label>
+              <span></span>
+            </p>
+          </div>
+          
+          <div id="serviceDetails" class="rosDetails">
+            <h3>Service details</h3>
+            <p id="name">
+              <label>Service</label>
+              <span></span>
+            </p>
+            <p id="type">
+              <label>Type</label>
+              <span></span>
+            </p>
+          </div>
+          
+          <div id="paramDetails" class="rosDetails">
+            <h3>Param details</h3>
+            <p id="name">
+              <label>Param</label>
+              <span></span>
+            </p>
+            <p id="type">
+              <label>Value</label>
+              <span></span>
+            </p>
+            <p>
+              <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
+              <input type="text" id="txtSetParam" name="txtSetParam" value="" />
+              <button id="btnSetParam">Set</button>
+            </p>
+          </div>
+        </div>
       </div>
       
       
       <div class="content-side fleft w30p p5">
         
         <h3>Services</h3>
-        <div id="services" class="w100p mh300">
+        <div id="services" class="w100p mh250">
           <table id="services-list" class="w100p p5">
-            <tr><th>service</th><th>value</th></tr>
+            <tr><th>service</th></tr>
           </table>
         </div>
 
         <h3>Params</h3>
-        <div id="params" class="w100p mh300">
+        <div id="params" class="w100p mh200">
           <table id="params-list" class="w100p p5">
-            <tr><th>param</th><th>value</th></tr>
+            <tr><th>param</th></tr>
           </table>
         </div>
       </div>

@@ -11,6 +11,8 @@ h1,h2,h3,h4,h5,h6,h7{margin:0;padding:0;text-align:center;}
 
 .h100{height:100px;}.h200{height:200px;}.h300{height:300px;}.h400{height:400px;}
 .h500{height:500px;}.h600{height:600px;}.h700{height:700px;}.h800{height:800px;}
+
 .mh100{max-height:100px;}.mh200{max-height:200px;}.mh300{max-height:300px;}.mh400{max-height:400px;}.mh500{max-height:500px;}
+.mh250{max-height:250px;}
 
 .p1{padding:1px;}.p2{padding:2px;}.p3{padding:3px;}.p4{padding:4px;}.p5{padding:5px;}
