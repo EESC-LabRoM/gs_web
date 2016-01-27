@@ -1,0 +1,16 @@
+.content-side{
+  background-color:#eee;
+}
+.content-side div{
+  margin:3px 0 0 0;
+  border:1px solid #ccc;
+}
+.content-side h3{
+  margin-top:10px;
+  font-size:16px;
+}
+#content-main{
+  margin:0 1%;
+  width:48%;
+  background-color:#eee;
+}

@@ -3,8 +3,8 @@ GS.Routines = function() {
   // ===== Private variables =====
   // =============================
   var interface = new GS.Interface();
-  var resetPrevData = {nodes:[],topics:[],services:[]};
-  var prevData = {nodes:[],topics:[],services:[]};
+  var resetPrevData = {nodes:[],topics:[],services:[],params:[]};
+  var prevData = {nodes:[],topics:[],services:[],params:[]};
   
   // ===== Private methods =====
   // ===========================
@@ -54,7 +54,7 @@ GS.Routines = function() {
     }
   };
   // get services
-  // ----------
+  // ------------
   var getServices = function() {
     if(ros.isConnected) {
       ros.getServices(function(services) {
@@ -66,8 +66,23 @@ GS.Routines = function() {
         }
         prevData.services = services;
       });
-    } else {  
+    } else {
       interface.clearServices();
+    }
+  };
+  // get params
+  // ----------
+  var getParams = function() {
+    if(ros.isConnected) {
+      ros.getParams(function(params){
+        params.sort();
+        if(!compareArrays(prevData.params, params)) {
+          interface.logMessage("params refreshed");
+          interface.clearParams();
+          interface.listParams(params);
+        }
+        prevData.params = params;
+      });
     }
   };
   
@@ -77,10 +92,11 @@ GS.Routines = function() {
   // ------------
   this.do = function() {
     if(!ros.isConnected) {
-      prevData = {nodes:[],topics:[],services:[]};
+      prevData = {nodes:[],topics:[],services:[],params:[]};
     }
     getNodes();
     getTopics();
     getServices();
+    getParams();
   };
 }

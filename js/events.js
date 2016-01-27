@@ -7,6 +7,21 @@ GS.Events = function() {
   // ===== Public functions =====
   // ============================
   
+  // Declare triggers
+  // ----------------
+  this.declareTriggers = function() {
+    // network events
+    // --------------
+    ros.on('connection', this.rosOnConnection);
+    ros.on('error', this.rosOnError);
+    ros.on('close', this.rosOnClose);
+    // html events
+    // -----------
+    $("#btn_server_connect").click(this.btnServerConnectClick);
+    $(document).delegate(".jsRosTopic", "click", this.linkRosTopicClick);
+    $(document).delegate(".jsRosNode", "click", this.linkRosNodeClick);
+  }
+  
   // Server Connect Button Click
   // ---------------------------
   this.btnServerConnectClick = function() {
@@ -23,9 +38,12 @@ GS.Events = function() {
   this.linkRosTopicClick = function(e) {
     var topicName = $(this).attr("data-topic-name");
     ros.getTopicType(topicName, function(topicType){
-      console.log(topicType);
+      interface.showTopicType(topicName,topicType);
     });
     e.preventDefault();
+  };
+  this.linkRosNodeClick = function(e) {
+    var nodeName = $(this).attr("data-node-name");
   };
   
   // ROS events
