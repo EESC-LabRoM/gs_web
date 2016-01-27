@@ -1,5 +1,9 @@
 GS.Interface = function() {
   
+  // ===== Private variables =====
+  // =============================
+  var html = new GS.Html();
+  
   // ros connect
   // -----------
   this.rosConnect = function(connected) {
@@ -16,6 +20,7 @@ GS.Interface = function() {
   // -----------
   this.logMessage = function(msg) {
     $("#messages-list").append("<li>" + msg + "</li>");
+    $("#messages-list").parent().scrollTop($("#messages-list").parent()[0].scrollHeight);
   };
   
   // ros nodes
@@ -27,7 +32,7 @@ GS.Interface = function() {
     for(i in nodes) {
       $("#nodes-list").append("<li>" + nodes[i] + "</li>"); 
     }
-  }
+  };
   
   // ros topics
   // ----------
@@ -36,9 +41,9 @@ GS.Interface = function() {
   };
   this.listTopics = function(topics) {
     for(i in topics) {
-      $("#topics-list").append("<li>" + topics[i] + "</li>"); 
+      $("#topics-list").append(html.e("li", html.rosTopicLink(topics[i])));
     }
-  }
+  };
   
   // ros services
   // ----------
@@ -49,6 +54,6 @@ GS.Interface = function() {
     for(i in services) {
       $("#services-list").append("<li>" + services[i] + "</li>"); 
     }
-  }
+  };
   
 }

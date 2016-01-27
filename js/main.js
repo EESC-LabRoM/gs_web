@@ -1,6 +1,8 @@
-// My Namespace
-// ------------
+// My Namespaces
+// -------------
 GS = {};
+WIDGET = {};
+WIDGET.GEOMETRY_MSGS = {};
 
 // GLOBALS
 // -------
@@ -17,7 +19,8 @@ $(document).ready(function() {
   ros.on('close', events.rosOnClose);
   // html events
   // -----------
-  $("#btn_server_connect").click(function(){events.btnServerConnectClick();});
+  $("#btn_server_connect").click(events.btnServerConnectClick);
+  $(document).delegate(".jsRosTopic", "click", events.linkRosTopicClick);
   
   // ===== Calling routines function =====
   // =====================================

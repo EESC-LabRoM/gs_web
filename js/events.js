@@ -18,6 +18,16 @@ GS.Events = function() {
     }
   };
   
+  // ROS Links
+  // ---------
+  this.linkRosTopicClick = function(e) {
+    var topicName = $(this).attr("data-topic-name");
+    ros.getTopicType(topicName, function(topicType){
+      console.log(topicType);
+    });
+    e.preventDefault();
+  };
+  
   // ROS events
   // ----------
   this.rosOnConnection = function() {

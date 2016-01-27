@@ -1,0 +1,23 @@
+div{overflow:auto;}
+h1,h2,h3,h4,h5,h6,h7{margin:0;padding:0;text-align:center;}
+
+.fright{float:right;}.fleft{float:left;}
+.clearfix{clear:both;}
+
+.w100p{width:100%;}
+.w90p{width:90%;}.w80p{width:80%;}.w70p{width:70%;}
+.w60p{width:60%;}.w50p{width:50%;}.w40p{width:40%;}
+.w30p{width:30%;}.w20p{width:20%;}.w10p{width:10%;}
+
+.h100{height:100px;}.h200{height:200px;}.h300{height:300px;}.h400{height:400px;}
+.h500{height:500px;}.h600{height:600px;}.h700{height:700px;}.h800{height:800px;}
+
+.p1{padding:1px;}.p2{padding:2px;}.p3{padding:3px;}.p4{padding:4px;}.p5{padding:5px;}
+
+#content-sideleft{
+  background-color:#eee;
+}
+
+#content-sideleft div{
+  border:1px solid #ccc;
+}
