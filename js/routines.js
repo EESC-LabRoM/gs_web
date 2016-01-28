@@ -83,6 +83,8 @@ GS.Routines = function() {
         }
         prevData.params = params;
       });
+    } else {
+      interface.clearParams();
     }
   };
   

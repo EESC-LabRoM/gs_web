@@ -27,3 +27,7 @@ div#header h1 {
   height:524px;
   text-overflow: auto;
 }
+
+#serviceDetails table td {
+  border:1px solid #333;
+}

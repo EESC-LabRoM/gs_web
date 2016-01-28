@@ -1,3 +1,5 @@
+// My Debug function
+db = function(data){console.log(data);}
 // My Namespaces
 // -------------
 GS = {};

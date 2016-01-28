@@ -55,7 +55,13 @@ GS.Events = function() {
   };
   this.linkRosServiceClick = function(e) {
     var serviceName = $(this).attr("data-service-name");
-    interface.showServiceDetails(serviceName);
+    ros.getServiceType(serviceName, function(serviceType){
+      ros.getServiceRequestDetails(serviceType, function(requestDetails){
+        ros.getServiceResponseDetails(serviceType, function(responseDetails){
+          interface.showServiceDetails(serviceName, serviceType, requestDetails, responseDetails);
+        });
+      });
+    });
     e.preventDefault();
   };
   this.linkRosParamClick = function(e) {

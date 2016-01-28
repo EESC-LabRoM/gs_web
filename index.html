@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <!-- default libs -->
     <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-    <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>-->
+    <script type="text/javascript" src="js/roslib.dev.js"></script>
     <!-- another libs -->
     <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
     <!-- my libs -->
@@ -58,16 +59,22 @@
       
       <div id=content-main class="fleft w45p p5">
         <div id="details">
+          
           <div id="nodeDetails" class="rosDetails">
+            <h3>Node details</h3>
+            <p class="name">
+              <label>Node</label>
+              <span></span>
+            </p>
           </div>
           
           <div id="topicDetails" class="rosDetails">
             <h3>Topic details</h3>
-            <p id="name">
+            <p class="name">
               <label>Topic</label>
               <span></span>
             </p>
-            <p id="type">
+            <p class="type">
               <label>Type</label>
               <span></span>
             </p>
@@ -75,23 +82,46 @@
           
           <div id="serviceDetails" class="rosDetails">
             <h3>Service details</h3>
-            <p id="name">
+            <p class="name">
               <label>Service</label>
               <span></span>
             </p>
-            <p id="type">
+            <p class="type">
               <label>Type</label>
               <span></span>
             </p>
+            <div class="request">
+              <label>Request</label>
+              <table class="requestList w100p">
+                <tr><th>type</th><th>name</th><th>value</th></tr>
+              </table>
+            </div>
+            
+            <br />
+            
+            <div class="response">
+              <label>Response</label>
+              <table class="responseList w100p">
+                <tr><th>type</th><th>name</th><th></th></tr>
+              </table>
+            </div>
+            
+            <br />
+            
+            <div class="response">
+              <label>Call service</label>
+              <br />
+              <button id="">Call!</button>
+            </div>
           </div>
           
           <div id="paramDetails" class="rosDetails">
             <h3>Param details</h3>
-            <p id="name">
+            <p class="name">
               <label>Param</label>
               <span></span>
             </p>
-            <p id="type">
+            <p class="type">
               <label>Value</label>
               <span></span>
             </p>

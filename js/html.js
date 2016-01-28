@@ -14,10 +14,20 @@ GS.Html = function() {
   // -----------------
   this.e = function(tag, content, options) {
     var attrs = "";
+    var specialOptions = ["autoclose"];
     for(i in options) {
-      attrs += " " + i + "=\"" + options[i] + "\" ";
+      if(specialOptions.indexOf(i) < 0) {
+        attrs += " " + i + "=\"" + options[i] + "\" ";
+      }
     }
-    return "<" + tag + " " + attrs + ">" + content + "</" + tag + ">";
+    
+    var element = "";
+    if ((typeof(options) !== "undefined") && (typeof(options.autoclose) !== "undefined")) {
+      element = "<" + tag + " " + attrs + " />";
+    } else {
+      element = "<" + tag + " " + attrs + ">" + content + "</" + tag + ">";
+    }
+    return element;
   }
   this.rosTopicLink = function(topicName) {
     return "<a href=\"#\" class=\"jsRosTopic\" data-topic-name=\"" + topicName + "\">" + topicName + "</a>";

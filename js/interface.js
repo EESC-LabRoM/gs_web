@@ -58,8 +58,8 @@ GS.Interface = function() {
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     $(".rosDetails").hide();
     $("#topicDetails").show();
-    $("#topicDetails p#name span").html(topicName);
-    $("#topicDetails p#type span").html(topicType);
+    $("#topicDetails p.name span").html(topicName);
+    $("#topicDetails p.type span").html(topicType);
   };
   
   // ros services
@@ -76,10 +76,29 @@ GS.Interface = function() {
       $("#services-list").append(tr);
     }
   };
-  this.showServiceDetails = function(serviceName) {
+  this.showServiceDetails = function(serviceName, serviceType, requestDetails, responseDetails) {
     $(".rosDetails").hide();
     $("#serviceDetails").show();
-    $("#serviceDetails p#name span").html(serviceName);
+    $("#serviceDetails p.name span").html(serviceName);
+    $("#serviceDetails p.type span").html(serviceType);
+    
+    $("#serviceDetails .requestList .field").remove();
+    for(i in requestDetails.typedefs[0].fieldnames){
+      var name = html.e("td", requestDetails.typedefs[0].fieldnames[i]);
+      var type = html.e("td", requestDetails.typedefs[0].fieldtypes[i]);
+      var input = html.e("td", html.e("input", null, {autoclose:true}));
+      var tr = html.e("tr", type + name + input, {"class":"field"});
+      $("#serviceDetails .requestList").append(tr);
+    }
+    
+    $("#serviceDetails .responseList .field").remove();
+    for(i in responseDetails.typedefs[0].fieldnames){
+      var name = html.e("td", requestDetails.typedefs[0].fieldnames[i]);
+      var type = html.e("td", requestDetails.typedefs[0].fieldtypes[i]);
+      var input = html.e("td", "");
+      var tr = html.e("tr", type + name + input, {"class":"field"});
+      $("#serviceDetails .responseList").append(field);
+    }
   };
   
   // ros params
@@ -100,8 +119,8 @@ GS.Interface = function() {
     $(".rosDetails").hide();
     $("#paramDetails").show();
     $("#paramDetails #hdnParamName").val(paramName);
-    $("#paramDetails p#name span").html(paramName);
-    $("#paramDetails p#type span").html(paramValue);
+    $("#paramDetails p.name span").html(paramName);
+    $("#paramDetails p.type span").html(paramValue);
   };
   
 }
