@@ -28,9 +28,19 @@
     <div id="header">
       <h1>ROS web</h1>
       <label>Server address</label>
-      <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.81.128:9090" />
+      <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
       <button id="btn_server_connect" value="Connect">Connect</button>
-      <p id="flash-message"></p>
+    </div>
+    
+    <div id="rosOptions">
+      <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
+      <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
+      
+      <input type="checkbox" name="ckbRosoutServiceParam" id="ckbRosoutServiceParam" />
+      <label for="ckbRosoutServiceParam">Hide rosout services/params</label>
+      
+      <input type="checkbox" name="ckbRosbridgeWebsocketServiceParam" id="ckbRosbridgeWebsocketServiceParam" />
+      <label for="ckbRosbridgeWebsocketServiceParam">Hide rosbridge websocket services/params</label>
     </div>
 
     <div id="content">
@@ -111,7 +121,10 @@
             <div class="response">
               <label>Call service</label>
               <br />
-              <button id="">Call!</button>
+              <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
+              <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
+              <button id="btnCallService">Call!</button>
+              <button id="btnRefreshService">Refresh!</button>
             </div>
           </div>
           

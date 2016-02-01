@@ -4,6 +4,27 @@ GS.Events = function() {
   // =============================
   var interface = new GS.Interface();
   
+  // ===== Private functions =====
+  // =============================
+  
+  // Parse functions
+  // ---------------
+  var parse = function(type, value){
+    if(type === "float32" || type === "float64") {
+      return parseFloat(value);
+    } else if(type === "int8" || type === "int16" || type === "int32" || type === "int64") {
+      return parseInt(value);
+    } else if(type === "uint8" || type === "uint16" || type === "uint32" || type === "uint64") {
+      return parseInt(value);
+    } else {
+      return value;
+    }
+  };
+  
+  var keepType = function(value) {
+    return isNaN(value) ? value : parseInt(value);
+  }
+  
   // ===== Public functions =====
   // ============================
   
@@ -18,12 +39,19 @@ GS.Events = function() {
     
     // html events
     // -----------
+    // connect
     $("#btn_server_connect").click(this.btnServerConnectClick);
+    // ros links
+    // ---------
     $(document).delegate(".jsRosTopic", "click", this.linkRosTopicClick);
     $(document).delegate(".jsRosNode", "click", this.linkRosNodeClick);
     $(document).delegate(".jsRosService", "click", this.linkRosServiceClick);
     $(document).delegate(".jsRosParam", "click", this.linkRosParamClick);
+    // ros buttons
+    // -----------
     $(document).delegate("#btnSetParam", "click", this.btnSetParam);
+    $(document).delegate("#btnCallService", "click", this.btnCallService);
+    $(document).delegate("#btnRefreshService", "click", this.btnRefreshService);
   }
   
   // Server Connect Button Click
@@ -72,15 +100,52 @@ GS.Events = function() {
     });
     e.preventDefault();
   };
+  
+  // ROS Buttons
+  // -----------
   this.btnSetParam = function(e){
     var paramName = $("#hdnParamName").val();
     var value = $("#txtSetParam").val();
     var param = new ROSLIB.Param({ros:ros,name:paramName});
-    param.set(value);
+    param.set(keepType(value));
     param.get(function(value){
       interface.showParamDetails(paramName, value);
       $("#txtSetParam").val("");
     });
+    e.preventDefault();
+  };
+  this.btnCallService = function(e) {
+    var serviceName = $("#hdnServiceName").val();
+    var serviceType = $("#hdnServiceType").val();
+    
+    var service = new ROSLIB.Service({
+      ros:ros,
+      name: serviceName,
+      serviceType: serviceType
+    });
+    
+    var requestObj = {};
+    $("input.jsInputServiceRequest").each(function(k, v) {
+      var type = $(v).attr("data-type");
+      var field = $(v).attr("data-name");
+      var value = $(v).val();
+      requestObj[field] = parse(type, value);
+    });
+    var request = new ROSLIB.ServiceRequest(requestObj);
+    
+    $("#btnCallService").attr("disabled", "disabled");
+    service.callService(requestObj, function(result) {
+      $("#btnCallService").removeAttr("disabled");
+      console.log(result);
+    }, function(error) {
+      $("#btnCallService").removeAttr("disabled");
+      console.log(error);
+    });
+    
+    e.preventDefault();
+  };
+  this.btnRefreshService = function(e) {
+    $("input.jsInputServiceRequest").val("");
     e.preventDefault();
   };
   

@@ -88,6 +88,34 @@ GS.Routines = function() {
     }
   };
   
+  // show or hide
+  // ------------
+  var showHide = function() {
+    if($("#ckbRosapiServiceParam").is(":checked")) {
+      $(".jsRosapiService").hide();
+      $(".jsRosapiParam").hide();
+    } else {
+      $(".jsRosapiService").show();
+      $(".jsRosapiParam").show();
+    }
+    
+    if($("#ckbRosoutServiceParam").is(":checked")) {
+      $(".jsRosoutService").hide();
+      $(".jsRosoutParam").hide();
+    } else {
+      $(".jsRosoutService").show();
+      $(".jsRosoutParam").show();
+    }
+    
+    if($("#ckbRosbridgeWebsocketServiceParam").is(":checked")) {
+      $(".jsRosbridgeWebsocketService").hide();
+      $(".jsRosbridgeWebsocketParam").hide();
+    } else {
+      $(".jsRosbridgeWebsocketService").show();
+      $(".jsRosbridgeWebsocketParam").show();
+    }
+  };
+  
   // ===== Public methods =====
   // ==========================
   // main routine
@@ -100,5 +128,6 @@ GS.Routines = function() {
     getTopics();
     getServices();
     getParams();
+    showHide();
   };
 }

@@ -19,6 +19,14 @@ div#header h1 {
   text-decoration:underline;
 }
 
+div#rosOptions{
+  height:30px;
+  line-height:30px;
+}
+div#rosOptions input[type=checkbox]{
+  margin-left:20px;
+}
+
 #content-main{
   border:1px solid #333;
   margin:0 1%;
@@ -30,4 +38,9 @@ div#header h1 {
 
 #serviceDetails table td {
   border:1px solid #333;
+  text-align:center;
+}
+
+input[readonly=readonly] {
+  background-color:#ccc;
 }

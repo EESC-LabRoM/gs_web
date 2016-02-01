@@ -70,9 +70,13 @@ GS.Interface = function() {
   this.listServices = function(services) {
     for(i in services) {
       var serviceName = services[i];
+      var classStr = "jsService";
+      if(serviceName.indexOf("/rosapi/") > -1) classStr += " jsRosapiService";
+      if(serviceName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketService";
+      if(serviceName.indexOf("/rosout/") > -1) classStr += " jsRosoutService";
       var link = html.rosServiceLink(serviceName);
       var td = html.e("td", link, {"class":"jsServiceName"});
-      var tr = html.e("tr", td, {"data-service-name":serviceName, "class":"jsService"});
+      var tr = html.e("tr", td, {"data-service-name":serviceName, "class":classStr});
       $("#services-list").append(tr);
     }
   };
@@ -81,23 +85,29 @@ GS.Interface = function() {
     $("#serviceDetails").show();
     $("#serviceDetails p.name span").html(serviceName);
     $("#serviceDetails p.type span").html(serviceType);
+    $("#hdnServiceName").val(serviceName);
+    $("#hdnServiceType").val(serviceType);
     
     $("#serviceDetails .requestList .field").remove();
     for(i in requestDetails.typedefs[0].fieldnames){
-      var name = html.e("td", requestDetails.typedefs[0].fieldnames[i]);
-      var type = html.e("td", requestDetails.typedefs[0].fieldtypes[i]);
-      var input = html.e("td", html.e("input", null, {autoclose:true}));
-      var tr = html.e("tr", type + name + input, {"class":"field"});
+      var name = requestDetails.typedefs[0].fieldnames[i];
+      var type = requestDetails.typedefs[0].fieldtypes[i];
+      var elementName = html.e("td", name);
+      var elementType = html.e("td", type);
+      var input = html.e("td", html.e("input", null, {autoclose:true, "class": "jsInputServiceRequest", "data-name": name, "data-type": type}));
+      var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
       $("#serviceDetails .requestList").append(tr);
     }
     
     $("#serviceDetails .responseList .field").remove();
     for(i in responseDetails.typedefs[0].fieldnames){
-      var name = html.e("td", requestDetails.typedefs[0].fieldnames[i]);
-      var type = html.e("td", requestDetails.typedefs[0].fieldtypes[i]);
-      var input = html.e("td", "");
-      var tr = html.e("tr", type + name + input, {"class":"field"});
-      $("#serviceDetails .responseList").append(field);
+      var name = responseDetails.typedefs[0].fieldnames[i];
+      var type = responseDetails.typedefs[0].fieldtypes[i];
+      var elementName = html.e("td", name);
+      var elementType = html.e("td", type);
+      var input = html.e("td", html.e("input", null, {autoclose:true, readonly:"readonly"}));
+      var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
+      $("#serviceDetails .responseList").append(tr);
     }
   };
   
@@ -105,13 +115,17 @@ GS.Interface = function() {
   // ----------
   this.clearParams = function() {
     $("#params-list tr.jsParam").remove();
-  }
+  };
   this.listParams = function(params) {
     for(i in params) {
       var paramName = params[i];
+      var classStr = "jsParam";
+      if(paramName.indexOf("/rosapi/") > -1) classStr += " jsRosapiParam";
+      if(paramName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketParam";
+      if(paramName.indexOf("/rosout/") > -1) classStr += " jsRosoutParam";
       var link= html.rosParamLink(paramName);
       var td = html.e("td", link, {"class":"jsParamName"});
-      var tr = html.e("tr", td, {"data-param-name":paramName, "class":"jsParam"});
+      var tr = html.e("tr", td, {"data-param-name":paramName, "class":classStr});
       $("#params-list").append(tr);
     }
   };
