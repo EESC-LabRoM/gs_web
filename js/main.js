@@ -9,6 +9,7 @@ WIDGET.GEOMETRY_MSGS = {};
 // GLOBALS
 // -------
 ros = new ROSLIB.Ros();
+templates = {};
 
 $(document).ready(function() {
   // ===== Linking events functions =====
@@ -20,4 +21,8 @@ $(document).ready(function() {
   // =====================================
   routines = new GS.Routines();
   window.setInterval(routines.do, 1000);
+  
+  // ===== Load templates =====
+  // ==========================
+  $.get("/templates/message_field.tpl", function(data){templates.messageField = data;});
 });

@@ -2,21 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!-- default libs -->
+    <!-- libs -->
     <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>-->
-    <script type="text/javascript" src="js/roslib.dev.js"></script>
-    <!-- another libs -->
-    <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
-    <!-- my libs -->
+    <script type="text/javascript" src="js/libs/roslib.dev.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/libs/mustache.js"></script>
+    
+    <!-- my scripts -->
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/events.js"></script>
     <script type="text/javascript" src="js/interface.js"></script>
     <script type="text/javascript" src="js/html.js"></script>
     <script type="text/javascript" src="js/routines.js"></script>
-    
-    <script type="text/javascript" src="widgets/turtlesim.js"></script>
-    <script type="text/javascript" src="widgets/geometry_msgs/pose.js"></script>
     
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -84,10 +82,15 @@
               <label>Topic</label>
               <span></span>
             </p>
+            
             <p class="type">
               <label>Type</label>
               <span></span>
             </p>
+            
+            <div class="messageDetails">
+              <label>Message Details</label>
+            </div>
           </div>
           
           <div id="serviceDetails" class="rosDetails">

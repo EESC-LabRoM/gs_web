@@ -44,3 +44,19 @@ div#rosOptions input[type=checkbox]{
 input[readonly=readonly] {
   background-color:#ccc;
 }
+
+
+div.messageDetails ul {
+  list-style: circle;
+}
+div.messageDetails ul li span.messageFieldType {
+  padding:0 5px;
+  font-weight:bold;
+  color:cornflowerblue;
+}
+div.messageDetails ul li span.messageFieldName {
+  color:darkblue;
+}
+div.messageDetails ul li span.messageFieldValue {
+  
+}

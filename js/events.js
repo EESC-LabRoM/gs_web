@@ -4,6 +4,8 @@ GS.Events = function() {
   // =============================
   var interface = new GS.Interface();
   
+  var listener;
+  
   // ===== Private functions =====
   // =============================
   
@@ -23,7 +25,7 @@ GS.Events = function() {
   
   var keepType = function(value) {
     return isNaN(value) ? value : parseInt(value);
-  }
+  };
   
   // ===== Public functions =====
   // ============================
@@ -52,7 +54,7 @@ GS.Events = function() {
     $(document).delegate("#btnSetParam", "click", this.btnSetParam);
     $(document).delegate("#btnCallService", "click", this.btnCallService);
     $(document).delegate("#btnRefreshService", "click", this.btnRefreshService);
-  }
+  };
   
   // Server Connect Button Click
   // ---------------------------
@@ -107,12 +109,28 @@ GS.Events = function() {
     var paramName = $("#hdnParamName").val();
     var value = $("#txtSetParam").val();
     var param = new ROSLIB.Param({ros:ros,name:paramName});
-    param.set(keepType(value));
+    param.set(this.keepType(value));
     param.get(function(value){
       interface.showParamDetails(paramName, value);
       $("#txtSetParam").val("");
     });
     e.preventDefault();
+  };
+  this.btnSubscribeTopic = function(e) {
+    if(typeof(listener) !== "undefined") listener.unsubscribe();
+    
+    var topicName;
+    var topicType;
+
+    listener = new ROSLIB.Topic({
+      ros : ros,
+      name : topicName,
+      messageType : topicType
+    });
+
+    listener.subscribe(function(message) {
+      listener.unsubscribe();
+    }); 
   };
   this.btnCallService = function(e) {
     var serviceName = $("#hdnServiceName").val();
@@ -125,21 +143,21 @@ GS.Events = function() {
     });
     
     var requestObj = {};
-    $("input.jsInputServiceRequest").each(function(k, v) {
-      var type = $(v).attr("data-type");
-      var field = $(v).attr("data-name");
-      var value = $(v).val();
+    var elements = document.querySelectorAll("input.jsInputServiceRequest");
+    for(var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var type = element.getAttribute("data-type");
+      var field = element.getAttribute("data-name");
+      var value = element.value;
       requestObj[field] = parse(type, value);
-    });
+    }
     var request = new ROSLIB.ServiceRequest(requestObj);
     
     $("#btnCallService").attr("disabled", "disabled");
     service.callService(requestObj, function(result) {
       $("#btnCallService").removeAttr("disabled");
-      console.log(result);
     }, function(error) {
       $("#btnCallService").removeAttr("disabled");
-      console.log(error);
     });
     
     e.preventDefault();
@@ -155,16 +173,16 @@ GS.Events = function() {
     interface.rosConnect(ros.isConnected);
     interface.logMessage('Connected to websocket server.');
     $("#btn_server_connect").removeAttr("disabled");
-  }
+  };
   this.rosOnError = function(error) {
     interface.rosConnect(ros.isConnected);
     interface.logMessage('Error connecting to websocket server: ' + error);
     $("#btn_server_connect").removeAttr("disabled");
-  }
+  };
   this.rosOnClose = function() {
     interface.rosConnect(ros.isConnected);
     interface.logMessage('Connection to websocket server closed.');
     $("#btn_server_connect").removeAttr("disabled");
-  }
+  };
   
 };

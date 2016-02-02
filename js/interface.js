@@ -56,11 +56,48 @@ GS.Interface = function() {
     }
   };
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
+    this.showTopicDetailsBasic(topicName, topicType);
+    
+    var details = this.showTopicDetailsMessageRecursive(messageDetails, null);
+    $("#topicDetails .messageDetails").html("");
+    $("#topicDetails .messageDetails").append(details);
+      
+  };
+  this.showTopicDetailsBasic = function(topicName, topicType) {
     $(".rosDetails").hide();
     $("#topicDetails").show();
     $("#topicDetails p.name span").html(topicName);
     $("#topicDetails p.type span").html(topicType);
-  };
+  }
+  this.showTopicDetailsMessageRecursive = function(messageDetails, funcFieldType) {
+    var listItems = "";
+    var item = "";
+    if(funcFieldType === null) {
+      for(var i = 0; i < messageDetails[0].fieldnames.length; i++) {
+        var fieldName = messageDetails[0].fieldnames[i];
+        var fieldType = messageDetails[0].fieldtypes[i];
+        listItems += Mustache.render(templates.messageField, {fieldName:fieldName,fieldType:fieldType,fieldValue:""});
+        item = this.showTopicDetailsMessageRecursive(messageDetails, fieldType);
+        listItems += item;
+      }
+      return html.e("ul", listItems);
+    } else {
+      for(var i = 0; i < messageDetails.length; i++) {
+        var md = messageDetails[i];
+        if(md.type === funcFieldType) {
+          for(var j = 0; j < md.fieldnames.length; j++) {
+            var fieldName = md.fieldnames[j];
+            var fieldType = md.fieldtypes[j];
+            listItems += Mustache.render(templates.messageField, {fieldName:fieldName,fieldType:fieldType,fieldValue:""});
+            item = this.showTopicDetailsMessageRecursive(messageDetails, fieldType);
+            listItems += item;
+          }
+          return html.e("ul", listItems, {});
+        }
+      }
+      return "";
+    }
+  }
   
   // ros services
   // ----------
@@ -88,6 +125,11 @@ GS.Interface = function() {
     $("#hdnServiceName").val(serviceName);
     $("#hdnServiceType").val(serviceType);
     
+    this.showServiceDetailsRequest(requestDetails);
+    
+    this.showServiceDetailsResponse(responseDetails);
+  };
+  this.showServiceDetailsRequest = function(requestDetails) {
     $("#serviceDetails .requestList .field").remove();
     for(i in requestDetails.typedefs[0].fieldnames){
       var name = requestDetails.typedefs[0].fieldnames[i];
@@ -98,7 +140,8 @@ GS.Interface = function() {
       var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
       $("#serviceDetails .requestList").append(tr);
     }
-    
+  }
+  this.showServiceDetailsResponse = function(responseDetails) {
     $("#serviceDetails .responseList .field").remove();
     for(i in responseDetails.typedefs[0].fieldnames){
       var name = responseDetails.typedefs[0].fieldnames[i];
@@ -109,7 +152,7 @@ GS.Interface = function() {
       var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
       $("#serviceDetails .responseList").append(tr);
     }
-  };
+  }
   
   // ros params
   // ----------
