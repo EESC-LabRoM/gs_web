@@ -58,5 +58,8 @@ div.messageDetails ul li span.messageFieldName {
   color:darkblue;
 }
 div.messageDetails ul li span.messageFieldValue {
-  
+  padding:0 5px;
+  color:black;
+  background-color:#fff;
+  text-decoration: underline;
 }

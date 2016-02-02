@@ -54,6 +54,7 @@ GS.Events = function() {
     $(document).delegate("#btnSetParam", "click", this.btnSetParam);
     $(document).delegate("#btnCallService", "click", this.btnCallService);
     $(document).delegate("#btnRefreshService", "click", this.btnRefreshService);
+    $(document).delegate("#btnSubscribeTopic", "click", this.btnSubscribeTopic);
   };
   
   // Server Connect Button Click
@@ -119,8 +120,8 @@ GS.Events = function() {
   this.btnSubscribeTopic = function(e) {
     if(typeof(listener) !== "undefined") listener.unsubscribe();
     
-    var topicName;
-    var topicType;
+    var topicName = $("#hdnTopicName").val();
+    var topicType = $("#hdnTopicType").val();
 
     listener = new ROSLIB.Topic({
       ros : ros,
@@ -129,6 +130,7 @@ GS.Events = function() {
     });
 
     listener.subscribe(function(message) {
+      interface.showTopicMessage(message);
       listener.unsubscribe();
     }); 
   };

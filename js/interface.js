@@ -58,9 +58,11 @@ GS.Interface = function() {
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     this.showTopicDetailsBasic(topicName, topicType);
     
-    var details = this.showTopicDetailsMessageRecursive(messageDetails, null);
-    $("#topicDetails .messageDetails").html("");
-    $("#topicDetails .messageDetails").append(details);
+    var details = this.showTopicDetailsMessageRecursive(messageDetails, "", topicType);
+    $("#topicDetails .messageDetails").html(details);
+    
+    $("#hdnTopicName").val(topicName);
+    $("#hdnTopicType").val(topicType);
       
   };
   this.showTopicDetailsBasic = function(topicName, topicType) {
@@ -69,34 +71,32 @@ GS.Interface = function() {
     $("#topicDetails p.name span").html(topicName);
     $("#topicDetails p.type span").html(topicType);
   }
-  this.showTopicDetailsMessageRecursive = function(messageDetails, funcFieldType) {
+  this.showTopicDetailsMessageRecursive = function(messageDetails, parentId, parentType) {
     var listItems = "";
     var item = "";
-    if(funcFieldType === null) {
-      for(var i = 0; i < messageDetails[0].fieldnames.length; i++) {
-        var fieldName = messageDetails[0].fieldnames[i];
-        var fieldType = messageDetails[0].fieldtypes[i];
-        listItems += Mustache.render(templates.messageField, {fieldName:fieldName,fieldType:fieldType,fieldValue:""});
-        item = this.showTopicDetailsMessageRecursive(messageDetails, fieldType);
-        listItems += item;
-      }
-      return html.e("ul", listItems);
-    } else {
-      for(var i = 0; i < messageDetails.length; i++) {
-        var md = messageDetails[i];
-        if(md.type === funcFieldType) {
-          for(var j = 0; j < md.fieldnames.length; j++) {
-            var fieldName = md.fieldnames[j];
-            var fieldType = md.fieldtypes[j];
-            listItems += Mustache.render(templates.messageField, {fieldName:fieldName,fieldType:fieldType,fieldValue:""});
-            item = this.showTopicDetailsMessageRecursive(messageDetails, fieldType);
-            listItems += item;
-          }
-          return html.e("ul", listItems, {});
+    for(var i = 0; i < messageDetails.length; i++) {
+      var md = messageDetails[i];
+      if(md.type === parentType) {
+        for(var j = 0; j < md.fieldnames.length; j++) {
+          var fieldName = md.fieldnames[j];
+          var fieldType = md.fieldtypes[j];
+          var fieldId = parentId === "" ? fieldName : parentId + "." + fieldName;
+          listItems += Mustache.render(templates.messageField, {
+              fieldName:fieldName,
+              fieldType:fieldType,
+              fieldValue:"",
+              fieldId:fieldId
+          });
+          item = this.showTopicDetailsMessageRecursive(messageDetails, fieldId, fieldType);
+          listItems += item;
         }
+        return html.e("ul", listItems, {});
       }
-      return "";
     }
+    return "";
+  }
+  this.showTopicMessage = function(message) {
+    console.log(message);
   }
   
   // ros services
