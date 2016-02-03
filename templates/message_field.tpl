@@ -1,4 +1,4 @@
-<li id="{{fieldId}}">
+<li data-id="{{fieldId}}">
   <span class="messageFieldType">{{fieldType}}</span>
   <span class="messageFieldName">{{fieldName}}</span>
   <span class="messageFieldValue">{{fieldValue}}</span>

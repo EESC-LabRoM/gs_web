@@ -2,7 +2,9 @@ GS.Interface = function() {
   
   // ===== Private variables =====
   // =============================
+  var self = this;
   var html = new GS.Html();
+  var render = new GS.Render();
   
   // ros connect
   // -----------
@@ -58,7 +60,7 @@ GS.Interface = function() {
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     this.showTopicDetailsBasic(topicName, topicType);
     
-    var details = this.showTopicDetailsMessageRecursive(messageDetails, "", topicType);
+    var details = this.showTopicDetailsMessage(messageDetails, "", topicType);
     $("#topicDetails .messageDetails").html(details);
     
     $("#hdnTopicName").val(topicName);
@@ -71,7 +73,7 @@ GS.Interface = function() {
     $("#topicDetails p.name span").html(topicName);
     $("#topicDetails p.type span").html(topicType);
   }
-  this.showTopicDetailsMessageRecursive = function(messageDetails, parentId, parentType) {
+  this.showTopicDetailsMessage = function(messageDetails, parentId, parentType) {
     var listItems = "";
     var item = "";
     for(var i = 0; i < messageDetails.length; i++) {
@@ -79,15 +81,14 @@ GS.Interface = function() {
       if(md.type === parentType) {
         for(var j = 0; j < md.fieldnames.length; j++) {
           var fieldName = md.fieldnames[j];
-          var fieldType = md.fieldtypes[j];
+          var fieldType = (md.fieldarraylen[j] > -1) ? md.fieldtypes[j] + " [ ]" : md.fieldtypes[j];
           var fieldId = parentId === "" ? fieldName : parentId + "." + fieldName;
-          listItems += Mustache.render(templates.messageField, {
-              fieldName:fieldName,
-              fieldType:fieldType,
-              fieldValue:"",
-              fieldId:fieldId
-          });
-          item = this.showTopicDetailsMessageRecursive(messageDetails, fieldId, fieldType);
+          listItems += render.messageField(fieldId, fieldName, fieldType, "");
+          if(md.fieldarraylen[j] > -1) {
+            item = html.e("ul", "", {"data-id": "ul-" + fieldId});
+          } else {
+            item = this.showTopicDetailsMessage(messageDetails, fieldId, fieldType);
+          }
           listItems += item;
         }
         return html.e("ul", listItems, {});
@@ -95,8 +96,42 @@ GS.Interface = function() {
     }
     return "";
   }
-  this.showTopicMessage = function(message) {
-    console.log(message);
+  this.getTopicFieldType = function(messageDetails, fieldName) {
+    var md;
+    for(var i = 0; i < messageDetails.length; i++) {
+      md = messageDetails[i];
+      for(var j = 0; j < md.fieldnames.length; j++) {
+        console.log(md.fieldtypes[j]);
+        if(md.fieldnames[j] === fieldName) return md.fieldtypes[j];
+      }
+    }
+    return "";
+  }
+  this.showTopicMessage = function(messageDetails, message, fieldId, fieldName) {
+    switch(typeof(message)) {
+      case "object":
+        var childId = "";
+        var childName = "";
+        var element = "";
+        for(i in message) {
+          childId = (fieldId === "") ? i : fieldId + "." + i;
+          childName = (fieldName === "") ? i : fieldName + "." + i;
+          if(Array.isArray(message)) {
+            console.log(messageDetails);
+            var fieldType = self.getTopicFieldType(messageDetails, fieldName);
+            console.log(fieldName);
+            console.log(fieldType);
+            element = render.messageField(childId, childName, fieldType, message[i]);
+            $("ul[data-id='ul-" + fieldId + "']").append(element);
+          } else {
+            self.showTopicMessage(messageDetails, message[i], childId, i);
+          }
+        }
+        break;
+      default:
+        $("li[data-id='" + fieldId + "'] span.messageFieldValue").html(message);
+        break;
+    }
   }
   
   // ros services
