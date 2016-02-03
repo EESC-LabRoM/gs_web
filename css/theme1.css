@@ -1,11 +1,20 @@
+body{
+  margin:0;
+  padding:0;
+  font-family:garamond;
+  background: url("../img/pattern.png") repeat;
+}
+
 a{
   color:blue;
 }
 
-div#header{}
+div#header{
+}
 div#header h1 {
-  height:50px;
-  line-height:50px;
+  height:66px;
+  line-height:66px;
+  color:#456B91;
   text-align:left;
 }
 
