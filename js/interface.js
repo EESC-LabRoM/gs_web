@@ -101,7 +101,6 @@ GS.Interface = function() {
     for(var i = 0; i < messageDetails.length; i++) {
       md = messageDetails[i];
       for(var j = 0; j < md.fieldnames.length; j++) {
-        console.log(md.fieldtypes[j]);
         if(md.fieldnames[j] === fieldName) return md.fieldtypes[j];
       }
     }
