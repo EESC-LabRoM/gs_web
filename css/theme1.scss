@@ -1,0 +1,154 @@
+$color_t1:#456B91;
+$color_t1d1:darken( $color_t1, 10% );
+$color_t1d2:darken( $color_t1, 20% );
+$color_t1d3:darken( $color_t1, 30% );
+$color_t1d4:darken( $color_t1, 40% );
+$color_t1d5:darken( $color_t1, 50% );
+$color_t1l1:lighten( $color_t1, 10% );
+$color_t1l2:lighten( $color_t1, 20% );
+$color_t1l3:lighten( $color_t1, 30% );
+$color_t1l4:lighten( $color_t1, 40% );
+$color_t1l5:lighten( $color_t1, 50% );
+$gs0:#000;
+$gs1:#111;
+$gs2:#222;
+$gs3:#333;
+$gs4:#444;
+$gs5:#555;
+$gs6:#666;
+$gs7:#777;
+$gs8:#888;
+$gs9:#999;
+$gsa:#aaa;
+$gsb:#bbb;
+$gsc:#ccc;
+$gsd:#ddd;
+$gse:#eee;
+$gsf:#fff;
+
+body{
+  margin:0;
+  padding:0;
+  font-family:garamond;
+  background: url("../img/pattern.png") repeat;
+}
+
+a{
+  color:blue;
+}
+
+div#header{
+  margin: 0 2.5%;
+  h1 {
+    height:66px;
+    line-height:66px;
+    color:$color_t1;
+    text-align:left;
+  }
+}
+
+div#content{
+  margin:0 2.5%;
+  width:95%;
+  div#contentMenu{
+    margin-top:10px;
+    ul{
+      list-style: none;
+      margin:0;
+      padding:0;
+      li{
+        float:left;
+        border:$gs3 solid;
+        border-width: 1px 1px 0;
+        background-color:$color_t1l4;
+        a{
+          display:inline-block;
+          padding:10px;
+        }
+      }
+      li:hover{
+        background-color:$color_t1l3;
+      }
+      li.active, li:active{
+        background-color:$color_t1l2;
+      }
+    }
+  }
+  
+  div#contentMain{
+    border:1px solid $gs3;
+    padding:1%;
+    background-color:#fff;
+  }
+
+  div#rosOptions{
+    width:100%;
+    height:30px;
+    line-height:30px;
+
+    input[type=checkbox]{
+      margin-left:20px;
+    }
+  }
+
+  div#rosPanel {
+    .content-side{
+      margin-left:1.25%;
+      padding:1%;
+      border:1px solid $color_t1d3;
+
+      div{
+        margin:3px 0 0 0;
+        border:1px solid $gsc;
+      }
+
+      h3{
+        margin-top:5px;
+        font-size:16px;
+        text-decoration:underline;
+      }
+    }
+
+    .content-main{
+      margin-left:1.25%;
+      border:1px solid $color_t1;
+      background-color:#eee;
+      text-overflow: auto;
+    }
+  }
+}
+
+
+
+#serviceDetails table td {
+  border:1px solid #333;
+  text-align:center;
+}
+
+input[readonly=readonly] {
+  background-color:#ccc;
+}
+
+
+div.messageDetails {
+  ul {
+    list-style: circle;
+    
+    li span.messageFieldType {
+      padding:0 5px;
+      font-weight:bold;
+      color:cornflowerblue;
+    }
+    
+    li span.messageFieldName {
+      color:darkblue;
+    }
+    
+    li span.messageFieldValue {
+      padding:0 5px;
+      color:black;
+      background-color:#fff;
+      text-decoration: underline;
+    }
+  }
+}

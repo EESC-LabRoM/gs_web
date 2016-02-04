@@ -1,0 +1,27 @@
+div{overflow:auto;box-sizing: border-box;}
+h1,h2,h3,h4,h5,h6,h7{margin:0;padding:0;text-align:center;}
+
+.fright{float:right;}.fleft{float:left;}
+.clearfix{clear:both;}
+
+// ex: .w50p{width:50%;}
+@for $i from 1 through 20 {
+  .w#{$i*5}p{width: 5% * $i;}
+}
+// ex: .w50{width:50px;}
+@for $i from 1 through 20 {
+  .w#{$i*50}{width: 50px * $i;}
+}
+// ex: .h50{height:50px;}
+@for $i from 1 through 20 {
+  .h#{$i*50}{height: 50px * $i;}
+}
+// ex: .mh50{max-height:50px;}
+@for $i from 1 through 20 {
+  .mh#{$i*50}{max-height: 50px * $i;}
+}
+
+
+@for $i from 1 through 5 {
+  .pd#{$i}{padding:0 1% * $i;}
+}
