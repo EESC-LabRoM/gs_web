@@ -30,146 +30,156 @@
       <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
       <button id="btn_server_connect" value="Connect">Connect</button>
     </div>
-    
-    <div id="rosOptions">
-      <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
-      <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
-      
-      <input type="checkbox" name="ckbRosoutServiceParam" id="ckbRosoutServiceParam" />
-      <label for="ckbRosoutServiceParam">Hide rosout services/params</label>
-      
-      <input type="checkbox" name="ckbRosbridgeWebsocketServiceParam" id="ckbRosbridgeWebsocketServiceParam" />
-      <label for="ckbRosbridgeWebsocketServiceParam">Hide rosbridge websocket services/params</label>
-    </div>
 
     <div id="content">
-      <div class="content-side fleft w20p p5">
-        
-        <h3>Log messages</h3>
-        <div id="log" class="w100p h100">
-          <ul id="messages-list"></ul>
-        </div>
-
-        <h3>Nodes</h3>
-        <div id="nodes" class="w100p mh200">
-          <table id="nodes-list" class="w100p p5">
-            <tr><th>node name</th></tr>
-          </table>
-        </div>
-
-        <h3>Topics</h3>
-        <div id="topics" class="w100p mh200">
-          <table id="topics-list" class="w100p p5">
-            <tr><th>topic name</th></tr>
-          </table>
-        </div>
+      <div id="contentMenu">
+        <ul>
+          <li><a href="#">Painel ROS</a></li>
+        </ul>
       </div>
       
-      
-      <div id=content-main class="fleft w45p p5">
-        <div id="details">
-          
-          <div id="nodeDetails" class="rosDetails">
-            <h3>Node details</h3>
-            <p class="name">
-              <label>Node</label>
-              <span></span>
-            </p>
-          </div>
-          
-          <div id="topicDetails" class="rosDetails">
-            <h3>Topic details</h3>
-            <p class="name">
-              <label>Topic</label>
-              <span></span>
-            </p>
-            
-            <p class="type">
-              <label>Type</label>
-              <span></span>
-            </p>
-            
-            <div class="messageDetails">
-            </div>
-            
-            <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
-            <input type="hidden" name="hdnTopicType" id="hdnTopicType" />
-            <button id="btnSubscribeTopic">Subscribe!</button>
-            
-          </div>
-          
-          <div id="serviceDetails" class="rosDetails">
-            <h3>Service details</h3>
-            <p class="name">
-              <label>Service</label>
-              <span></span>
-            </p>
-            <p class="type">
-              <label>Type</label>
-              <span></span>
-            </p>
-            <div class="request">
-              <label>Request</label>
-              <table class="requestList w100p">
-                <tr><th>type</th><th>name</th><th>value</th></tr>
-              </table>
-            </div>
-            
-            <br />
-            
-            <div class="response">
-              <label>Response</label>
-              <table class="responseList w100p">
-                <tr><th>type</th><th>name</th><th></th></tr>
-              </table>
-            </div>
-            
-            <br />
-            
-            <div class="response">
-              <label>Call service</label>
-              <br />
-              <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
-              <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
-              <button id="btnCallService">Call!</button>
-              <button id="btnRefreshService">Refresh!</button>
-            </div>
-          </div>
-          
-          <div id="paramDetails" class="rosDetails">
-            <h3>Param details</h3>
-            <p class="name">
-              <label>Param</label>
-              <span></span>
-            </p>
-            <p class="type">
-              <label>Value</label>
-              <span></span>
-            </p>
-            <p>
-              <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
-              <input type="text" id="txtSetParam" name="txtSetParam" value="" />
-              <button id="btnSetParam">Set</button>
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="content-side fleft w30p p5">
-        
-        <h3>Services</h3>
-        <div id="services" class="w100p mh250">
-          <table id="services-list" class="w100p p5">
-            <tr><th>service</th></tr>
-          </table>
-        </div>
+      <div id="contentMain">
+        <div id="rosPanel">
+          <div id="rosOptions">
+            <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
+            <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
 
-        <h3>Params</h3>
-        <div id="params" class="w100p mh200">
-          <table id="params-list" class="w100p p5">
-            <tr><th>param</th></tr>
-          </table>
+            <input type="checkbox" name="ckbRosoutServiceParam" id="ckbRosoutServiceParam" />
+            <label for="ckbRosoutServiceParam">Hide rosout services/params</label>
+
+            <input type="checkbox" name="ckbRosbridgeWebsocketServiceParam" id="ckbRosbridgeWebsocketServiceParam" />
+            <label for="ckbRosbridgeWebsocketServiceParam">Hide rosbridge websocket services/params</label>
+          </div>
+
+          <div class="content-side fleft w25p">
+
+            <h3>Log messages</h3>
+            <div id="log" class="w100p h100">
+              <ul id="messages-list"></ul>
+            </div>
+
+            <h3>Nodes</h3>
+            <div id="nodes" class="w100p mh200">
+              <table id="nodes-list" class="w100p p5">
+                <tr><th>node name</th></tr>
+              </table>
+            </div>
+
+            <h3>Topics</h3>
+            <div id="topics" class="w100p mh200">
+              <table id="topics-list" class="w100p p5">
+                <tr><th>topic name</th></tr>
+              </table>
+            </div>
+          </div>
+
+
+          <div class="content-main fleft w40p">
+            <div id="details">
+
+              <div id="nodeDetails" class="rosDetails">
+                <h3>Node details</h3>
+                <p class="name">
+                  <label>Node</label>
+                  <span></span>
+                </p>
+              </div>
+
+              <div id="topicDetails" class="rosDetails">
+                <h3>Topic details</h3>
+                <p class="name">
+                  <label>Topic</label>
+                  <span></span>
+                </p>
+
+                <p class="type">
+                  <label>Type</label>
+                  <span></span>
+                </p>
+
+                <div class="messageDetails">
+                </div>
+
+                <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
+                <input type="hidden" name="hdnTopicType" id="hdnTopicType" />
+                <button id="btnSubscribeTopic">Subscribe!</button>
+
+              </div>
+
+              <div id="serviceDetails" class="rosDetails">
+                <h3>Service details</h3>
+                <p class="name">
+                  <label>Service</label>
+                  <span></span>
+                </p>
+                <p class="type">
+                  <label>Type</label>
+                  <span></span>
+                </p>
+                <div class="request">
+                  <label>Request</label>
+                  <table class="requestList w100p">
+                    <tr><th>type</th><th>name</th><th>value</th></tr>
+                  </table>
+                </div>
+
+                <br />
+
+                <div class="response">
+                  <label>Response</label>
+                  <table class="responseList w100p">
+                    <tr><th>type</th><th>name</th><th></th></tr>
+                  </table>
+                </div>
+
+                <br />
+
+                <div class="response">
+                  <label>Call service</label>
+                  <br />
+                  <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
+                  <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
+                  <button id="btnCallService">Call!</button>
+                  <button id="btnRefreshService">Refresh!</button>
+                </div>
+              </div>
+
+              <div id="paramDetails" class="rosDetails">
+                <h3>Param details</h3>
+                <p class="name">
+                  <label>Param</label>
+                  <span></span>
+                </p>
+                <p class="type">
+                  <label>Value</label>
+                  <span></span>
+                </p>
+                <p>
+                  <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
+                  <input type="text" id="txtSetParam" name="txtSetParam" value="" />
+                  <button id="btnSetParam">Set</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="content-side fleft w30p">
+
+          <h3>Services</h3>
+          <div id="services" class="w100p mh250">
+            <table id="services-list" class="w100p p5">
+              <tr><th>service</th></tr>
+            </table>
+          </div>
+
+          <h3>Params</h3>
+          <div id="params" class="w100p mh200">
+            <table id="params-list" class="w100p p5">
+              <tr><th>param</th></tr>
+            </table>
+          </div>
+        </div>
         </div>
       </div>
       

@@ -1,69 +1,111 @@
-a{
-  color:blue;
-}
+/* line 29, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: garamond;
+  background: url("../img/pattern.png") repeat; }
 
-div#header{}
-div#header h1 {
-  height:50px;
-  line-height:50px;
-  text-align:left;
-}
+/* line 36, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+a {
+  color: blue; }
 
-.content-side{
-  border:1px solid #333;
-  background-color:#eee;
-}
-.content-side div{
-  margin:3px 0 0 0;
-  border:1px solid #ccc;
-}
-.content-side h3{
-  margin-top:10px;
-  font-size:16px;
-  text-decoration:underline;
-}
+/* line 40, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+div#header {
+  margin: 0 2.5%; }
+  /* line 42, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#header h1 {
+    height: 66px;
+    line-height: 66px;
+    color: #456B91;
+    text-align: left; }
 
-div#rosOptions{
-  height:30px;
-  line-height:30px;
-}
-div#rosOptions input[type=checkbox]{
-  margin-left:20px;
-}
+/* line 50, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+div#content {
+  margin: 0 2.5%;
+  width: 95%; }
+  /* line 53, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#content div#contentMenu {
+    margin-top: 10px; }
+    /* line 55, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+    div#content div#contentMenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      /* line 59, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+      div#content div#contentMenu ul li {
+        float: left;
+        border: #333 solid;
+        border-width: 1px 1px 0;
+        background-color: #c1d1e1; }
+        /* line 64, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+        div#content div#contentMenu ul li a {
+          display: inline-block;
+          padding: 10px; }
+      /* line 69, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+      div#content div#contentMenu ul li:hover {
+        background-color: #9eb7d1; }
+      /* line 72, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+      div#content div#contentMenu ul li.active, div#content div#contentMenu ul li:active {
+        background-color: #7c9ec0; }
+  /* line 78, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#content div#contentMain {
+    border: 1px solid #333;
+    padding: 1%;
+    background-color: #fff; }
+  /* line 84, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#content div#rosOptions {
+    width: 100%;
+    height: 30px;
+    line-height: 30px; }
+    /* line 89, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+    div#content div#rosOptions input[type=checkbox] {
+      margin-left: 20px; }
+  /* line 95, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#content div#rosPanel .content-side {
+    margin-left: 1.25%;
+    padding: 1%;
+    border: 1px solid #141e29; }
+    /* line 100, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+    div#content div#rosPanel .content-side div {
+      margin: 3px 0 0 0;
+      border: 1px solid #ccc; }
+    /* line 105, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+    div#content div#rosPanel .content-side h3 {
+      margin-top: 5px;
+      font-size: 16px;
+      text-decoration: underline; }
+  /* line 112, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div#content div#rosPanel .content-main {
+    margin-left: 1.25%;
+    border: 1px solid #456B91;
+    background-color: #eee;
+    text-overflow: auto; }
 
-#content-main{
-  border:1px solid #333;
-  margin:0 1%;
-  width:48%;
-  background-color:#eee;
-  height:524px;
-  text-overflow: auto;
-}
-
+/* line 123, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
 #serviceDetails table td {
-  border:1px solid #333;
-  text-align:center;
-}
+  border: 1px solid #333;
+  text-align: center; }
 
+/* line 128, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
 input[readonly=readonly] {
-  background-color:#ccc;
-}
+  background-color: #ccc; }
 
-
+/* line 134, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
 div.messageDetails ul {
-  list-style: circle;
-}
-div.messageDetails ul li span.messageFieldType {
-  padding:0 5px;
-  font-weight:bold;
-  color:cornflowerblue;
-}
-div.messageDetails ul li span.messageFieldName {
-  color:darkblue;
-}
-div.messageDetails ul li span.messageFieldValue {
-  padding:0 5px;
-  color:black;
-  background-color:#fff;
-  text-decoration: underline;
-}
+  list-style: circle; }
+  /* line 137, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div.messageDetails ul li span.messageFieldType {
+    padding: 0 5px;
+    font-weight: bold;
+    color: cornflowerblue; }
+  /* line 143, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div.messageDetails ul li span.messageFieldName {
+    color: darkblue; }
+  /* line 147, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/theme1.scss */
+  div.messageDetails ul li span.messageFieldValue {
+    padding: 0 5px;
+    color: black;
+    background-color: #fff;
+    text-decoration: underline; }
+
+/*# sourceMappingURL=theme1.css.map */
