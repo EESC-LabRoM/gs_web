@@ -29,7 +29,9 @@ $gsf:#fff;
 body{
   margin:0;
   padding:0;
-  font-family:garamond;
+  font-family: garamond;
+  font-family:"Josefin Sans";
+  font-family: 'Josefin Slab', serif;
   background: url("../img/pattern.png") repeat;
 }
 
@@ -53,24 +55,66 @@ div#content{
   div#contentMenu{
     margin-top:10px;
     ul{
-      list-style: none;
+      width:100%;
+      list-style:none;
       margin:0;
       padding:0;
       li{
         float:left;
         border:$gs3 solid;
-        border-width: 1px 1px 0;
+        border-width: 1px 1px 0 0;
         background-color:$color_t1l4;
         a{
+          float:left;
           display:inline-block;
           padding:10px;
+          text-decoration:none;
+          &#widgetAdd {
+            text-decoration: none;
+            background-color:#fff;
+            &:hover {
+              background-color:#ddd;
+            }
+          }
+          &:hover {
+            background-color:$color_t1l3;
+          }
+          &.close {
+            padding:5px;
+            height:50%;
+            &:hover {
+              background-color:#eee;
+            }
+          }
         }
-      }
-      li:hover{
-        background-color:$color_t1l3;
+        &:first-child{
+          border-width: 1px 1px 0;
+        }
       }
       li.active, li:active{
         background-color:$color_t1l2;
+      }
+    }
+    div#widgetList {
+      display:none;
+      position:absolute;
+      margin-top:39px + 5px;
+      margin-left: 5px;
+      border:1px solid #333;
+      width:0;
+      height:0;
+      background:#fff;
+      a {
+        display:inline-block;
+        box-sizing:border-box;
+        width:100%;
+        height:30px;
+        line-height:30px;
+        background-color:#eee;
+        padding-left:10px;
+        &:hover {
+          background-color:#ddd;
+        }
       }
     }
   }
@@ -79,6 +123,9 @@ div#content{
     border:1px solid $gs3;
     padding:1%;
     background-color:#fff;
+    div.loader {
+      text-align: center;
+    }
   }
 
   div#rosOptions{
@@ -130,7 +177,7 @@ input[readonly=readonly] {
 }
 
 
-div.messageDetails {
+div.messageDetails, div.serviceDetails {
   ul {
     list-style: circle;
     

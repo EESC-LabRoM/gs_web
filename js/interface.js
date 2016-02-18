@@ -18,6 +18,26 @@ GS.Interface = function() {
     }
   };
   
+  // widgets
+  // -------
+  this.widgetToggleList = function() {
+    $("#widgetList").html("");
+    for(i in widgets.list) {
+      var widgetName = widgets.list[i];
+      $("#widgetList").append(html.e("a", widgetName, {href: "#", "data-name": widgetName, "class": "jsWidgetItem"}));
+    }
+    if($("#widgetList").is(":visible")) {
+      $("#widgetList").toggle().css({width: "", height: "", "min-height": "", "min-width": ""});;
+    } else {
+      $("#widgetList")
+        .css({width:0,height:0})
+        .toggle()
+        .animate({width:300, height:150}, 300, "swing", function() {
+          $(this).css({width: "", height: "", "min-height": "150px", "min-width": "300px"});
+        });
+    }
+  };
+  
   // log message
   // -----------
   this.logMessage = function(msg) {
@@ -85,7 +105,7 @@ GS.Interface = function() {
           var fieldId = parentId === "" ? fieldName : parentId + "." + fieldName;
           listItems += render.messageField(fieldId, fieldName, fieldType, "");
           if(md.fieldarraylen[j] > -1) {
-            item = html.e("ul", "", {"data-id": "ul-" + fieldId});
+            item = html.e("ul", "", {"data-id": "ul-" + fieldId, "data-list": "1"});
           } else {
             item = this.showTopicDetailsMessage(messageDetails, fieldId, fieldType);
           }
@@ -107,19 +127,18 @@ GS.Interface = function() {
     return "";
   }
   this.showTopicMessage = function(messageDetails, message, fieldId, fieldName) {
+    $(".messageDetails ul[data-list='1']").html("");
     switch(typeof(message)) {
       case "object":
         var childId = "";
         var childName = "";
+        var childType = "";
         var element = "";
         for(i in message) {
           childId = (fieldId === "") ? i : fieldId + "." + i;
           childName = (fieldName === "") ? i : fieldName + "." + i;
           if(Array.isArray(message)) {
-            console.log(messageDetails);
             var fieldType = self.getTopicFieldType(messageDetails, fieldName);
-            console.log(fieldName);
-            console.log(fieldType);
             element = render.messageField(childId, childName, fieldType, message[i]);
             $("ul[data-id='ul-" + fieldId + "']").append(element);
           } else {
@@ -212,6 +231,12 @@ GS.Interface = function() {
     $("#paramDetails #hdnParamName").val(paramName);
     $("#paramDetails p.name span").html(paramName);
     $("#paramDetails p.type span").html(paramValue);
+  };
+  
+  // ===== WIDGETS Functions =====
+  // =============================
+  this.widgetOpenMenu = function() {
+    
   };
   
 }
