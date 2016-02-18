@@ -14,32 +14,50 @@
     <script type="text/javascript" src="js/events.js"></script>
     <script type="text/javascript" src="js/interface.js"></script>
     <script type="text/javascript" src="js/html.js"></script>
+    <script type="text/javascript" src="js/svg.js"></script>
     <script type="text/javascript" src="js/routines.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
+    <script type="text/javascript" src="js/widgets.js"></script>
+    
+    <!-- WIDGETS -->
+    <script type="text/javascript" src="widgets/mav/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="widgets/mav/css/main.css" />
     
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/theme1.css" />
     <link rel="stylesheet" type="text/css" href="css/ros.css" />
+    
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:400,600' rel='stylesheet' type='text/css'>
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/rosorg-favicon.png" type="image/x-icon" />
   </head>
 
   <body>
     <div id="header">
       <h1>ROS web</h1>
+      <label>ws://192.168.81.128:9090</label>
+      <br />
       <label>Server address</label>
-      <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
+      <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.81.128:9090" />
       <button id="btn_server_connect" value="Connect">Connect</button>
     </div>
 
     <div id="content">
       <div id="contentMenu">
         <ul>
-          <li><a href="#">Painel ROS</a></li>
+          <li><a href="#" id="widgetAdd">+</a></li>
+          <li><a href="#" data-id="0" class="jsWidgetShow">Painel ROS</a></li>
         </ul>
+        <div id="widgetList">
+        </div>
       </div>
       
       <div id="contentMain">
-        <div id="rosPanel">
+        <div id="rosPanel" class="contentMain widgetContent" data-widget-id="0">
           <div id="rosOptions">
             <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
             <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
@@ -103,6 +121,7 @@
                 <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
                 <input type="hidden" name="hdnTopicType" id="hdnTopicType" />
                 <button id="btnSubscribeTopic">Subscribe!</button>
+                <button id="btnUnsubscribeTopic">Cancel!</button>
 
               </div>
 
@@ -167,7 +186,7 @@
           <div class="content-side fleft w30p">
 
           <h3>Services</h3>
-          <div id="services" class="w100p mh250">
+          <div id="services" class="w100p mh200">
             <table id="services-list" class="w100p p5">
               <tr><th>service</th></tr>
             </table>

@@ -23,7 +23,7 @@ GS.Events = function() {
     }
   };
   
-  var keepType = function(value) {
+  this.keepType = function(value) {
     return isNaN(value) ? value : parseInt(value);
   };
   
@@ -49,18 +49,28 @@ GS.Events = function() {
     // -----------
     // connect
     $("#btn_server_connect").click(this.btnServerConnectClick);
+    
+    // widgets
+    // -------
+    $("#widgetAdd").click(this.widgetAdd);
+    $(document).delegate(".jsWidgetItem", "click", this.widgetAddItem);
+    $(document).delegate(".jsWidgetClose", "click", this.widgetClose);
+    $(document).delegate(".jsWidgetShow", "click", this.widgetShow);
+    
     // ros links
     // ---------
     $(document).delegate(".jsRosTopic", "click", this.linkRosTopicClick);
     $(document).delegate(".jsRosNode", "click", this.linkRosNodeClick);
     $(document).delegate(".jsRosService", "click", this.linkRosServiceClick);
     $(document).delegate(".jsRosParam", "click", this.linkRosParamClick);
+    
     // ros buttons
     // -----------
     $(document).delegate("#btnSetParam", "click", this.btnSetParam);
     $(document).delegate("#btnCallService", "click", this.btnCallService);
     $(document).delegate("#btnRefreshService", "click", this.btnRefreshService);
     $(document).delegate("#btnSubscribeTopic", "click", this.btnSubscribeTopic);
+    $(document).delegate("#btnUnsubscribeTopic", "click", this.btnUnsubscribeTopic);
   };
   
   // Server Connect Button Click
@@ -75,6 +85,29 @@ GS.Events = function() {
     }
   };
   
+  // Widget Add
+  // ----------
+  this.widgetAdd = function(e) {
+    interface.widgetToggleList();
+    e.preventDefault();
+  };
+  this.widgetAddItem = function(e) {
+    var widgetName = $(this).attr("data-name");
+    widgets.open(widgetName);
+    self.widgetAdd(e);
+    e.preventDefault();
+  };
+  this.widgetClose = function(e) {
+    var widgetId = $(this).attr("data-id");
+    widgets.close(widgetId);
+    e.preventDefault();
+  }
+  this.widgetShow = function(e) {
+    var widgetId = $(this).attr("data-id");
+    widgets.show(widgetId);
+    e.preventDefault();
+  }
+  
   // ROS Links
   // ---------
   this.linkRosNodeClick = function(e) {
@@ -87,9 +120,7 @@ GS.Events = function() {
     var topicName = $(this).attr("data-topic-name");
     ros.getTopicType(topicName, function(topicType) {
       ros.getMessageDetails(topicType, function(messageDetails) {
-        self.messageDetails = messageDetails;
-        console.log(self.messageDetails);
-        interface.showTopicDetails(topicName,topicType,messageDetails);
+        self.messageDetails = messageDetails; interface.showTopicDetails(topicName,topicType,messageDetails);
       });
     });
     e.preventDefault();
@@ -132,6 +163,9 @@ GS.Events = function() {
     
     self.topicListener.subscribe(self.rosSubscriptionCallback);
   };
+  this.btnUnsubscribeTopic = function(e) {
+    self.cancelSubscription();
+  }
   this.btnCallService = function(e) {
     var serviceName = $("#hdnServiceName").val();
     var serviceType = $("#hdnServiceType").val();
@@ -170,7 +204,7 @@ GS.Events = function() {
     var paramName = $("#hdnParamName").val();
     var value = $("#txtSetParam").val();
     var param = new ROSLIB.Param({ros:ros,name:paramName});
-    param.set(this.keepType(value));
+    param.set(self.keepType(value));
     param.get(function(value){
       interface.showParamDetails(paramName, value);
       $("#txtSetParam").val("");
@@ -181,9 +215,10 @@ GS.Events = function() {
   // ROS Subscription callback
   // -------------------------
   this.rosSubscriptionCallback = function(message) {
-    console.log(self.messageDetails);
     interface.showTopicMessage(self.messageDetails, message, "", "");
-    self.cancelSubscription();
+    
+    // for tests only
+    // self.cancelSubscription();
   }
   
   // ROS events

@@ -1,0 +1,12 @@
+/* line 1, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+div.wMavAttitude {
+  width: 500px;
+  height: 350px;
+  background-color: #ccc;
+  overflow: hidden; }
+  /* line 6, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+  div.wMavAttitude svg {
+    height: 100%;
+    width: 100%; }
+
+/*# sourceMappingURL=main.css.map */
