@@ -5,7 +5,8 @@ db = function (data) {
 // My Namespaces
 // -------------
 GS = {};
-WIDGETS = {};
+GS.WIDGETS = {};
+GS.ROBOTICS = {};
 
 // GLOBALS
 // -------

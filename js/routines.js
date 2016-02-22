@@ -1,31 +1,35 @@
-GS.Routines = function() {
-  
+GS.Routines = function () {
+
   // ===== Private variables =====
   // =============================
   var interface = new GS.Interface();
-  var resetPrevData = {nodes:[],topics:[],services:[],params:[]};
-  var prevData = {nodes:[],topics:[],services:[],params:[]};
-  
+  var prevData = {
+    nodes: [],
+    topics: [],
+    services: [],
+    params: []
+  };
+
   // ===== Private methods =====
   // ===========================
-  var compareArrays = function(arr1, arr2) {
+  var compareArrays = function (arr1, arr2) {
     // compare size
-    if(arr1.length !== arr2.length) return false;
-    
+    if (arr1.length !== arr2.length) return false;
+
     // compare items
-    for(i in arr1) {
-      if(arr1[i] !== arr2[i]) return false;
+    for (i in arr1) {
+      if (arr1[i] !== arr2[i]) return false;
     }
-    
+
     return true;
   };
   // get nodes
   // ---------
-  var getNodes = function() {
-    if(ros.isConnected) {
-      ros.getNodes(function(nodes) {
+  var getNodes = function () {
+    if (ros.isConnected) {
+      ros.getNodes(function (nodes) {
         nodes.sort();
-        if(!compareArrays(prevData.nodes, nodes)) {
+        if (!compareArrays(prevData.nodes, nodes)) {
           interface.logMessage("nodes refreshed");
           interface.clearNodes();
           interface.listNodes(nodes);
@@ -38,28 +42,28 @@ GS.Routines = function() {
   };
   // get topics
   // ----------
-  var getTopics = function() {
-    if(ros.isConnected) {
-      ros.getTopics(function(topics) {
+  var getTopics = function () {
+    if (ros.isConnected) {
+      ros.getTopics(function (topics) {
         topics.sort();
-        if(!compareArrays(prevData.topics, topics)) {
+        if (!compareArrays(prevData.topics, topics)) {
           interface.logMessage("topics refreshed");
           interface.clearTopics();
           interface.listTopics(topics);
         }
         prevData.topics = topics;
       });
-    } else {  
+    } else {
       interface.clearTopics();
     }
   };
   // get services
   // ------------
-  var getServices = function() {
-    if(ros.isConnected) {
-      ros.getServices(function(services) {
+  var getServices = function () {
+    if (ros.isConnected) {
+      ros.getServices(function (services) {
         services.sort();
-        if(!compareArrays(prevData.services, services)) {
+        if (!compareArrays(prevData.services, services)) {
           interface.logMessage("services refreshed");
           interface.clearServices();
           interface.listServices(services);
@@ -72,11 +76,11 @@ GS.Routines = function() {
   };
   // get params
   // ----------
-  var getParams = function() {
-    if(ros.isConnected) {
-      ros.getParams(function(params){
+  var getParams = function () {
+    if (ros.isConnected) {
+      ros.getParams(function (params) {
         params.sort();
-        if(!compareArrays(prevData.params, params)) {
+        if (!compareArrays(prevData.params, params)) {
           interface.logMessage("params refreshed");
           interface.clearParams();
           interface.listParams(params);
@@ -87,27 +91,27 @@ GS.Routines = function() {
       interface.clearParams();
     }
   };
-  
+
   // show or hide
   // ------------
-  var showHide = function() {
-    if($("#ckbRosapiServiceParam").is(":checked")) {
+  var showHide = function () {
+    if ($("#ckbRosapiServiceParam").is(":checked")) {
       $(".jsRosapiService").hide();
       $(".jsRosapiParam").hide();
     } else {
       $(".jsRosapiService").show();
       $(".jsRosapiParam").show();
     }
-    
-    if($("#ckbRosoutServiceParam").is(":checked")) {
+
+    if ($("#ckbRosoutServiceParam").is(":checked")) {
       $(".jsRosoutService").hide();
       $(".jsRosoutParam").hide();
     } else {
       $(".jsRosoutService").show();
       $(".jsRosoutParam").show();
     }
-    
-    if($("#ckbRosbridgeWebsocketServiceParam").is(":checked")) {
+
+    if ($("#ckbRosbridgeWebsocketServiceParam").is(":checked")) {
       $(".jsRosbridgeWebsocketService").hide();
       $(".jsRosbridgeWebsocketParam").hide();
     } else {
@@ -115,14 +119,19 @@ GS.Routines = function() {
       $(".jsRosbridgeWebsocketParam").show();
     }
   };
-  
+
   // ===== Public methods =====
   // ==========================
   // main routine
   // ------------
-  this.do = function() {
-    if(!ros.isConnected) {
-      prevData = {nodes:[],topics:[],services:[],params:[]};
+  this.do = function () {
+    if (!ros.isConnected) {
+      prevData = {
+        nodes: [],
+        topics: [],
+        services: [],
+        params: []
+      };
     }
     getNodes();
     getTopics();

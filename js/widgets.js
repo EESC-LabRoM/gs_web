@@ -14,6 +14,14 @@ GS.Widgets = function() {
   // =============================
   this.list = ["Mav", "Turtlesim"];
   this.opened = [];
+  this.subscribers = [];
+  /*
+  [{
+    widgetId: 1,
+    listener: {Object},
+    callbackFunctionName: ""
+  }]
+  */
   
   // ===== Private methods =====
   // ===========================
@@ -35,7 +43,7 @@ GS.Widgets = function() {
     var widgetId = ++widgetsIdCounter;
     
     // widgets manager
-    var widget = new WIDGETS[widgetName]();
+    var widget = new GS.WIDGETS[widgetName]();
     widget.widgetId = widgetId;
     self.opened.push(widget);
     
@@ -58,7 +66,7 @@ GS.Widgets = function() {
     self.show(0);
     
     // widgets manager
-    self.opened.splice(getWidgetIndex(widgetId), 1);
+    self.opened.splice(self.getWidgetIndex(widgetId), 1);
   }
   this.count = function() {
     return widgetsList.length;
@@ -66,21 +74,20 @@ GS.Widgets = function() {
   
   // ===== Widgets Private Methods =====
   // ===================================
-  getWidgetIndex = function(widgetId) {
+  this.getWidgetIndex = function(widgetId) {
     for(var i in self.opened) {
       var widget = self.opened[i];
       if(widget.widgetId === widgetId) return i;
     }
     return false;
   }
-  getWidget = function(widgetId) {
-    return self.opened[getWidgetIndex(widgetId)];
+  this.getWidget = function(widgetId) {
+    return self.opened[self.getWidgetIndex(widgetId)];
   }
-  this.getWidget = getWidget;
   
   // widget callbacks
   this.widgetStart = function(widgetId) {
-    var widget = getWidget(widgetId);
+    var widget = self.getWidget(widgetId);
     widget.onStart();
   }
   
