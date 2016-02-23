@@ -1,15 +1,27 @@
 div.wMavAttitude{
   width:500px;
-  height:500px;
+  height:400px;
   background-color:#ccc;
   overflow:hidden;
+  * {
+    box-sizing: border-box;
+  }
   svg{
-    
+    float:left;
   }
   div {
+    float:left;
+    width:100px;
+    label, span {
+      float:left;
+      padding:0 0 0 5px;
+      width:100%;
+    }
     label {
-      display:inline-block;
-      width:60px;
+      margin-top:5px;
+      font-weight: bold;
+    }
+    span {
     }
   }
 }

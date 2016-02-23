@@ -26,13 +26,14 @@ GS.WIDGETS.Mav = function () {
       self.updateSelectsOptions();
       self.generateAttitudeVisualizer();
     });
-  }
+  };
 
   // other functions
   this.attitudeVisualizerConfiguration = {
-    pixelsPerDegree: 4,
+    pixelsPerDegree: 3,
     svgWidth: 400,
-    svgHeight: 400
+    svgHeight: 400,
+    crownWidth: 50
   };
   this.generateAttitudeVisualizer = function () {
     var jSvgElement = $(selector + " .wMavAttitude svg");
@@ -41,6 +42,11 @@ GS.WIDGETS.Mav = function () {
     jSvgElement.css("height", self.attitudeVisualizerConfiguration.svgHeight);
     var svgWidth = self.attitudeVisualizerConfiguration.svgWidth;
     var svgHeight = self.attitudeVisualizerConfiguration.svgHeight;
+    var crownWidth = self.attitudeVisualizerConfiguration.crownWidth;
+
+    // container like
+    var gContainer = svg.g({"data-id": "container"});
+    svgElement.appendChild(gContainer);
 
     // pitch and roll areas
     var rect1 = svg.rect({
@@ -61,10 +67,10 @@ GS.WIDGETS.Mav = function () {
     }, {
       fill: "#5C4033"
     });
-    svgElement.appendChild(rect1);
-    
+    gContainer.appendChild(rect1);
+
     var gRollAffected = svg.g({"data-id": "rollAffected"});
-    
+
     gRollAffected.appendChild(rect2);
 
     // pitch grid
@@ -89,7 +95,7 @@ GS.WIDGETS.Mav = function () {
         stroke: "black",
         "stroke-width": 1
       }));
-      
+
       if(i < max) {
         for (var j = 1; j <= 4; j++) {
           gRollAffected.appendChild(svg.line({
@@ -121,18 +127,17 @@ GS.WIDGETS.Mav = function () {
       "data-id": "linePitch"
     });
     gRollAffected.appendChild(pitchLine);
-    
-    svgElement.appendChild(gRollAffected);
-    
-      
-    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1}, 0, 200, 200, 0, 0, 0, 200, true);
-    svgElement.appendChild(quarterCircle1);
-    var quarterCircle2 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1}, 200, 0, 400, 200, 400, 0, 200, true);
-    svgElement.appendChild(quarterCircle2);
-    var quarterCircle3 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1}, 400, 200, 200, 400, 400, 400, 200, true);
-    svgElement.appendChild(quarterCircle3);
-    var quarterCircle4 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1}, 200, 400, 0, 200, 0, 400, 200, true);
-    svgElement.appendChild(quarterCircle4);
+
+    gContainer.appendChild(gRollAffected);
+
+    var squareSide = svgWidth;
+    var halfSquareSide = squareSide/2;
+//    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1},
+//      crownWidth, halfSquareSide,
+//      halfSquareSide, crownWidth,
+//      crownWidth, crownWidth,
+//      halfSquareSide, true);
+//    gContainer.appendChild(quarterCircle1);
   };
   // update selects' options
   this.updateSelectsOptions = function () {
@@ -159,27 +164,28 @@ GS.WIDGETS.Mav = function () {
     quaternion.x = msg.orientation.x;
     quaternion.y = msg.orientation.y;
     quaternion.z = msg.orientation.z;
-    
+
     // rpy
     var eulerXYZ = new GS.ROBOTICS.RPY();
     eulerXYZ = quaternion.toRPY();
-    
+
     // show in text format
-    $(selector + " span[data-id='roll-value']").html(eulerXYZ.roll_deg.toFixed(2));
-    $(selector + " span[data-id='pitch-value']").html(eulerXYZ.pitch_deg.toFixed(2));
-    $(selector + " span[data-id='yaw-value']").html(eulerXYZ.yaw_deg.toFixed(2));
-    
+    $(selector + " span[data-id='roll-value']").html(eulerXYZ.roll_deg.toFixed(2) + "º");
+    $(selector + " span[data-id='pitch-value']").html(eulerXYZ.pitch_deg.toFixed(2) + "º");
+    $(selector + " span[data-id='yaw-value']").html(eulerXYZ.yaw_deg.toFixed(2) + "º");
+
     // svg transform
     var translateY = -eulerXYZ.pitch_deg * self.attitudeVisualizerConfiguration.pixelsPerDegree;
     var translate = " translate(0 " + translateY + ")";
-    
+
     var rotateX = self.attitudeVisualizerConfiguration.svgWidth / 2;
     var rotateY = (self.attitudeVisualizerConfiguration.svgHeight / 2) + translateY;
-    var rotateDeg = -eulerXYZ.roll_deg * self.attitudeVisualizerConfiguration.pixelsPerDegree;
+    var rotateDeg = -eulerXYZ.roll_deg;
     var rotate = " rotate(" + rotateDeg + " " + rotateX + " " + rotateY + ")";
-    
+
     //$(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);
     $(selector + " rect[data-id='rectLand']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " line[data-id='linePitch']")[0].setAttributeNS(null, "transform", translate);
+    $(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);
   };
 };

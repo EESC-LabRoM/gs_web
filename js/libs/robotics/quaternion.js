@@ -43,20 +43,30 @@ GS.ROBOTICS.Quaternion = function() {
     matrix3x3.r23 = 2.0 * (tmp1 - tmp2)*invs;
 
     return matrix3x3;
-  }
+  };
 
   this.toRPY = function() {
     var matrix3x3 = new GS.ROBOTICS.Matrix3x3();
     matrix3x3 = self.toMatrix();
 
     var eulerXYZ = new GS.ROBOTICS.RPY();
-    eulerXYZ.yaw = Math.atan(matrix3x3.r21/matrix3x3.r11);
-    eulerXYZ.pitch = Math.atan(-matrix3x3.r31 / Math.pow(Math.pow(matrix3x3.r32, 2) + Math.pow(matrix3x3.r33, 2), 0.5));
-    eulerXYZ.roll = Math.atan(matrix3x3.r32/matrix3x3.r33);
-
+    var num, den;
+    
+    num = matrix3x3.r21;
+    den = matrix3x3.r11;
+    eulerXYZ.yaw = Math.atan2(num, den);
     eulerXYZ.yaw_deg = GS.ROBOTICS.rad2deg(eulerXYZ.yaw);
+    
+    num = -matrix3x3.r31;
+    den = Math.pow(Math.pow(matrix3x3.r32, 2) + Math.pow(matrix3x3.r33, 2), 0.5);
+    eulerXYZ.pitch = Math.atan2(num, den);
     eulerXYZ.pitch_deg = GS.ROBOTICS.rad2deg(eulerXYZ.pitch);
+    
+    num = matrix3x3.r32;
+    den = matrix3x3.r33;
+    eulerXYZ.roll = Math.atan2(num, den);
     eulerXYZ.roll_deg = GS.ROBOTICS.rad2deg(eulerXYZ.roll);
+
 
     return eulerXYZ;
   };

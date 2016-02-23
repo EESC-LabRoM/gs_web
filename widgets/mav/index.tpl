@@ -19,15 +19,15 @@
     </svg>
     <div>
       <label>Roll</label>
-      <span data-id="roll-value"></span>
+      <span data-id="roll-value">-</span>
     </div>
     <div>
       <label>Pitch</label>
-      <span data-id="pitch-value"></span>
+      <span data-id="pitch-value">-</span>
     </div>
     <div>
       <label>Yaw</label>
-      <span data-id="yaw-value"></span>
+      <span data-id="yaw-value">-</span>
     </div>
   </div>
 </div>
