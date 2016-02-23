@@ -13,15 +13,17 @@ div.wMavAttitude {
   /* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude div {
     float: left;
+    margin-top: 5px;
     width: 100px; }
-    /* line 15, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+    /* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
     div.wMavAttitude div label, div.wMavAttitude div span {
       float: left;
       padding: 0 0 0 5px;
-      width: 100%; }
-    /* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+      height: 20px;
+      line-height: 20px; }
+    /* line 22, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
     div.wMavAttitude div label {
-      margin-top: 5px;
+      width: 40px;
       font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */
