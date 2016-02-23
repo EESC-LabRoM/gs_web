@@ -10,11 +10,17 @@
             data-callback-function="attitudeVisualizerCallback">
       <option value="">blablabla</option>
     </select>
+    <label>GPS visualizer</label>
+    <select
+            class="jsWidgetSelectTopic"
+            name="ddlAttitudeVisualizer"
+            data-msg-type="sensor_msgs/NavSatFix"
+            data-callback-function="gpsVisualizerCallback">
+      <option value="">blablabla</option>
+    </select>
   </div>
 
-  <br />
-
-  <div class="wMavAttitude">
+  <div class="mavBox wMavAttitude">
     <svg>
     </svg>
     <div>
@@ -32,7 +38,7 @@
         <span data-id="yaw-value">-</span>
       </div>
     </div>
-    
+
     <div>
       <a href="#" class="jsDataGroup dataGroup">Orientation Quaternion</a>
       <div class="jsDataField dataField">
@@ -52,7 +58,7 @@
         <span data-id="z-value">-</span>
       </div>
     </div>
-    
+
     <div>
       <a href="#" class="jsDataGroup dataGroup">Angular Velocity</a>
       <div class="jsDataField dataField">
@@ -68,7 +74,7 @@
         <span data-id="ang-vel-z">-</span>
       </div>
     </div>
-    
+
     <div>
       <a href="#" class="jsDataGroup dataGroup">Linear Velocity</a>
       <div class="jsDataField dataField">
@@ -85,4 +91,10 @@
       </div>
     </div>
   </div>
+
+  <div class="mavBox wMavGps">
+
+  </div>
+
+  <div class="clearfix"></div>
 </div>

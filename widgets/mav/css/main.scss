@@ -1,3 +1,7 @@
+div.mavBox {
+  float:left;
+  margin:10px 0 0 10px; 
+}
 div.wMavAttitude{
   width:650px;
   height:400px;
@@ -26,4 +30,9 @@ div.wMavAttitude{
     span {
     }
   }
+}
+
+div.wMavGps {
+  width:650px;
+  height:400px;
 }

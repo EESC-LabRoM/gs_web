@@ -25,10 +25,12 @@ GS.WIDGETS.Mav = function () {
       $(".widgetContent[data-widget-id=" + self.widgetId + "]").html(data);
       self.updateSelectsOptions();
       self.generateAttitudeVisualizer();
+      self.generateGpsVisualizer();
     });
   };
 
-  // other functions
+  // init functions
+  // attitude
   this.attitudeVisualizerConfiguration = {
     pixelsPerDegree: 3,
     svgWidth: 400,
@@ -141,13 +143,32 @@ GS.WIDGETS.Mav = function () {
 
     var squareSide = svgWidth;
     var halfSquareSide = squareSide/2;
-//    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1},
-//      crownWidth, halfSquareSide,
-//      halfSquareSide, crownWidth,
-//      crownWidth, crownWidth,
-//      halfSquareSide, true);
-//    gContainer.appendChild(quarterCircle1);
+    //    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1},
+    //      crownWidth, halfSquareSide,
+    //      halfSquareSide, crownWidth,
+    //      crownWidth, crownWidth,
+    //      halfSquareSide, true);
+    //    gContainer.appendChild(quarterCircle1);
   };
+  // gps
+  this.gpsVars = {
+    map: null,
+    marker: null
+  };
+  this.generateGpsVisualizer = function() {
+    var map;
+    var latLng = {lat: 0, lng: 0};
+    self.gpsVars.map = new google.maps.Map($(".wMavGps")[0], {
+      center: latLng,
+      zoom: 18
+    });
+    self.gpsVars.marker = new google.maps.Marker({
+      position: latLng,
+      map: self.gpsVars.map,
+      title: 'I\'m here',
+    });
+  };
+  
   // update selects' options
   this.updateSelectsOptions = function () {
     $(".jsWidgetSelectTopic").each(function (k1, v1) {
@@ -186,11 +207,11 @@ GS.WIDGETS.Mav = function () {
     $(selector + " span[data-id='x-value']").html(msg.orientation.x);
     $(selector + " span[data-id='y-value']").html(msg.orientation.y);
     $(selector + " span[data-id='z-value']").html(msg.orientation.z);
-    
+
     $(selector + " span[data-id='ang-vel-x']").html(msg.angular_velocity.x);
     $(selector + " span[data-id='ang-vel-y']").html(msg.angular_velocity.y);
     $(selector + " span[data-id='ang-vel-z']").html(msg.angular_velocity.z);
-    
+
     $(selector + " span[data-id='lin-vel-x']").html(msg.linear_acceleration.x);
     $(selector + " span[data-id='lin-vel-y']").html(msg.linear_acceleration.y);
     $(selector + " span[data-id='lin-vel-z']").html(msg.linear_acceleration.z);
@@ -199,7 +220,7 @@ GS.WIDGETS.Mav = function () {
     var translateX = 0;
     var translateY = -eulerXYZ.pitch_deg * self.attitudeVisualizerConfiguration.pixelsPerDegree;
     var translate = " translate(" + translateX + " " + translateY + ")";
-    
+
     var rotateX = self.attitudeVisualizerConfiguration.svgWidth / 2;
     var rotateY = (self.attitudeVisualizerConfiguration.svgHeight / 2) + translateY;
     var rotateDeg = -eulerXYZ.roll_deg;
@@ -208,5 +229,10 @@ GS.WIDGETS.Mav = function () {
     $(selector + " rect[data-id='rectLand']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " line[data-id='linePitch']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);
+  };
+  this.gpsVisualizerCallback = function(msg) {
+    var latLng = {lat:parseFloat(msg.latitude), lng:parseFloat(msg.longitude)};
+    self.gpsVars.marker.setPosition(latLng);
+    self.gpsVars.map.setCenter(latLng);
   };
 };
