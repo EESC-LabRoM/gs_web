@@ -47,9 +47,11 @@ GS.WIDGETS.Mav = function () {
     // container like
     var gContainer = svg.g({"data-id": "container"});
     svgElement.appendChild(gContainer);
+    var gRollAffected = svg.g({"data-id": "rollAffected"});
+    gContainer.appendChild(gRollAffected);
 
     // pitch and roll areas
-    var rect1 = svg.rect({
+    var rectSky = svg.rect({
       x: 0,
       y: 0,
       width: svgWidth,
@@ -58,20 +60,17 @@ GS.WIDGETS.Mav = function () {
     }, {
       fill: "#0080ff"
     });
-    var rect2 = svg.rect({
-      x: 0,
+    gContainer.appendChild(rectSky);
+    var rectLand = svg.rect({
+      x: -svgWidth/2,
       y: svgHeight / 2,
-      width: svgWidth,
+      width: 2*svgWidth,
       height: svgHeight,
       "data-id": "rectLand"
     }, {
       fill: "#5C4033"
     });
-    gContainer.appendChild(rect1);
-
-    var gRollAffected = svg.g({"data-id": "rollAffected"});
-
-    gRollAffected.appendChild(rect2);
+    gRollAffected.appendChild(rectLand);
 
     // pitch grid
     var bx1, bx2, sx1, sx2, y1, y2, x, y;
@@ -117,16 +116,26 @@ GS.WIDGETS.Mav = function () {
 
 
     // pitch and roll lines
-    var pitchLine = svg.line({
-      x1: 0,
-      x2: svgWidth,
+    var linePitch = svg.line({
+      x1: -svgWidth/2,
+      x2: 1.5*svgWidth,
       y1: svgHeight / 2,
       y2: svgHeight / 2,
       stroke: "yellow",
       "stroke-width": 1,
       "data-id": "linePitch"
     });
-    gRollAffected.appendChild(pitchLine);
+    gRollAffected.appendChild(linePitch);
+    var lineRoll = svg.line({
+      x1: svgWidth/2,
+      x2: svgWidth/2,
+      y1: -svgHeight/2,
+      y2: 1.5*svgHeight,
+      stroke: "yellow",
+      "stroke-width": 1,
+      "data-id": "lineRoll"
+    });
+    gRollAffected.appendChild(lineRoll);
 
     gContainer.appendChild(gRollAffected);
 
@@ -173,17 +182,29 @@ GS.WIDGETS.Mav = function () {
     $(selector + " span[data-id='roll-value']").html(eulerXYZ.roll_deg.toFixed(2) + "º");
     $(selector + " span[data-id='pitch-value']").html(eulerXYZ.pitch_deg.toFixed(2) + "º");
     $(selector + " span[data-id='yaw-value']").html(eulerXYZ.yaw_deg.toFixed(2) + "º");
+    $(selector + " span[data-id='w-value']").html(msg.orientation.w);
+    $(selector + " span[data-id='x-value']").html(msg.orientation.x);
+    $(selector + " span[data-id='y-value']").html(msg.orientation.y);
+    $(selector + " span[data-id='z-value']").html(msg.orientation.z);
+    
+    $(selector + " span[data-id='ang-vel-x']").html(msg.angular_velocity.x);
+    $(selector + " span[data-id='ang-vel-y']").html(msg.angular_velocity.y);
+    $(selector + " span[data-id='ang-vel-z']").html(msg.angular_velocity.z);
+    
+    $(selector + " span[data-id='lin-vel-x']").html(msg.linear_acceleration.x);
+    $(selector + " span[data-id='lin-vel-y']").html(msg.linear_acceleration.y);
+    $(selector + " span[data-id='lin-vel-z']").html(msg.linear_acceleration.z);
 
     // svg transform
+    var translateX = 0;
     var translateY = -eulerXYZ.pitch_deg * self.attitudeVisualizerConfiguration.pixelsPerDegree;
-    var translate = " translate(0 " + translateY + ")";
-
+    var translate = " translate(" + translateX + " " + translateY + ")";
+    
     var rotateX = self.attitudeVisualizerConfiguration.svgWidth / 2;
     var rotateY = (self.attitudeVisualizerConfiguration.svgHeight / 2) + translateY;
     var rotateDeg = -eulerXYZ.roll_deg;
     var rotate = " rotate(" + rotateDeg + " " + rotateX + " " + rotateY + ")";
 
-    //$(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);
     $(selector + " rect[data-id='rectLand']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " line[data-id='linePitch']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);

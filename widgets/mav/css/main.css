@@ -1,6 +1,6 @@
 /* line 1, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
 div.wMavAttitude {
-  width: 500px;
+  width: 650px;
   height: 400px;
   background-color: #ccc;
   overflow: hidden; }
@@ -14,16 +14,16 @@ div.wMavAttitude {
   div.wMavAttitude div {
     float: left;
     margin-top: 5px;
-    width: 100px; }
+    width: 200px; }
     /* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
-    div.wMavAttitude div label, div.wMavAttitude div span {
+    div.wMavAttitude div a, div.wMavAttitude div label, div.wMavAttitude div span {
       float: left;
       padding: 0 0 0 5px;
-      height: 20px;
-      line-height: 20px; }
-    /* line 22, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+      height: 18px;
+      line-height: 18px;
+      font-size: 14px; }
+    /* line 23, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
     div.wMavAttitude div label {
-      width: 40px;
       font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */
