@@ -13,12 +13,12 @@ h1,h2,h3,h4,h5,h6,h7{margin:0;padding:0;text-align:center;}
   .w#{$i*50}{width: 50px * $i;}
 }
 // ex: .h50{height:50px;}
-@for $i from 1 through 20 {
-  .h#{$i*50}{height: 50px * $i;}
+@for $i from 1 through 30 {
+  .h#{$i*20}{height: 20px * $i;}
 }
 // ex: .mh50{max-height:50px;}
-@for $i from 1 through 20 {
-  .mh#{$i*50}{max-height: 50px * $i;}
+@for $i from 1 through 30 {
+  .mh#{$i*20}{max-height: 20px * $i;}
 }
 
 
