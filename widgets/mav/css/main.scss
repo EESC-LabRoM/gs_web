@@ -1,9 +1,5 @@
-div.mavBox {
-  float:left;
-  margin:10px 0 0 10px; 
-}
 div.wMavAttitude{
-  width:650px;
+  width:500px;
   height:400px;
   background-color:#ccc;
   overflow:hidden;
@@ -16,23 +12,18 @@ div.wMavAttitude{
   div {
     float:left;
     margin-top:5px;
-    width:200px;
-    a, label, span {
+    width:100px;
+    label, span {
       float:left;
       padding:0 0 0 5px;
-      height:18px;
-      line-height:18px;
-      font-size:14px;
+      height:20px;
+      line-height:20px;
     }
     label {
+      width:40px;
       font-weight: bold;
     }
     span {
     }
   }
-}
-
-div.wMavGps {
-  width:650px;
-  height:400px;
 }

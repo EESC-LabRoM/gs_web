@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "css/teste.css",
+    "inputFile": "css/teste.scss"
+  },
+  {
+    "outputFile": "css/style.css",
+    "inputFile": "css/style.scss"
+  },
+  {
+    "outputFile": "css/ros.css",
+    "inputFile": "css/ros.scss"
+  },
+  {
+    "outputFile": "css/theme1.css",
+    "inputFile": "css/theme1.scss"
+  }
+]

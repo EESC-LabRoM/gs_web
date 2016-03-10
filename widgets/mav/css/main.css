@@ -1,39 +1,29 @@
 /* line 1, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
-div.mavBox {
-  float: left;
-  margin: 10px 0 0 10px; }
-
-/* line 5, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
 div.wMavAttitude {
-  width: 650px;
+  width: 500px;
   height: 400px;
   background-color: #ccc;
   overflow: hidden; }
-  /* line 10, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+  /* line 6, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude * {
     box-sizing: border-box; }
-  /* line 13, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+  /* line 9, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude svg {
     float: left; }
-  /* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+  /* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude div {
     float: left;
     margin-top: 5px;
-    width: 200px; }
-    /* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
-    div.wMavAttitude div a, div.wMavAttitude div label, div.wMavAttitude div span {
+    width: 100px; }
+    /* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+    div.wMavAttitude div label, div.wMavAttitude div span {
       float: left;
       padding: 0 0 0 5px;
-      height: 18px;
-      line-height: 18px;
-      font-size: 14px; }
-    /* line 27, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+      height: 20px;
+      line-height: 20px; }
+    /* line 22, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
     div.wMavAttitude div label {
+      width: 40px;
       font-weight: bold; }
-
-/* line 35, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
-div.wMavGps {
-  width: 650px;
-  height: 400px; }
 
 /*# sourceMappingURL=main.css.map */
