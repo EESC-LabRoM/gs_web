@@ -33,7 +33,6 @@ GS.Widgets = function() {
   }
   var openContent = function(widgetId, widgetName) {
     var content = render.widgetContent(widgetId);
-    console.log(content);
     $("#contentMain").append(content);
     self.widgetStart(widgetId);
   }

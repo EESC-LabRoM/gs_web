@@ -18,7 +18,6 @@ GS.Render = function () {
 
   this.widgetContent = function (widgetId) {
     var content = templates.getContent("widgetContent");
-    console.log(content);
     return Mustache.render(content, {
       widgetId: widgetId
     });

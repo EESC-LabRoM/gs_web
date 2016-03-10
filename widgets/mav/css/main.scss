@@ -8,6 +8,8 @@ div.wMavAttitude{
   background-color:#ccc;
   overflow:hidden;
   * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
   svg{
@@ -33,6 +35,6 @@ div.wMavAttitude{
 }
 
 div.wMavGps {
-  width:650px;
+  width:550px;
   height:400px;
 }

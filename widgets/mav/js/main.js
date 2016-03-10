@@ -139,16 +139,70 @@ GS.WIDGETS.Mav = function () {
     });
     gRollAffected.appendChild(lineRoll);
 
-    gContainer.appendChild(gRollAffected);
 
+    // magnetometer
+    var gBackground = svg.g({ "data-id": "background" });
     var squareSide = svgWidth;
     var halfSquareSide = squareSide / 2;
-    //    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1},
-    //      crownWidth, halfSquareSide,
-    //      halfSquareSide, crownWidth,
-    //      crownWidth, crownWidth,
-    //      halfSquareSide, true);
-    //    gContainer.appendChild(quarterCircle1);
+    var quarterCircle1 = svg.quarterCircle({ fill: "#ccc", stroke: "#ccc", "stroke-width": 1 },
+      crownWidth, halfSquareSide,
+      halfSquareSide, crownWidth,
+      [{ x: halfSquareSide, y: 0 }, { x: 0, y: 0 }, { x: 0, y: halfSquareSide }],
+      halfSquareSide - crownWidth, true);
+    gBackground.appendChild(quarterCircle1);
+    var quarterCircle2 = svg.quarterCircle({ fill: "#ccc", stroke: "#ccc", "stroke-width": 1 },
+      halfSquareSide, crownWidth,
+      squareSide - crownWidth, halfSquareSide,
+      [{ x: squareSide, y: halfSquareSide }, { x: squareSide, y: 0 }, { x: halfSquareSide, y: 0 }],
+      halfSquareSide - crownWidth, true);
+    gBackground.appendChild(quarterCircle2);
+    var quarterCircle3 = svg.quarterCircle({ fill: "#ccc", stroke: "#ccc", "stroke-width": 1 },
+      squareSide - crownWidth, halfSquareSide,
+      halfSquareSide, squareSide - crownWidth,
+      [{ x: halfSquareSide, y: squareSide }, { x: squareSide, y: squareSide }, { x: squareSide, y: halfSquareSide }],
+      halfSquareSide - crownWidth, true);
+    gBackground.appendChild(quarterCircle3);
+    var quarterCircle4 = svg.quarterCircle({ fill: "#ccc", stroke: "#ccc", "stroke-width": 1 },
+      halfSquareSide, squareSide - crownWidth,
+      crownWidth, halfSquareSide,
+      [{ x: 0, y: halfSquareSide }, { x: 0, y: squareSide }, { x: halfSquareSide, y: squareSide }],
+      halfSquareSide - crownWidth, true);
+    gBackground.appendChild(quarterCircle4);
+
+
+    // compass background
+    var gCompassBackground = svg.g({ "data-id": "compassBackground" });
+    var properties = { fill: "#222", stroke: "#222", "stroke-width": 0 };
+    var directions = [
+      { k: "M", v: crownWidth + " " + halfSquareSide },
+      { k: "A", v: (halfSquareSide - crownWidth) + " " + (halfSquareSide - crownWidth) + " 0 0 1 " + (squareSide - crownWidth) + " " + halfSquareSide },
+      { k: "L", v: squareSide + " " + halfSquareSide },
+      { k: "A", v: halfSquareSide + " " + halfSquareSide + " 0 0 0 " + "0 " + halfSquareSide }
+    ];
+    var style = {};
+    var circle1 = svg.path(properties, directions, style);
+    gCompassBackground.appendChild(circle1);
+
+    var properties = { fill: "#222", stroke: "#222", "stroke-width": 0 };
+    var directions = [
+      { k: "M", v: crownWidth + " " + halfSquareSide },
+      { k: "A", v: (halfSquareSide - crownWidth) + " " + (halfSquareSide - crownWidth) + " 0 0 0 " + (squareSide - crownWidth) + " " + halfSquareSide },
+      { k: "L", v: squareSide + " " + halfSquareSide },
+      { k: "A", v: halfSquareSide + " " + halfSquareSide + " 0 0 1 " + "0 " + halfSquareSide }
+    ];
+    var style = {};
+    var circle2 = svg.path(properties, directions, style);
+    gCompassBackground.appendChild(circle2);
+
+
+    // yaw affected
+    var gYawAffected = svg.g({ "data-id": "yawAffected" });
+
+    // add elements in the correct order
+    gContainer.appendChild(gRollAffected);
+    gContainer.appendChild(gBackground);
+    gContainer.appendChild(gCompassBackground);
+    gContainer.appendChild(gYawAffected);
   };
   // gps
   this.gpsVars = {

@@ -38,15 +38,32 @@ GS.Svg = function () {
     var rect = self.createElement("rect", null, properties, style);
     return rect;
   };
+  this.path = function (properties, directions, style) {
+    var d = "";
+    for (i in directions) {
+      var direction = directions[i];
+      d += direction.k + " " + direction.v + " ";
+    }
+    properties.d = d;
+    return self.createElement("path", null, properties, style);
+  }
   
-  this.quarterCircle = function(properties, x1, y1, x2, y2, x3, y3, r, isClockwise) {
+  // custom methods
+  this.quarterCircle = function (properties, x1, y1, x2, y2, points, r, isClockwise) {
+    // path variables
+    var directions = [];
+
     var rx, ry, clockwise;
     rx = ry = r;
     clockwise = isClockwise ? 1 : 0;
-    var d = "M " + x1 + " " + y1 + " A " + r + " " + r + " 0 0 " + clockwise + " " + x2 + " " + y2 + " L " + x3 + " " + y3;
-    properties.d = d;
-    var properties = {d: d, fill:"#ccc", stroke:"#ccc", "stroke-width":1};
-    var quarterCircle = self.createElement("path", null, properties, {});
+    directions.push({ k: "M", v: x1 + " " + y1 });
+    directions.push({ k: "A", v: r + " " + r + " 0 0 " + clockwise + " " + x2 + " " + y2 });
+    for (i in points) {
+      var point = points[i];
+      directions.push({ k: "L", v: point.x + " " + point.y });
+    }
+    var properties = { fill:"#ccc", stroke:"#ccc", "stroke-width":1};
+    var quarterCircle = self.path(properties, directions, {});
     return quarterCircle;
   }
 
