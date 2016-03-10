@@ -14,9 +14,5 @@
   {
     "outputFile": "css/theme1.css",
     "inputFile": "css/theme1.scss"
-  },
-  {
-    "outputFile": "js/main.es5.js",
-    "inputFile": "js/main.js"
   }
 ]

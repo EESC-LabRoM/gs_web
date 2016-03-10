@@ -11,8 +11,6 @@ GS.ROBOTICS = {};
 // GLOBALS
 // -------
 ros = new ROSLIB.Ros();
-templates = {};
-loadingTemplate = false;
 
 
 // ===== Load templates =====
@@ -28,14 +26,10 @@ function loadTemplates() {
       file: "/templates/widget_content.tpl"
     },
   ];
-  templateList.forEach(function(template, i) {
-      $.ajax({
-          url:template.file,
-          data: {},
-          success: function (data) {
-            templates[template.name] = data;
-          },
-          dataType: "XML"});
+  templateList.forEach(function (template, i) {
+    $.ajax(template.file, function (data) {
+      templates[template.name] = data;
+    });
   });
 };
 
@@ -53,5 +47,10 @@ $(document).ready(function () {
   // =====================================
   routines = new GS.Routines();
   window.setInterval(routines.do, 1000);
-  loadTemplates();
+
+  // ===== Load templates =====
+  // ==========================
+  templates = new GS.Templates();
+  templates.loadAll();
+  //loadTemplates();
 });
