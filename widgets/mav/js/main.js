@@ -47,9 +47,9 @@ GS.WIDGETS.Mav = function () {
     var crownWidth = self.attitudeVisualizerConfiguration.crownWidth;
 
     // container like
-    var gContainer = svg.g({"data-id": "container"});
+    var gContainer = svg.g({ "data-id": "container" });
     svgElement.appendChild(gContainer);
-    var gRollAffected = svg.g({"data-id": "rollAffected"});
+    var gRollAffected = svg.g({ "data-id": "rollAffected" });
     gContainer.appendChild(gRollAffected);
 
     // pitch and roll areas
@@ -64,9 +64,9 @@ GS.WIDGETS.Mav = function () {
     });
     gContainer.appendChild(rectSky);
     var rectLand = svg.rect({
-      x: -svgWidth/2,
+      x: -svgWidth / 2,
       y: svgHeight / 2,
-      width: 2*svgWidth,
+      width: 2 * svgWidth,
       height: svgHeight,
       "data-id": "rectLand"
     }, {
@@ -81,10 +81,10 @@ GS.WIDGETS.Mav = function () {
     var bLineWidth = 20;
     var sLineWidth = 10;
     for (var i = min; i <= max; i++) {
-      bx1 = (svgWidth/2) - (bLineWidth/2);
-      bx2 = (svgWidth/2) + (bLineWidth/2);
-      sx1 = (svgWidth/2) - (sLineWidth/2);
-      sx2 = (svgWidth/2) + (sLineWidth/2);
+      bx1 = (svgWidth / 2) - (bLineWidth / 2);
+      bx2 = (svgWidth / 2) + (bLineWidth / 2);
+      sx1 = (svgWidth / 2) - (sLineWidth / 2);
+      sx2 = (svgWidth / 2) + (sLineWidth / 2);
       y1 = y2 = (self.attitudeVisualizerConfiguration.svgHeight / 2) - (5 * pixel_per_degree * i);
       x = bx2 + 5;
       y = y1 + 4;
@@ -97,7 +97,7 @@ GS.WIDGETS.Mav = function () {
         "stroke-width": 1
       }));
 
-      if(i < max) {
+      if (i < max) {
         for (var j = 1; j <= 4; j++) {
           gRollAffected.appendChild(svg.line({
             x1: sx1,
@@ -119,8 +119,8 @@ GS.WIDGETS.Mav = function () {
 
     // pitch and roll lines
     var linePitch = svg.line({
-      x1: -svgWidth/2,
-      x2: 1.5*svgWidth,
+      x1: -svgWidth / 2,
+      x2: 1.5 * svgWidth,
       y1: svgHeight / 2,
       y2: svgHeight / 2,
       stroke: "yellow",
@@ -129,10 +129,10 @@ GS.WIDGETS.Mav = function () {
     });
     gRollAffected.appendChild(linePitch);
     var lineRoll = svg.line({
-      x1: svgWidth/2,
-      x2: svgWidth/2,
-      y1: -svgHeight/2,
-      y2: 1.5*svgHeight,
+      x1: svgWidth / 2,
+      x2: svgWidth / 2,
+      y1: -svgHeight / 2,
+      y2: 1.5 * svgHeight,
       stroke: "yellow",
       "stroke-width": 1,
       "data-id": "lineRoll"
@@ -142,7 +142,7 @@ GS.WIDGETS.Mav = function () {
     gContainer.appendChild(gRollAffected);
 
     var squareSide = svgWidth;
-    var halfSquareSide = squareSide/2;
+    var halfSquareSide = squareSide / 2;
     //    var quarterCircle1 = svg.quarterCircle({fill:"#ccc", stroke:"#ccc", "stroke-width":1},
     //      crownWidth, halfSquareSide,
     //      halfSquareSide, crownWidth,
@@ -155,9 +155,9 @@ GS.WIDGETS.Mav = function () {
     map: null,
     marker: null
   };
-  this.generateGpsVisualizer = function() {
+  this.generateGpsVisualizer = function () {
     var map;
-    var latLng = {lat: 0, lng: 0};
+    var latLng = { lat: 0, lng: 0 };
     self.gpsVars.map = new google.maps.Map($(".wMavGps")[0], {
       center: latLng,
       zoom: 18
@@ -168,17 +168,17 @@ GS.WIDGETS.Mav = function () {
       title: 'I\'m here',
     });
   };
-  
+
   // update selects' options
   this.updateSelectsOptions = function () {
     $(".jsWidgetSelectTopic").each(function (k1, v1) {
       $(v1).attr("data-widget-id", self.widgetId);
       var type = $(v1).attr("data-msg-type");
       $(v1).html("");
-      ros.getTopicsForType(type, function(data) {
-        $(v1).append(html.e("option", "-- select a topic to subscribe --", {value: ""}));
-        data.forEach(function(v2, k2) {
-          $(v1).append(html.e("option", v2, {value: v2}));
+      ros.getTopicsForType(type, function (data) {
+        $(v1).append(html.e("option", "-- select a topic to subscribe --", { value: "" }));
+        data.forEach(function (v2, k2) {
+          $(v1).append(html.e("option", v2, { value: v2 }));
         });
       });
     });
@@ -230,8 +230,8 @@ GS.WIDGETS.Mav = function () {
     $(selector + " line[data-id='linePitch']")[0].setAttributeNS(null, "transform", translate);
     $(selector + " g[data-id='rollAffected']")[0].setAttributeNS(null, "transform", rotate);
   };
-  this.gpsVisualizerCallback = function(msg) {
-    var latLng = {lat:parseFloat(msg.latitude), lng:parseFloat(msg.longitude)};
+  this.gpsVisualizerCallback = function (msg) {
+    var latLng = { lat: parseFloat(msg.latitude), lng: parseFloat(msg.longitude) };
     self.gpsVars.marker.setPosition(latLng);
     self.gpsVars.map.setCenter(latLng);
   };

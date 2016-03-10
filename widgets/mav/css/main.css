@@ -1,29 +1,30 @@
-/* line 1, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+﻿div.mavBox {
+  float: left;
+  margin: 10px 0 0 10px; }
+
 div.wMavAttitude {
-  width: 500px;
+  width: 650px;
   height: 400px;
   background-color: #ccc;
   overflow: hidden; }
-  /* line 6, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude * {
     box-sizing: border-box; }
-  /* line 9, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude svg {
     float: left; }
-  /* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
   div.wMavAttitude div {
     float: left;
     margin-top: 5px;
-    width: 100px; }
-    /* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
-    div.wMavAttitude div label, div.wMavAttitude div span {
+    width: 200px; }
+    div.wMavAttitude div a, div.wMavAttitude div label, div.wMavAttitude div span {
       float: left;
       padding: 0 0 0 5px;
-      height: 20px;
-      line-height: 20px; }
-    /* line 22, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/widgets/mav/css/main.scss */
+      height: 18px;
+      line-height: 18px;
+      font-size: 14px; }
     div.wMavAttitude div label {
-      width: 40px;
       font-weight: bold; }
 
-/*# sourceMappingURL=main.css.map */
+div.wMavGps {
+  width: 650px;
+  height: 400px; }
+

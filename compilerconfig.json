@@ -14,5 +14,9 @@
   {
     "outputFile": "css/theme1.css",
     "inputFile": "css/theme1.scss"
+  },
+  {
+    "outputFile": "widgets/mav/css/main.css",
+    "inputFile": "widgets/mav/css/main.scss"
   }
 ]
