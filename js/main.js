@@ -29,9 +29,13 @@ function loadTemplates() {
     },
   ];
   templateList.forEach(function(template, i) {
-    $.get(template.file, function (data) {
-      templates[template.name] = data;
-    });
+      $.ajax({
+          url:template.file,
+          data: {},
+          success: function (data) {
+            templates[template.name] = data;
+          },
+          dataType: "XML"});
   });
 };
 
