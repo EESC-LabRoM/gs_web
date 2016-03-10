@@ -1,364 +1,273 @@
-/* line 1, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
-div {
+﻿div {
   overflow: auto;
   box-sizing: border-box; }
 
-/* line 2, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 h1, h2, h3, h4, h5, h6, h7 {
   margin: 0;
   padding: 0;
   text-align: center; }
 
-/* line 4, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .fright {
   float: right; }
 
-/* line 4, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .fleft {
   float: left; }
 
-/* line 5, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .clearfix {
   clear: both; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w5p {
   width: 5%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w10p {
   width: 10%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w15p {
   width: 15%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w20p {
   width: 20%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w25p {
   width: 25%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w30p {
   width: 30%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w35p {
   width: 35%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w40p {
   width: 40%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w45p {
   width: 45%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w50p {
   width: 50%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w55p {
   width: 55%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w60p {
   width: 60%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w65p {
   width: 65%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w70p {
   width: 70%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w75p {
   width: 75%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w80p {
   width: 80%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w85p {
   width: 85%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w90p {
   width: 90%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w95p {
   width: 95%; }
 
-/* line 8, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w100p {
   width: 100%; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w50 {
   width: 50px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w100 {
   width: 100px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w150 {
   width: 150px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w200 {
   width: 200px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w250 {
   width: 250px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w300 {
   width: 300px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w350 {
   width: 350px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w400 {
   width: 400px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w450 {
   width: 450px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w500 {
   width: 500px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w550 {
   width: 550px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w600 {
   width: 600px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w650 {
   width: 650px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w700 {
   width: 700px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w750 {
   width: 750px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w800 {
   width: 800px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w850 {
   width: 850px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w900 {
   width: 900px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w950 {
   width: 950px; }
 
-/* line 12, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .w1000 {
   width: 1000px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h50 {
   height: 50px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h100 {
   height: 100px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h150 {
   height: 150px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h200 {
   height: 200px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h250 {
   height: 250px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h300 {
   height: 300px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h350 {
   height: 350px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h400 {
   height: 400px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h450 {
   height: 450px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h500 {
   height: 500px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h550 {
   height: 550px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h600 {
   height: 600px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h650 {
   height: 650px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h700 {
   height: 700px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h750 {
   height: 750px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h800 {
   height: 800px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h850 {
   height: 850px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h900 {
   height: 900px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h950 {
   height: 950px; }
 
-/* line 16, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .h1000 {
   height: 1000px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh50 {
   max-height: 50px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh100 {
   max-height: 100px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh150 {
   max-height: 150px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh200 {
   max-height: 200px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh250 {
   max-height: 250px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh300 {
   max-height: 300px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh350 {
   max-height: 350px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh400 {
   max-height: 400px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh450 {
   max-height: 450px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh500 {
   max-height: 500px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh550 {
   max-height: 550px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh600 {
   max-height: 600px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh650 {
   max-height: 650px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh700 {
   max-height: 700px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh750 {
   max-height: 750px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh800 {
   max-height: 800px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh850 {
   max-height: 850px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh900 {
   max-height: 900px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh950 {
   max-height: 950px; }
 
-/* line 20, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .mh1000 {
   max-height: 1000px; }
 
-/* line 25, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .pd1 {
   padding: 0 1%; }
 
-/* line 25, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .pd2 {
   padding: 0 2%; }
 
-/* line 25, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .pd3 {
   padding: 0 3%; }
 
-/* line 25, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .pd4 {
   padding: 0 4%; }
 
-/* line 25, C:/Users/Marco Antonio Arruda/Documents/GitHub/gs_web/css/style.scss */
 .pd5 {
   padding: 0 5%; }
 
-/*# sourceMappingURL=style.css.map */
