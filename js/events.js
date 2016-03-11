@@ -1,43 +1,25 @@
 GS.Events = function () {
+
   // ===== Private variables =====
-  // =============================
+
+  // "this"
   var self = this;
   var interface = new GS.Interface();
   this.topicListener = null;
   this.messageDetails = null;
 
+
   // ===== Private functions =====
-  // =============================
-
-  // Parse functions
-  // ---------------
-  var parse = function (type, value) {
-    if (type === "float32" || type === "float64") {
-      return parseFloat(value);
-    } else if (type === "int8" || type === "int16" || type === "int32" || type === "int64") {
-      return parseInt(value);
-    } else if (type === "uint8" || type === "uint16" || type === "uint32" || type === "uint64") {
-      return parseInt(value);
-    } else {
-      return value;
-    }
-  };
-
-  this.keepType = function (value) {
-    return isNaN(value) ? value : parseInt(value);
-  };
 
   // Util functions
-  // --------------
   this.cancelSubscription = function () {
     if (self.topicListener !== null) self.topicListener.unsubscribe();
   };
 
+
   // ===== Public functions =====
-  // ============================
 
   // Declare triggers
-  // ----------------
   this.declareTriggers = function () {
     // network events
     // --------------
@@ -77,8 +59,23 @@ GS.Events = function () {
     $(document).delegate(".jsWidgetSelectTopic", "change", this.rosWidgetSelectedTopic);
   };
 
+  // Parse functions
+  this.parse = function (type, value) {
+    if (type === "float32" || type === "float64") {
+      return parseFloat(value);
+    } else if (type === "int8" || type === "int16" || type === "int32" || type === "int64") {
+      return parseInt(value);
+    } else if (type === "uint8" || type === "uint16" || type === "uint32" || type === "uint64") {
+      return parseInt(value);
+    } else {
+      return value;
+    }
+  };
+  this.keepType = function (value) {
+    return isNaN(value) ? value : parseInt(value);
+  };
+
   // Server Connect Button Click
-  // ---------------------------
   this.btnServerConnectClick = function () {
     var server_address = $("#txt_ros_server_address").val();
     $(this).attr("disabled", "disabled");
@@ -90,7 +87,6 @@ GS.Events = function () {
   };
 
   // Widget Add
-  // ----------
   this.widgetAdd = function (e) {
     interface.widgetToggleList();
     e.preventDefault();
@@ -113,7 +109,6 @@ GS.Events = function () {
   };
 
   // ROS Links
-  // ---------
   this.linkRosNodeClick = function (e) {
     self.cancelSubscription();
     var nodeName = $(this).attr("data-node-name");
@@ -156,7 +151,6 @@ GS.Events = function () {
   };
 
   // ROS Buttons
-  // -----------
   this.btnSubscribeTopic = function (e) {
     self.cancelSubscription();
 
@@ -191,7 +185,7 @@ GS.Events = function () {
       var type = element.getAttribute("data-type");
       var field = element.getAttribute("data-name");
       var value = element.value;
-      requestObj[field] = parse(type, value);
+      requestObj[field] = self.parse(type, value);
     }
     var request = new ROSLIB.ServiceRequest(requestObj);
 
@@ -224,16 +218,12 @@ GS.Events = function () {
   };
 
   // ROS Subscription callback
-  // -------------------------
   this.rosSubscriptionCallback = function (message) {
     interface.showTopicMessage(self.messageDetails, message, "", "");
-
-    // for tests only
     // self.cancelSubscription();
   };
 
   // ROS WIDGETS selected topic
-  // --------------------------
   this.rosWidgetSelectedTopic = function (e) {
     var widgetId = parseInt($(this).attr("data-widget-id"));
     var topicName = $(this).children("option:selected").val();
@@ -254,7 +244,6 @@ GS.Events = function () {
   };
 
   // ROS events
-  // ----------
   this.rosOnConnection = function () {
     interface.rosConnect(ros.isConnected);
     interface.logMessage('Connected to websocket server.');

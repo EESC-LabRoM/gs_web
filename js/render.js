@@ -6,8 +6,8 @@ GS.Render = function () {
 
   // ===== Public methods =====
   // ==========================
-  this.messageField = function (fieldId, fieldName, fieldType, fieldValue) {
-    var content = templates.getContent("messageField");
+  this.topicField = function (fieldId, fieldName, fieldType, fieldValue) {
+    var content = templates.getContent("topicField");
     return Mustache.render(content, {
       fieldId: fieldId,
       fieldName: fieldName,
@@ -15,6 +15,13 @@ GS.Render = function () {
       fieldValue: fieldValue
     });
   };
+
+  this.topicList = function (fieldId) {
+    var content = templates.getContent("topicList");
+    return Mustache.render(content, {
+      fieldId: fieldId
+    });
+  }
 
   this.widgetContent = function (widgetId) {
     var content = templates.getContent("widgetContent");

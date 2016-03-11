@@ -5,7 +5,8 @@
   this.baseUrl = "/templates/";
 
   this.items = [
-    { name: "messageField", file: "message_field.tpl", content: "" },
+    { name: "topicField", file: "topic_field.tpl", content: "" },
+    { name: "topicList", file: "topic_list.tpl", content: "" },
     { name: "widgetContent", file: "widget_content.tpl", content: "" }
   ];
 

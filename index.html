@@ -26,6 +26,7 @@
     <script type="text/javascript" src="js/libs/robotics/matrix3x3.js"></script>
     
     <!-- WIDGETS -->
+    <!-- Mav -->
     <script type="text/javascript" src="widgets/mav/js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="widgets/mav/css/main.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGir7uuIvdEOH24VRmNcDCUCHSwmWS6No" async defer></script>
@@ -143,26 +144,17 @@
                   <span></span>
                 </p>
                 <div class="request">
-                  <label>Request</label>
-                  <table class="requestList w100p">
-                    <tr><th>type</th><th>name</th><th>value</th></tr>
-                  </table>
+                  <h4>Request</h4>
+                </div>
+                <div class="response">
+                  <h4>Response</h4>
                 </div>
 
                 <br />
 
-                <div class="response">
-                  <label>Response</label>
-                  <table class="responseList w100p">
-                    <tr><th>type</th><th>name</th><th></th></tr>
-                  </table>
-                </div>
-
-                <br />
-
-                <div class="response">
+                <div>
                   <label>Call service</label>
-                  <br />
+                  <br /><br />
                   <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
                   <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
                   <button id="btnCallService">Call!</button>

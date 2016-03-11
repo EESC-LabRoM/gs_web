@@ -176,8 +176,34 @@ input[readonly=readonly] {
   background-color:#ccc;
 }
 
+.rosDetails {
+  padding:5px;
 
-div.messageDetails, div.serviceDetails {
+  h3 {
+    margin-top:5px;
+  }
+
+  p {
+    margin:10px 0;
+    label {
+      font-weight:bold;
+    }
+    span {
+      text-decoration:underline;
+    }
+  }
+
+  h4 {
+    text-decoration:underline;
+  }
+
+  div {
+    &.response, &.request {
+      margin-top:5px;
+      border:1px solid #333;
+    }
+  }
+
   ul {
     list-style: circle;
     

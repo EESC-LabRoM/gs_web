@@ -1,13 +1,13 @@
-GS.Interface = function() {
+/// <reference path="render.js" />
+
+GS.Interface = function () {
   
   // ===== Private variables =====
-  // =============================
   var self = this;
   var html = new GS.Html();
   var render = new GS.Render();
   
   // ros connect
-  // -----------
   this.rosConnect = function(connected) {
     ros_connected = connected;
     $("#btn_server_connect").html(connected ? "Disconnect" : "Connect");
@@ -19,7 +19,6 @@ GS.Interface = function() {
   };
   
   // widgets
-  // -------
   this.widgetToggleList = function() {
     $("#widgetList").html("");
     for(i in widgets.list) {
@@ -39,14 +38,12 @@ GS.Interface = function() {
   };
   
   // log message
-  // -----------
   this.logMessage = function(msg) {
     $("#messages-list").append("<li>" + msg + "</li>");
     $("#messages-list").parent().scrollTop($("#messages-list").parent()[0].scrollHeight);
   };
   
   // ros nodes
-  // ---------
   this.clearNodes = function(){
     $("#nodes-list tr.jsNode").remove();
   };
@@ -64,7 +61,6 @@ GS.Interface = function() {
   };
   
   // ros topics
-  // ----------
   this.clearTopics = function(){
     $("#topics-list tr.jsTopic").remove();
   };
@@ -79,33 +75,31 @@ GS.Interface = function() {
   };
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     this.showTopicDetailsBasic(topicName, topicType);
-    
     var details = this.showTopicDetailsMessage(messageDetails, "", topicType);
     $("#topicDetails .messageDetails").html(details);
     
     $("#hdnTopicName").val(topicName);
     $("#hdnTopicType").val(topicType);
-      
   };
-  this.showTopicDetailsBasic = function(topicName, topicType) {
+  this.showTopicDetailsBasic = function (topicName, topicType) {
     $(".rosDetails").hide();
     $("#topicDetails").show();
     $("#topicDetails p.name span").html(topicName);
     $("#topicDetails p.type span").html(topicType);
-  }
-  this.showTopicDetailsMessage = function(messageDetails, parentId, parentType) {
+  };
+  this.showTopicDetailsMessage = function (messageDetails, parentId, parentType) {
     var listItems = "";
     var item = "";
-    for(var i = 0; i < messageDetails.length; i++) {
+    for (var i = 0; i < messageDetails.length; i++) {
       var md = messageDetails[i];
-      if(md.type === parentType) {
-        for(var j = 0; j < md.fieldnames.length; j++) {
+      if (md.type === parentType) {
+        for (var j = 0; j < md.fieldnames.length; j++) {
           var fieldName = md.fieldnames[j];
           var fieldType = (md.fieldarraylen[j] > -1) ? md.fieldtypes[j] + " [ ]" : md.fieldtypes[j];
           var fieldId = parentId === "" ? fieldName : parentId + "." + fieldName;
-          listItems += render.messageField(fieldId, fieldName, fieldType, "");
-          if(md.fieldarraylen[j] > -1) {
-            item = html.e("ul", "", {"data-id": "ul-" + fieldId, "data-list": "1"});
+          listItems += render.topicField(fieldId, fieldName, fieldType, "");
+          if (md.fieldarraylen[j] > -1) {
+            item = render.topicList(fieldId);
           } else {
             item = this.showTopicDetailsMessage(messageDetails, fieldId, fieldType);
           }
@@ -115,31 +109,31 @@ GS.Interface = function() {
       }
     }
     return "";
-  }
-  this.getTopicFieldType = function(messageDetails, fieldName) {
+  };
+  this.getTopicFieldType = function (messageDetails, fieldName) {
     var md;
-    for(var i = 0; i < messageDetails.length; i++) {
+    for (var i = 0; i < messageDetails.length; i++) {
       md = messageDetails[i];
-      for(var j = 0; j < md.fieldnames.length; j++) {
-        if(md.fieldnames[j] === fieldName) return md.fieldtypes[j];
+      for (var j = 0; j < md.fieldnames.length; j++) {
+        if (md.fieldnames[j] === fieldName) return md.fieldtypes[j];
       }
     }
     return "";
-  }
-  this.showTopicMessage = function(messageDetails, message, fieldId, fieldName) {
+  };
+  this.showTopicMessage = function (messageDetails, message, fieldId, fieldName) {
     $(".messageDetails ul[data-list='1']").html("");
-    switch(typeof(message)) {
+    switch (typeof (message)) {
       case "object":
         var childId = "";
         var childName = "";
         var childType = "";
         var element = "";
-        for(i in message) {
+        for (i in message) {
           childId = (fieldId === "") ? i : fieldId + "." + i;
           childName = (fieldName === "") ? i : fieldName + "." + i;
-          if(Array.isArray(message)) {
+          if (Array.isArray(message)) {
             var fieldType = self.getTopicFieldType(messageDetails, fieldName);
-            element = render.messageField(childId, childName, fieldType, message[i]);
+            element = render.topicField(childId, childName, fieldType, message[i]);
             $("ul[data-id='ul-" + fieldId + "']").append(element);
           } else {
             self.showTopicMessage(messageDetails, message[i], childId, i);
@@ -150,10 +144,9 @@ GS.Interface = function() {
         $("li[data-id='" + fieldId + "'] span.messageFieldValue").html(message);
         break;
     }
-  }
+  };
   
   // ros services
-  // ----------
   this.clearServices = function(){
     $("#services-list tr.jsService").remove();
   };
@@ -178,37 +171,23 @@ GS.Interface = function() {
     $("#hdnServiceName").val(serviceName);
     $("#hdnServiceType").val(serviceType);
     
-    this.showServiceDetailsRequest(requestDetails);
+    this.showServiceDetailsRequest(requestDetails, serviceType);
     
-    this.showServiceDetailsResponse(responseDetails);
+    this.showServiceDetailsResponse(responseDetails, serviceType);
   };
-  this.showServiceDetailsRequest = function(requestDetails) {
-    $("#serviceDetails .requestList .field").remove();
-    for(i in requestDetails.typedefs[0].fieldnames){
-      var name = requestDetails.typedefs[0].fieldnames[i];
-      var type = requestDetails.typedefs[0].fieldtypes[i];
-      var elementName = html.e("td", name);
-      var elementType = html.e("td", type);
-      var input = html.e("td", html.e("input", null, {autoclose:true, "class": "jsInputServiceRequest", "data-name": name, "data-type": type}));
-      var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
-      $("#serviceDetails .requestList").append(tr);
-    }
+  this.showServiceDetailsRequest = function (requestDetails, serviceType) {
+    var content = this.showTopicDetailsMessage(requestDetails.typedefs, "", serviceType + "Request");
+    $("#serviceDetails div.request ul").remove();
+    $("#serviceDetails div.request").append(content);
   }
-  this.showServiceDetailsResponse = function(responseDetails) {
-    $("#serviceDetails .responseList .field").remove();
-    for(i in responseDetails.typedefs[0].fieldnames){
-      var name = responseDetails.typedefs[0].fieldnames[i];
-      var type = responseDetails.typedefs[0].fieldtypes[i];
-      var elementName = html.e("td", name);
-      var elementType = html.e("td", type);
-      var input = html.e("td", html.e("input", null, {autoclose:true, readonly:"readonly"}));
-      var tr = html.e("tr", elementType + elementName + input, {"class":"field"});
-      $("#serviceDetails .responseList").append(tr);
-    }
+  this.showServiceDetailsResponse = function (responseDetails, serviceType) {
+    console.log(responseDetails);
+    var content = this.showTopicDetailsMessage(responseDetails.typedefs, "", serviceType + "Response");
+    $("#serviceDetails div.response ul").remove();
+    $("#serviceDetails div.response").append(content);
   }
   
   // ros params
-  // ----------
   this.clearParams = function() {
     $("#params-list tr.jsParam").remove();
   };
@@ -234,7 +213,6 @@ GS.Interface = function() {
   };
   
   // ===== WIDGETS Functions =====
-  // =============================
   this.widgetOpenMenu = function() {
     
   };

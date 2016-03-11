@@ -108,17 +108,32 @@ div#content {
 input[readonly=readonly] {
   background-color: #ccc; }
 
-div.messageDetails ul, div.serviceDetails ul {
-  list-style: circle; }
-  div.messageDetails ul li span.messageFieldType, div.serviceDetails ul li span.messageFieldType {
-    padding: 0 5px;
-    font-weight: bold;
-    color: cornflowerblue; }
-  div.messageDetails ul li span.messageFieldName, div.serviceDetails ul li span.messageFieldName {
-    color: darkblue; }
-  div.messageDetails ul li span.messageFieldValue, div.serviceDetails ul li span.messageFieldValue {
-    padding: 0 5px;
-    color: black;
-    background-color: #fff;
+.rosDetails {
+  padding: 5px; }
+  .rosDetails h3 {
+    margin-top: 5px; }
+  .rosDetails p {
+    margin: 10px 0; }
+    .rosDetails p label {
+      font-weight: bold; }
+    .rosDetails p span {
+      text-decoration: underline; }
+  .rosDetails h4 {
     text-decoration: underline; }
+  .rosDetails div.response, .rosDetails div.request {
+    margin-top: 5px;
+    border: 1px solid #333; }
+  .rosDetails ul {
+    list-style: circle; }
+    .rosDetails ul li span.messageFieldType {
+      padding: 0 5px;
+      font-weight: bold;
+      color: cornflowerblue; }
+    .rosDetails ul li span.messageFieldName {
+      color: darkblue; }
+    .rosDetails ul li span.messageFieldValue {
+      padding: 0 5px;
+      color: black;
+      background-color: #fff;
+      text-decoration: underline; }
 
