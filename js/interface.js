@@ -43,7 +43,8 @@ GS.Interface = function() {
     $("#messages-list").parent().scrollTop($("#messages-list").parent()[0].scrollHeight);
   };
 
-  // ros nodes
+  // ===== ROS panel =====
+  // ----- ros nodes -----
   this.clearNodes = function() {
     $("#nodes-list tr.jsNode").remove();
   };
@@ -57,10 +58,10 @@ GS.Interface = function() {
     }
   };
   this.showNodeInfo = function(nodeInfo) {
-
+    // doing nothing
   };
 
-  // ros topics
+  // ----- ros topics -----
   this.clearTopics = function() {
     $("#topics-list tr.jsTopic").remove();
   };
@@ -146,7 +147,7 @@ GS.Interface = function() {
     }
   };
 
-  // ros services
+  // ----- ros services -----
   this.clearServices = function() {
     $("#services-list tr.jsService").remove();
   };
@@ -186,7 +187,7 @@ GS.Interface = function() {
     $("#serviceDetails div.response").append(content);
   }
 
-  // ros params
+  // ----- ros params -----
   this.clearParams = function() {
     $("#params-list tr.jsParam").remove();
   };
@@ -212,9 +213,36 @@ GS.Interface = function() {
     $("#paramDetails p.type span").html(paramValue);
   };
 
-  // ===== WIDGETS Functions =====
-  this.widgetOpenMenu = function() {
-
+  // ===== WIDGETS Methods =====
+  // ----- Private methods -----
+  var widgetOpenMenu = function(widgetId, widgetName) {
+    var link = html.e("a", widgetName, { href: "#", "data-id": widgetId, "class": "jsWidgetShow" });
+    var closeLink = html.e("a", "x", { href: "#", "class": "close jsWidgetClose", "data-id": widgetId });
+    var item = html.e("li", link + closeLink, { "data-id": widgetId });
+    $("#contentMenu > ul").append(item);
   };
+  var widgetOpenContent = function(widgetId, widgetName) {
+    var content = render.widgetContent(widgetId);
+    $("#contentMain").append(content);
+  };
+  // ----- Public methods -----
+  this.widgetOpen = function(widgetId, widgetName) {
+    // interface
+    widgetOpenMenu(widgetId, widgetName);
+    widgetOpenContent(widgetId, widgetName);
+    this.widgetShow(widgetId);
+  };
+  this.widgetShow = function(widgetId) {
+    $("#contentMenu a.jsWidgetShow").removeClass("selectedWidget");
+    $("#contentMenu a.jsWidgetShow[data-id=" + widgetId + "]").addClass("selectedWidget");
+
+    $("#contentMain div.widgetContent").hide();
+    $("#contentMain div[data-widget-id=" + widgetId + "]").show();
+  }
+  this.widgetClose = function(widgetId) {
+    // interface
+    $("#contentMenu ul li[data-id=" + widgetId + "]").remove();
+    $("#contentMain div.widgetContent[data-widget-id=" + widgetId + "]").remove();
+  }
 
 }

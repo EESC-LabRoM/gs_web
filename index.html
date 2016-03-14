@@ -9,6 +9,7 @@
   <script type="text/javascript" src="js/libs/roslib.dev.js"></script>
   <script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
   <script type="text/javascript" src="js/libs/mustache.js"></script>
+  <script type="text/javascript" src="js/util.js"></script>
 
   <!-- my scripts -->
   <script type="text/javascript" src="js/main.js"></script>
@@ -16,11 +17,9 @@
   <script type="text/javascript" src="js/interface.js"></script>
   <script type="text/javascript" src="js/html.js"></script>
   <script type="text/javascript" src="js/svg.js"></script>
-  <script type="text/javascript" src="js/routines.js"></script>
   <script type="text/javascript" src="js/render.js"></script>
   <script type="text/javascript" src="js/templates.js"></script>
   <script type="text/javascript" src="js/widgets.js"></script>
-  <script type="text/javascript" src="js/util.js"></script>
 
   <!-- Math -->
   <script type="text/javascript" src="js/libs/robotics/rpy.js"></script>
@@ -49,10 +48,9 @@
 <body>
   <div id="header">
     <h1>ROS web</h1>
-    <label>ws://192.168.81.128:9090</label>
-    <br />
     <label>Server address</label>
-    <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
+    <!--<input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />-->
+    <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://127.0.0.1:9090" />
     <button id="btn_server_connect" value="Connect">Connect</button>
   </div>
 
@@ -132,6 +130,8 @@
               <div class="details">
               </div>
 
+              <br />
+
               <div>
                 <h4>Subscribe topic</h4>
                 <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
@@ -155,6 +155,7 @@
               <div class="request">
                 <h4>Request</h4>
               </div>
+              
               <div class="response">
                 <h4>Response</h4>
               </div>

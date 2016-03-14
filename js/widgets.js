@@ -12,6 +12,7 @@ GS.Widgets = function() {
   
   // ===== Public properties =====
   // =============================
+  this.interface = new GS.Interface();
   this.list = ["Mav", "Turtlesim"];
   this.opened = [];
   this.subscribers = [];
@@ -24,17 +25,6 @@ GS.Widgets = function() {
   */
   
   // ===== Private methods =====
-  var openMenu = function(widgetId, widgetName) {
-    var link = html.e("a", widgetName, {href: "#", "data-id": widgetId, "class": "jsWidgetShow"});
-    var closeLink = html.e("a", "x", {href: "#", "class": "close jsWidgetClose", "data-id": widgetId});
-    var item = html.e("li", link + closeLink, {"data-id": widgetId});
-    $("#contentMenu > ul").append(item);
-  }
-  var openContent = function(widgetId, widgetName) {
-    var content = render.widgetContent(widgetId);
-    $("#contentMain").append(content);
-    self.widgetStart(widgetId);
-  }
   
   // ===== Public methods =====
   this.open = function(widgetName) {
@@ -46,22 +36,18 @@ GS.Widgets = function() {
     self.opened.push(widget);
     
     // interface
-    openMenu(widgetId, widgetName);
-    openContent(widgetId, widgetName);
-    self.show(widgetId);
+    this.interface.widgetOpen(widgetId, widgetName);
+    
+    // start
+    this.widgetStart(widgetId);
   }
   this.show = function(widgetId) {
-    $("#contentMenu a.jsWidgetShow").removeClass("selectedWidget");
-    $("#contentMenu a.jsWidgetShow[data-id=" + widgetId + "]").addClass("selectedWidget");
-    
-    $("#contentMain div.widgetContent").hide();
-    $("#contentMain div[data-widget-id=" + widgetId + "]").show();
+    this.interface.widgetShow(widgetId);
   }
   this.close = function(widgetId) {
     // interface
-    $("#contentMenu ul li[data-id=" + widgetId + "]").remove();
-    $("#contentMain div.widgetContent[data-widget-id=" + widgetId + "]").remove();
-    self.show(0);
+    this.interface.widgetClose(widgetId);
+    this.interface.widgetShow(0);
     
     // widgets manager
     self.opened.splice(self.getWidgetIndex(widgetId), 1);
