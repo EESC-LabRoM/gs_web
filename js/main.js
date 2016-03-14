@@ -1,5 +1,5 @@
 // My Debug function
-db = function (data) {console.log(data);}
+db = function(data) { console.log(data); }
 // My Namespaces
 GS = {};
 GS.WIDGETS = {};
@@ -9,7 +9,13 @@ GS.ROBOTICS = {};
 // -------
 ros = new ROSLIB.Ros();
 
-$(document).ready(function () {
+$(document).ready(function() {
+  /*
+  $.getScript("events.js", function() {
+
+  });
+  */
+
   // ===== Linking events functions =====
   events = new GS.Events();
   events.declareTriggers();

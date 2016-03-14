@@ -77,7 +77,8 @@ GS.Interface = function() {
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     this.showTopicDetailsBasic(topicName, topicType);
     var details = this.showTopicDetailsMessage(messageDetails, "", topicType);
-    $("#topicDetails .details").html(details);
+    $("#topicDetails .details").children("ul").remove();
+    $("#topicDetails .details").append(details);
 
     $("#hdnTopicName").val(topicName);
     $("#hdnTopicType").val(topicType);
@@ -134,8 +135,15 @@ GS.Interface = function() {
           childName = (fieldName === "") ? i : fieldName + "." + i;
           if (Array.isArray(message)) {
             var fieldType = self.getTopicFieldType(messageDetails, fieldName);
-            element = render.topicField(childId, childName, fieldType, message[i]);
-            $("ul[data-id='ul-" + fieldId + "']").append(element);
+            var item = $("li[data-id='" + childId + "']");
+            var value = message[i];
+            if(item.length > 0) {
+              console.log(item);
+              item.children(".messageFieldValue").html(value);
+            } else {
+              element = render.topicField(childId, childName, fieldType, message[i]);
+              $("ul[data-id='" + fieldId + "']").append(element);
+            }
           } else {
             self.showTopicMessage(messageDetails, message[i], childId, i);
           }
