@@ -220,7 +220,6 @@ GS.Events = function() {
   // ROS Subscription callback
   this.rosSubscriptionCallback = function(message) {
     interface.showTopicMessage(self.messageDetails, message, "", "");
-    // self.cancelSubscription();
   };
 
   // ROS WIDGETS selected topic
