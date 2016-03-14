@@ -1,4 +1,4 @@
-﻿body {
+body {
   margin: 0;
   padding: 0;
   font-family: garamond;
@@ -120,7 +120,7 @@ input[readonly=readonly] {
       text-decoration: underline; }
   .rosDetails h4 {
     text-decoration: underline; }
-  .rosDetails div.response, .rosDetails div.request {
+  .rosDetails div.response, .rosDetails div.request, .rosDetails div.details {
     margin-top: 5px;
     border: 1px solid #333; }
   .rosDetails ul {
@@ -137,3 +137,4 @@ input[readonly=readonly] {
       background-color: #fff;
       text-decoration: underline; }
 
+/*# sourceMappingURL=theme1.css.map */

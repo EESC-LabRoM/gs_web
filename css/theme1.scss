@@ -198,7 +198,7 @@ input[readonly=readonly] {
   }
 
   div {
-    &.response, &.request {
+    &.response, &.request, &.details {
       margin-top:5px;
       border:1px solid #333;
     }

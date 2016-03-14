@@ -24,7 +24,6 @@ GS.Widgets = function() {
   */
   
   // ===== Private methods =====
-  // ===========================
   var openMenu = function(widgetId, widgetName) {
     var link = html.e("a", widgetName, {href: "#", "data-id": widgetId, "class": "jsWidgetShow"});
     var closeLink = html.e("a", "x", {href: "#", "class": "close jsWidgetClose", "data-id": widgetId});
@@ -38,7 +37,6 @@ GS.Widgets = function() {
   }
   
   // ===== Public methods =====
-  // ==========================
   this.open = function(widgetName) {
     var widgetId = ++widgetsIdCounter;
     
@@ -73,7 +71,6 @@ GS.Widgets = function() {
   }
   
   // ===== Widgets Private Methods =====
-  // ===================================
   this.getWidgetIndex = function(widgetId) {
     for(var i in self.opened) {
       var widget = self.opened[i];

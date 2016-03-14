@@ -1,93 +1,93 @@
 /// <reference path="render.js" />
 
-GS.Interface = function () {
-  
+GS.Interface = function() {
+
   // ===== Private variables =====
   var self = this;
   var html = new GS.Html();
   var render = new GS.Render();
-  
+
   // ros connect
   this.rosConnect = function(connected) {
     ros_connected = connected;
     $("#btn_server_connect").html(connected ? "Disconnect" : "Connect");
-    if(connected) {
+    if (connected) {
       $("#txt_ros_server_address").attr("readonly", "readonly");
     } else {
       $("#txt_ros_server_address").removeAttr("readonly");
     }
   };
-  
+
   // widgets
   this.widgetToggleList = function() {
     $("#widgetList").html("");
-    for(i in widgets.list) {
+    for (i in widgets.list) {
       var widgetName = widgets.list[i];
-      $("#widgetList").append(html.e("a", widgetName, {href: "#", "data-name": widgetName, "class": "jsWidgetItem"}));
+      $("#widgetList").append(html.e("a", widgetName, { href: "#", "data-name": widgetName, "class": "jsWidgetItem" }));
     }
-    if($("#widgetList").is(":visible")) {
-      $("#widgetList").toggle().css({width: "", height: "", "min-height": "", "min-width": ""});;
+    if ($("#widgetList").is(":visible")) {
+      $("#widgetList").toggle().css({ width: "", height: "", "min-height": "", "min-width": "" });;
     } else {
       $("#widgetList")
-        .css({width:0,height:0})
+        .css({ width: 0, height: 0 })
         .toggle()
-        .animate({width:300, height:150}, 300, "swing", function() {
-          $(this).css({width: "", height: "", "min-height": "150px", "min-width": "300px"});
+        .animate({ width: 300, height: 150 }, 300, "swing", function() {
+          $(this).css({ width: "", height: "", "min-height": "150px", "min-width": "300px" });
         });
     }
   };
-  
+
   // log message
   this.logMessage = function(msg) {
     $("#messages-list").append("<li>" + msg + "</li>");
     $("#messages-list").parent().scrollTop($("#messages-list").parent()[0].scrollHeight);
   };
-  
+
   // ros nodes
-  this.clearNodes = function(){
+  this.clearNodes = function() {
     $("#nodes-list tr.jsNode").remove();
   };
   this.listNodes = function(nodes) {
-    for(i in nodes) {
+    for (i in nodes) {
       var nodeName = nodes[i];
       var link = html.rosNodeLink(nodeName);
-      var td = html.e("td", link, {"class":"jsNodeName"});
-      var tr = html.e("tr", td, {"data-node-name":nodeName,"class":"jsNode"});
+      var td = html.e("td", link, { "class": "jsNodeName" });
+      var tr = html.e("tr", td, { "data-node-name": nodeName, "class": "jsNode" });
       $("#nodes-list").append(tr);
     }
   };
   this.showNodeInfo = function(nodeInfo) {
-    
+
   };
-  
+
   // ros topics
-  this.clearTopics = function(){
+  this.clearTopics = function() {
     $("#topics-list tr.jsTopic").remove();
   };
   this.listTopics = function(topics) {
-    for(i in topics) {
+    for (i in topics) {
       var topicName = topics[i];
       var link = html.rosTopicLink(topicName);
-      var td = html.e("td", link, {"class":"jsTopicName"});
-      var tr = html.e("tr", td, {"data-topic-name":topicName, "class":"jsTopic"});
+      var td = html.e("td", link, { "class": "jsTopicName" });
+      var tr = html.e("tr", td, { "data-topic-name": topicName, "class": "jsTopic" });
       $("#topics-list").append(tr);
     }
   };
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
     this.showTopicDetailsBasic(topicName, topicType);
     var details = this.showTopicDetailsMessage(messageDetails, "", topicType);
-    $("#topicDetails .messageDetails").html(details);
-    
+    $("#topicDetails .details").html(details);
+
     $("#hdnTopicName").val(topicName);
     $("#hdnTopicType").val(topicType);
   };
-  this.showTopicDetailsBasic = function (topicName, topicType) {
+  this.showTopicDetailsBasic = function(topicName, topicType) {
     $(".rosDetails").hide();
     $("#topicDetails").show();
     $("#topicDetails p.name span").html(topicName);
     $("#topicDetails p.type span").html(topicType);
   };
-  this.showTopicDetailsMessage = function (messageDetails, parentId, parentType) {
+  this.showTopicDetailsMessage = function(messageDetails, parentId, parentType) {
     var listItems = "";
     var item = "";
     for (var i = 0; i < messageDetails.length; i++) {
@@ -110,7 +110,7 @@ GS.Interface = function () {
     }
     return "";
   };
-  this.getTopicFieldType = function (messageDetails, fieldName) {
+  this.getTopicFieldType = function(messageDetails, fieldName) {
     var md;
     for (var i = 0; i < messageDetails.length; i++) {
       md = messageDetails[i];
@@ -120,7 +120,7 @@ GS.Interface = function () {
     }
     return "";
   };
-  this.showTopicMessage = function (messageDetails, message, fieldId, fieldName) {
+  this.showTopicMessage = function(messageDetails, message, fieldId, fieldName) {
     $(".messageDetails ul[data-list='1']").html("");
     switch (typeof (message)) {
       case "object":
@@ -145,21 +145,21 @@ GS.Interface = function () {
         break;
     }
   };
-  
+
   // ros services
-  this.clearServices = function(){
+  this.clearServices = function() {
     $("#services-list tr.jsService").remove();
   };
   this.listServices = function(services) {
-    for(i in services) {
+    for (i in services) {
       var serviceName = services[i];
       var classStr = "jsService";
-      if(serviceName.indexOf("/rosapi/") > -1) classStr += " jsRosapiService";
-      if(serviceName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketService";
-      if(serviceName.indexOf("/rosout/") > -1) classStr += " jsRosoutService";
+      if (serviceName.indexOf("/rosapi/") > -1) classStr += " jsRosapiService";
+      if (serviceName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketService";
+      if (serviceName.indexOf("/rosout/") > -1) classStr += " jsRosoutService";
       var link = html.rosServiceLink(serviceName);
-      var td = html.e("td", link, {"class":"jsServiceName"});
-      var tr = html.e("tr", td, {"data-service-name":serviceName, "class":classStr});
+      var td = html.e("td", link, { "class": "jsServiceName" });
+      var tr = html.e("tr", td, { "data-service-name": serviceName, "class": classStr });
       $("#services-list").append(tr);
     }
   };
@@ -170,36 +170,36 @@ GS.Interface = function () {
     $("#serviceDetails p.type span").html(serviceType);
     $("#hdnServiceName").val(serviceName);
     $("#hdnServiceType").val(serviceType);
-    
+
     this.showServiceDetailsRequest(requestDetails, serviceType);
-    
+
     this.showServiceDetailsResponse(responseDetails, serviceType);
   };
-  this.showServiceDetailsRequest = function (requestDetails, serviceType) {
+  this.showServiceDetailsRequest = function(requestDetails, serviceType) {
     var content = this.showTopicDetailsMessage(requestDetails.typedefs, "", serviceType + "Request");
     $("#serviceDetails div.request ul").remove();
     $("#serviceDetails div.request").append(content);
   }
-  this.showServiceDetailsResponse = function (responseDetails, serviceType) {
+  this.showServiceDetailsResponse = function(responseDetails, serviceType) {
     var content = this.showTopicDetailsMessage(responseDetails.typedefs, "", serviceType + "Response");
     $("#serviceDetails div.response ul").remove();
     $("#serviceDetails div.response").append(content);
   }
-  
+
   // ros params
   this.clearParams = function() {
     $("#params-list tr.jsParam").remove();
   };
   this.listParams = function(params) {
-    for(i in params) {
+    for (i in params) {
       var paramName = params[i];
       var classStr = "jsParam";
-      if(paramName.indexOf("/rosapi/") > -1) classStr += " jsRosapiParam";
-      if(paramName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketParam";
-      if(paramName.indexOf("/rosout/") > -1) classStr += " jsRosoutParam";
-      var link= html.rosParamLink(paramName);
-      var td = html.e("td", link, {"class":"jsParamName"});
-      var tr = html.e("tr", td, {"data-param-name":paramName, "class":classStr});
+      if (paramName.indexOf("/rosapi/") > -1) classStr += " jsRosapiParam";
+      if (paramName.indexOf("/rosbridge_websocket/") > -1) classStr += " jsRosbridgeWebsocketParam";
+      if (paramName.indexOf("/rosout/") > -1) classStr += " jsRosoutParam";
+      var link = html.rosParamLink(paramName);
+      var td = html.e("td", link, { "class": "jsParamName" });
+      var tr = html.e("tr", td, { "data-param-name": paramName, "class": classStr });
       $("#params-list").append(tr);
     }
   };
@@ -211,10 +211,10 @@ GS.Interface = function () {
     paramValue = typeof (paramValue) === "boolean" ? (paramValue ? "True" : "False") : paramValue;
     $("#paramDetails p.type span").html(paramValue);
   };
-  
+
   // ===== WIDGETS Functions =====
   this.widgetOpenMenu = function() {
-    
+
   };
-  
+
 }

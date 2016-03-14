@@ -1,212 +1,223 @@
 ﻿<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <!-- libs -->
-    <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-    <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>-->
-    <script type="text/javascript" src="js/libs/roslib.dev.js"></script>
-    <script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="js/libs/mustache.js"></script>
-    
-    <!-- my scripts -->
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/events.js"></script>
-    <script type="text/javascript" src="js/interface.js"></script>
-    <script type="text/javascript" src="js/html.js"></script>
-    <script type="text/javascript" src="js/svg.js"></script>
-    <script type="text/javascript" src="js/routines.js"></script>
-    <script type="text/javascript" src="js/render.js"></script>
-    <script type="text/javascript" src="js/templates.js"></script>
-    <script type="text/javascript" src="js/widgets.js"></script>
-    <script type="text/javascript" src="js/util.js"></script>
-    
-    <!-- Math -->
-    <script type="text/javascript" src="js/libs/robotics/rpy.js"></script>
-    <script type="text/javascript" src="js/libs/robotics/quaternion.js"></script>
-    <script type="text/javascript" src="js/libs/robotics/matrix3x3.js"></script>
-    
-    <!-- WIDGETS -->
-    <!-- Mav -->
-    <script type="text/javascript" src="widgets/mav/js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="widgets/mav/css/main.css" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGir7uuIvdEOH24VRmNcDCUCHSwmWS6No" async defer></script>
-    
-    <!-- stylesheets -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/theme1.css" />
-    <link rel="stylesheet" type="text/css" href="css/ros.css" />
-    
-    <!-- fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:400,600' rel='stylesheet' type='text/css'>
-    
-    <!-- favicon -->
-    <link rel="shortcut icon" href="img/rosorg-favicon.png" type="image/x-icon" />
-  </head>
 
-  <body>
-    <div id="header">
-      <h1>ROS web</h1>
-      <label>ws://192.168.81.128:9090</label>
-      <br />
-      <label>Server address</label>
-      <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
-      <button id="btn_server_connect" value="Connect">Connect</button>
+<head>
+  <meta charset="utf-8" />
+  <!-- libs -->
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>-->
+  <script type="text/javascript" src="js/libs/roslib.dev.js"></script>
+  <script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="js/libs/mustache.js"></script>
+
+  <!-- my scripts -->
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/events.js"></script>
+  <script type="text/javascript" src="js/interface.js"></script>
+  <script type="text/javascript" src="js/html.js"></script>
+  <script type="text/javascript" src="js/svg.js"></script>
+  <script type="text/javascript" src="js/routines.js"></script>
+  <script type="text/javascript" src="js/render.js"></script>
+  <script type="text/javascript" src="js/templates.js"></script>
+  <script type="text/javascript" src="js/widgets.js"></script>
+  <script type="text/javascript" src="js/util.js"></script>
+
+  <!-- Math -->
+  <script type="text/javascript" src="js/libs/robotics/rpy.js"></script>
+  <script type="text/javascript" src="js/libs/robotics/quaternion.js"></script>
+  <script type="text/javascript" src="js/libs/robotics/matrix3x3.js"></script>
+
+  <!-- WIDGETS -->
+  <!-- Mav -->
+  <script type="text/javascript" src="widgets/mav/js/main.js"></script>
+  <link rel="stylesheet" type="text/css" href="widgets/mav/css/main.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGir7uuIvdEOH24VRmNcDCUCHSwmWS6No" async defer></script>
+
+  <!-- stylesheets -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/theme1.css" />
+  <link rel="stylesheet" type="text/css" href="css/ros.css" />
+
+  <!-- fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:400,600' rel='stylesheet' type='text/css'>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="img/rosorg-favicon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div id="header">
+    <h1>ROS web</h1>
+    <label>ws://192.168.81.128:9090</label>
+    <br />
+    <label>Server address</label>
+    <input type="text" id="txt_ros_server_address" name="txt_ros_server_address" value="ws://192.168.1.101:9090" />
+    <button id="btn_server_connect" value="Connect">Connect</button>
+  </div>
+
+  <div id="content">
+    <div id="contentMenu">
+      <ul>
+        <li><a href="#" id="widgetAdd">+</a></li>
+        <li><a href="#" data-id="0" class="jsWidgetShow">Painel ROS</a></li>
+      </ul>
+      <div id="widgetList">
+      </div>
     </div>
 
-    <div id="content">
-      <div id="contentMenu">
-        <ul>
-          <li><a href="#" id="widgetAdd">+</a></li>
-          <li><a href="#" data-id="0" class="jsWidgetShow">Painel ROS</a></li>
-        </ul>
-        <div id="widgetList">
+    <div id="contentMain">
+      <div id="rosPanel" class="contentMain widgetContent" data-widget-id="0">
+        <div id="rosOptions">
+          <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
+          <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
+
+          <input type="checkbox" name="ckbRosoutServiceParam" id="ckbRosoutServiceParam" />
+          <label for="ckbRosoutServiceParam">Hide rosout services/params</label>
+
+          <input type="checkbox" name="ckbRosbridgeWebsocketServiceParam" id="ckbRosbridgeWebsocketServiceParam" />
+          <label for="ckbRosbridgeWebsocketServiceParam">Hide rosbridge websocket services/params</label>
         </div>
-      </div>
-      
-      <div id="contentMain">
-        <div id="rosPanel" class="contentMain widgetContent" data-widget-id="0">
-          <div id="rosOptions">
-            <input type="checkbox" name="ckbRosapiServiceParam" id="ckbRosapiServiceParam" />
-            <label for="ckbRosapiServiceParam">Hide rosapi services/params</label>
 
-            <input type="checkbox" name="ckbRosoutServiceParam" id="ckbRosoutServiceParam" />
-            <label for="ckbRosoutServiceParam">Hide rosout services/params</label>
+        <div class="content-side fleft w25p">
 
-            <input type="checkbox" name="ckbRosbridgeWebsocketServiceParam" id="ckbRosbridgeWebsocketServiceParam" />
-            <label for="ckbRosbridgeWebsocketServiceParam">Hide rosbridge websocket services/params</label>
+          <h3>Log messages</h3>
+          <div id="log" class="w100p h100">
+            <ul id="messages-list"></ul>
           </div>
 
-          <div class="content-side fleft w25p">
-
-            <h3>Log messages</h3>
-            <div id="log" class="w100p h100">
-              <ul id="messages-list"></ul>
-            </div>
-
-            <h3>Nodes</h3>
-            <div id="nodes" class="w100p mh200">
-              <table id="nodes-list" class="w100p p5">
-                <tr><th>node name</th></tr>
-              </table>
-            </div>
-
-            <h3>Topics</h3>
-            <div id="topics" class="w100p mh200">
-              <table id="topics-list" class="w100p p5">
-                <tr><th>topic name</th></tr>
-              </table>
-            </div>
+          <h3>Nodes</h3>
+          <div id="nodes" class="w100p mh200">
+            <table id="nodes-list" class="w100p p5">
+              <tr>
+                <th>node name</th>
+              </tr>
+            </table>
           </div>
 
+          <h3>Topics</h3>
+          <div id="topics" class="w100p mh200">
+            <table id="topics-list" class="w100p p5">
+              <tr>
+                <th>topic name</th>
+              </tr>
+            </table>
+          </div>
+        </div>
 
-          <div class="content-main fleft w40p">
-            <div id="details">
 
-              <div id="nodeDetails" class="rosDetails">
-                <h3>Node details</h3>
-                <p class="name">
-                  <label>Node</label>
-                  <span></span>
-                </p>
+        <div class="content-main fleft w40p">
+          <div id="details">
+
+            <div id="nodeDetails" class="rosDetails">
+              <h3>Node details</h3>
+              <p class="name">
+                <label>Node</label>
+                <span></span>
+              </p>
+            </div>
+
+            <div id="topicDetails" class="rosDetails">
+              <h3>Topic details</h3>
+              <p class="name">
+                <label>Topic</label>
+                <span></span>
+              </p>
+
+              <p class="type">
+                <label>Type</label>
+                <span></span>
+              </p>
+
+              <div class="details">
               </div>
 
-              <div id="topicDetails" class="rosDetails">
-                <h3>Topic details</h3>
-                <p class="name">
-                  <label>Topic</label>
-                  <span></span>
-                </p>
-
-                <p class="type">
-                  <label>Type</label>
-                  <span></span>
-                </p>
-
-                <div class="messageDetails">
-                </div>
-
+              <div>
+                <h4>Subscribe topic</h4>
                 <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
                 <input type="hidden" name="hdnTopicType" id="hdnTopicType" />
                 <button id="btnSubscribeTopic">Subscribe!</button>
                 <button id="btnUnsubscribeTopic">Cancel!</button>
-
               </div>
 
-              <div id="serviceDetails" class="rosDetails">
-                <h3>Service details</h3>
-                <p class="name">
-                  <label>Service</label>
-                  <span></span>
-                </p>
-                <p class="type">
-                  <label>Type</label>
-                  <span></span>
-                </p>
-                <div class="request">
-                  <h4>Request</h4>
-                </div>
-                <div class="response">
-                  <h4>Response</h4>
-                </div>
+            </div>
 
-                <br />
-
-                <div>
-                  <label>Call service</label>
-                  <br /><br />
-                  <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
-                  <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
-                  <button id="btnCallService">Call!</button>
-                  <button id="btnRefreshService">Refresh!</button>
-                </div>
+            <div id="serviceDetails" class="rosDetails">
+              <h3>Service details</h3>
+              <p class="name">
+                <label>Service</label>
+                <span></span>
+              </p>
+              <p class="type">
+                <label>Type</label>
+                <span></span>
+              </p>
+              <div class="request">
+                <h4>Request</h4>
+              </div>
+              <div class="response">
+                <h4>Response</h4>
               </div>
 
-              <div id="paramDetails" class="rosDetails">
-                <h3>Param details</h3>
-                <p class="name">
-                  <label>Param</label>
-                  <span></span>
-                </p>
-                <p class="type">
-                  <label>Value</label>
-                  <span></span>
-                </p>
-                <p>
-                  <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
-                  <input type="text" id="txtSetParam" name="txtSetParam" value="" />
-                  <button id="btnSetParam">Set</button>
-                </p>
+              <br />
+
+              <div>
+                <h4>Call service</h4>
+                <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
+                <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
+                <button id="btnCallService">Call!</button>
+                <button id="btnRefreshService">Refresh!</button>
               </div>
             </div>
+
+            <div id="paramDetails" class="rosDetails">
+              <h3>Param details</h3>
+              <p class="name">
+                <label>Param</label>
+                <span></span>
+              </p>
+              <p class="type">
+                <label>Value</label>
+                <span></span>
+              </p>
+              <p>
+                <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
+                <input type="text" id="txtSetParam" name="txtSetParam" value="" />
+                <button id="btnSetParam">Set</button>
+              </p>
+            </div>
           </div>
+        </div>
 
 
-          <div class="content-side fleft w30p">
+        <div class="content-side fleft w30p">
 
           <h3>Services</h3>
           <div id="services" class="w100p mh200">
             <table id="services-list" class="w100p p5">
-              <tr><th>service</th></tr>
+              <tr>
+                <th>service</th>
+              </tr>
             </table>
           </div>
 
           <h3>Params</h3>
           <div id="params" class="w100p mh200">
             <table id="params-list" class="w100p p5">
-              <tr><th>param</th></tr>
+              <tr>
+                <th>param</th>
+              </tr>
             </table>
           </div>
         </div>
-        </div>
       </div>
-      
-      <div class="clearfix"></div>
     </div>
 
-    <div id="footer">
-    </div>
-  </body>
+    <div class="clearfix"></div>
+  </div>
+
+  <div id="footer">
+  </div>
+</body>
+
 </html>
-
