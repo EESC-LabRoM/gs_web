@@ -130,6 +130,9 @@ GS.Interface = function() {
         var childName = "";
         var childType = "";
         var element = "";
+        if (Array.isArray(message)) {
+          $("ul[data-id='" + fieldId + "']").html("");
+        }
         for (i in message) {
           childId = (fieldId === "") ? i : fieldId + "." + i;
           childName = (fieldName === "") ? i : fieldName + "." + i;
@@ -137,13 +140,8 @@ GS.Interface = function() {
             var fieldType = self.getTopicFieldType(messageDetails, fieldName);
             var item = $("li[data-id='" + childId + "']");
             var value = message[i];
-            if(item.length > 0) {
-              console.log(item);
-              item.children(".messageFieldValue").html(value);
-            } else {
-              element = render.topicField(childId, childName, fieldType, message[i]);
-              $("ul[data-id='" + fieldId + "']").append(element);
-            }
+            element = render.topicField(childId, childName, fieldType, message[i]);
+            $("ul[data-id='" + fieldId + "']").append(element);
           } else {
             self.showTopicMessage(messageDetails, message[i], childId, i);
           }
