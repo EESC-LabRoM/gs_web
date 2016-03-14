@@ -133,9 +133,9 @@
 // Sass configuration
 {
   "version": "0.1.0",
-  "command": "sass",
+  "command": "sass --update",
   "isShellCommand": true,
-  "args": ["css/theme1.scss", "css/theme1.css"]
+  "args": ["css/:css/"]
 }
 
 // Uncomment the following section to use msbuild which compiles Typescript
