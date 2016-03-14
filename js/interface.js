@@ -181,7 +181,6 @@ GS.Interface = function () {
     $("#serviceDetails div.request").append(content);
   }
   this.showServiceDetailsResponse = function (responseDetails, serviceType) {
-    console.log(responseDetails);
     var content = this.showTopicDetailsMessage(responseDetails.typedefs, "", serviceType + "Response");
     $("#serviceDetails div.response ul").remove();
     $("#serviceDetails div.response").append(content);
@@ -209,6 +208,7 @@ GS.Interface = function () {
     $("#paramDetails").show();
     $("#paramDetails #hdnParamName").val(paramName);
     $("#paramDetails p.name span").html(paramName);
+    paramValue = typeof (paramValue) === "boolean" ? (paramValue ? "True" : "False") : paramValue;
     $("#paramDetails p.type span").html(paramValue);
   };
   
