@@ -112,6 +112,7 @@ GS.Events = function() {
   this.linkRosNodeClick = function(e) {
     self.cancelSubscription();
     var nodeName = $(this).attr("data-node-name");
+    
     e.preventDefault();
   };
   this.linkRosTopicClick = function(e) {

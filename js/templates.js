@@ -5,9 +5,10 @@
   this.baseUrl = "/templates/";
 
   this.items = [
-    { name: "topicField", file: "topic_field.tpl", content: "" },
-    { name: "topicList", file: "topic_list.tpl", content: "" },
-    { name: "widgetContent", file: "widget_content.tpl", content: "" }
+    { name: "topicContent", file: "topics/content.tpl", content: "" },
+    { name: "topicField", file: "topics/field.tpl", content: "" },
+    { name: "topicList", file: "topics/list.tpl", content: "" },
+    { name: "widgetContent", file: "widgets/container.tpl", content: "" }
   ];
 
   this.loadAll = function () {
