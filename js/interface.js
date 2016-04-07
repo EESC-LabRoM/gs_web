@@ -57,8 +57,10 @@ GS.Interface = function() {
       $("#nodes-list").append(tr);
     }
   };
-  this.showNodeInfo = function(nodeInfo) {
-    // doing nothing
+  this.showNodeDetails = function(nodeName, nodeDetails) {
+    $(".rosDetails").hide();
+    var content = render.nodeDetails(nodeName, nodeDetails);
+    $("#nodeDetails").html(content).show();
   };
 
   // ----- ros topics -----

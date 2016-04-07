@@ -6,6 +6,16 @@ GS.Render = function () {
 
   // ===== Public methods =====
   // ==========================
+  this.nodeDetails = function(nodeName, nodeDetails) {
+    var content = templates.getContent("nodeDetails");
+    return Mustache.render(content, {
+      nodeName: nodeName,
+      publishing: nodeDetails.publishing,
+      subscribing: nodeDetails.subscribing,
+      services: nodeDetails.services
+    });
+  }
+  
   this.topicField = function (fieldId, fieldName, fieldType, fieldValue) {
     var content = templates.getContent("topicField");
     return Mustache.render(content, {
