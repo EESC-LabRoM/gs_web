@@ -14,7 +14,16 @@ GS.Render = function () {
       subscribing: nodeDetails.subscribing,
       services: nodeDetails.services
     });
-  }
+  };
+  
+  this.topicDetails = function(topicName, topicType, details) {
+    var content = templates.getContent("topicDetails");
+    return Mustache.render(content, {
+      topicName: topicName,
+      topicType: topicType,
+      details: details
+    });
+  };
   
   this.topicField = function (fieldId, fieldName, fieldType, fieldValue) {
     var content = templates.getContent("topicField");
@@ -32,6 +41,14 @@ GS.Render = function () {
       fieldId: fieldId
     });
   }
+  
+  this.paramDetails = function(paramName, paramValue) {
+    var content = templates.getContent("paramDetails");
+    return Mustache.render(content, {
+      paramName: paramName,
+      paramValue: paramValue
+    });
+  };
 
   this.widgetContent = function (widgetId) {
     var content = templates.getContent("widgetContent");
