@@ -13,7 +13,11 @@ GS.Events = function() {
 
   // Util functions
   this.cancelSubscription = function() {
-    if (self.topicListener !== null) self.topicListener.unsubscribe();
+    if (self.topicListener !== null) {
+      self.topicListener.unsubscribe();
+      $("#btnSubscribeTopic").removeAttr("disabled");
+      $("#btnUnsubscribeTopic").attr("disabled", "disabled");
+    }
   };
 
 
@@ -167,6 +171,9 @@ GS.Events = function() {
     });
 
     self.topicListener.subscribe(self.rosSubscriptionCallback);
+    
+    $("#btnSubscribeTopic").attr("disabled", "disabled");
+    $("#btnUnsubscribeTopic").removeAttr("disabled");
   };
   this.btnUnsubscribeTopic = function(e) {
     self.cancelSubscription();

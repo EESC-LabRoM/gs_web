@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <title>ROS Web Client</title>
   <!-- libs -->
   <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
   <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>-->
@@ -89,7 +90,7 @@
           </div>
 
           <h3>Nodes</h3>
-          <div id="nodes" class="w100p mh200">
+          <div id="nodes" class="w100p">
             <table id="nodes-list" class="w100p p5">
               <tr>
                 <th>node name</th>
@@ -98,7 +99,7 @@
           </div>
 
           <h3>Topics</h3>
-          <div id="topics" class="w100p mh200">
+          <div id="topics" class="w100p">
             <table id="topics-list" class="w100p p5">
               <tr>
                 <th>topic name</th>
@@ -110,88 +111,6 @@
 
         <div class="content-main fleft w40p">
           <div id="details">
-
-            <div id="nodeDetails" class="rosDetails">
-              <h3>Node details</h3>
-              <p class="name">
-                <label>Node</label>
-                <span></span>
-              </p>
-            </div>
-
-            <div id="topicDetails" class="rosDetails">
-              <h3>Topic details</h3>
-              <p class="name">
-                <label>Topic</label>
-                <span></span>
-              </p>
-
-              <p class="type">
-                <label>Type</label>
-                <span></span>
-              </p>
-
-              <div class="details">
-                <h4>Message details</h4>
-              </div>
-
-              <br />
-
-              <div>
-                <h4>Subscribe topic</h4>
-                <input type="hidden" name="hdnTopicName" id="hdnTopicName" />
-                <input type="hidden" name="hdnTopicType" id="hdnTopicType" />
-                <button id="btnSubscribeTopic">Subscribe!</button>
-                <button id="btnUnsubscribeTopic">Cancel!</button>
-              </div>
-
-            </div>
-
-            <div id="serviceDetails" class="rosDetails">
-              <h3>Service details</h3>
-              <p class="name">
-                <label>Service</label>
-                <span></span>
-              </p>
-              <p class="type">
-                <label>Type</label>
-                <span></span>
-              </p>
-              <div class="request">
-                <h4>Request</h4>
-              </div>
-              
-              <div class="response">
-                <h4>Response</h4>
-              </div>
-
-              <br />
-
-              <div>
-                <h4>Call service</h4>
-                <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
-                <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
-                <button id="btnCallService">Call!</button>
-                <button id="btnRefreshService">Refresh!</button>
-              </div>
-            </div>
-
-            <div id="paramDetails" class="rosDetails">
-              <h3>Param details</h3>
-              <p class="name">
-                <label>Param</label>
-                <span></span>
-              </p>
-              <p class="type">
-                <label>Value</label>
-                <span></span>
-              </p>
-              <p>
-                <input type="hidden" id="hdnParamName" name="hdnParamName" value="" />
-                <input type="text" id="txtSetParam" name="txtSetParam" value="" />
-                <button id="btnSetParam">Set</button>
-              </p>
-            </div>
           </div>
         </div>
 
@@ -199,7 +118,7 @@
         <div class="content-side fleft w30p">
 
           <h3>Services</h3>
-          <div id="services" class="w100p mh200">
+          <div id="services" class="w100p">
             <table id="services-list" class="w100p p5">
               <tr>
                 <th>service</th>
@@ -208,7 +127,7 @@
           </div>
 
           <h3>Params</h3>
-          <div id="params" class="w100p mh200">
+          <div id="params" class="w100p">
             <table id="params-list" class="w100p p5">
               <tr>
                 <th>param</th>

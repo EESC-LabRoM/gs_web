@@ -58,9 +58,8 @@ GS.Interface = function() {
     }
   };
   this.showNodeDetails = function(nodeName, nodeDetails) {
-    $(".rosDetails").hide();
     var content = render.nodeDetails(nodeName, nodeDetails);
-    $("#nodeDetails").html(content).show();
+    $("#details").html(content).show();
   };
 
   // ----- ros topics -----
@@ -77,13 +76,9 @@ GS.Interface = function() {
     }
   };
   this.showTopicDetails = function(topicName, topicType, messageDetails) {
-    this.showTopicDetailsBasic(topicName, topicType);
     var details = this.showTopicDetailsMessage(messageDetails, "", topicType);
-    $("#topicDetails .details").children("ul").remove();
-    $("#topicDetails .details").append(details);
-
-    $("#hdnTopicName").val(topicName);
-    $("#hdnTopicType").val(topicType);
+    var content = render.topicDetails(topicName, topicType, details);
+    $("#details").html(content);
   };
   this.showTopicDetailsBasic = function(topicName, topicType) {
     $(".rosDetails").hide();
@@ -213,8 +208,10 @@ GS.Interface = function() {
     }
   };
   this.showParamDetails = function(paramName, paramValue) {
-    $(".rosDetails").hide();
-    $("#paramDetails").show();
+    var content = render.paramDetails(paramName, paramValue);
+    $("#details").html(content).show();
+    
+    
     $("#paramDetails #hdnParamName").val(paramName);
     $("#paramDetails p.name span").html(paramName);
     paramValue = typeof (paramValue) === "boolean" ? (paramValue ? "True" : "False") : paramValue;
