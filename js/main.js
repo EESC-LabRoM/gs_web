@@ -28,6 +28,15 @@ $(document).ready(function() {
   window.setInterval(events.routines, 1000);
 
   // ===== Load templates =====
-  templates = new GS.Templates();
+  var items = [
+    { name: "nodeDetails", file: "/nodes/content.tpl", content: "" },
+    { name: "topicDetails", file: "/topics/content.tpl", content:""},
+    { name: "topicContent", file: "/topics/content.tpl", content: "" },
+    { name: "topicField", file: "/topics/field.tpl", content: "" },
+    { name: "topicList", file: "/topics/list.tpl", content: "" },
+    { name: "widgetContent", file: "/widgets/container.tpl", content: "" },
+    { name: "paramDetails", file: "/params/content.tpl", content: ""}
+  ];
+  templates = new GS.Templates("/templates", items);
   templates.loadAll();
 });
