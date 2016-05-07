@@ -13,7 +13,7 @@ GS.Widgets = function() {
   // ===== Public properties =====
   // =============================
   this.interface = new GS.Interface();
-  this.list = ["Mav", "Turtlesim"];
+  this.list = ["Mav", "Turtlesim", "Waypoint"];
   this.opened = [];
   this.subscribers = [];
   /*

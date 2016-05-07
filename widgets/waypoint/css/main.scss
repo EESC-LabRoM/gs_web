@@ -1,0 +1,12 @@
+
+.wWaypointContent {
+  .wWaypointBox {
+    float:left;
+    &.wFcuStatus {
+      width:300px;
+    }
+    &.wFcuCurrentPose {
+      width:300px;
+    }
+  }
+}

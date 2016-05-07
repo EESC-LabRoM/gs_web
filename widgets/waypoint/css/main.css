@@ -1,0 +1,8 @@
+.wWaypointContent .wWaypointBox {
+  float: left; }
+  .wWaypointContent .wWaypointBox.wFcuStatus {
+    width: 300px; }
+  .wWaypointContent .wWaypointBox.wFcuCurrentPose {
+    width: 300px; }
+
+/*# sourceMappingURL=main.css.map */
