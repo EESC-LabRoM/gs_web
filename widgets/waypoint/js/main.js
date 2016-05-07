@@ -4,8 +4,9 @@ GS.WIDGETS.Waypoint = function () {
   var path = "/widgets/waypoint/";
   var selector;
   var subscriptions = [];
+  this.templatePath = "templates/"
   this.templates = [
-    { name: "fcuStatus", file: "templates/fcu_status.tpl", content: "" }
+    { name: "fcuStatus", file: "fcu_status.tpl", content: "" }
   ];
   /*
   [{
@@ -48,15 +49,16 @@ GS.WIDGETS.Waypoint = function () {
   
   // get templates
   this.getTemplates = function() {
-    
+    self.templates.forEach(function (template, i) {
+      $.get(path + self.templatePath + template.file, function (data) {
+        self.templates[i].content = data;
+      });
+    });
   };
 
   // callback functions
   this.statusVisualizerCallback = function(msg) {
-    var content = '';
-    for(i in msg) {
-      content += "<br />" + i + ":" + msg[i];
-    };
+    var content = Mustache.render(self.templates);
     console.log(msg);
     $(selector).find(".wFcuStatus > .properties").html(content);
   };
