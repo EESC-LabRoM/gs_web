@@ -8,6 +8,10 @@ GS.ROBOTICS.RPY = function() {
   this.roll_deg = 0;
   this.pitch_deg = 0;
   this.yaw_deg = 0;
+  
+  this.roll_deg_f2 = 0;
+  this.pitch_deg_f2 = 0;
+  this.yaw_deg_f2 = 0;
 
   this.toQuaternion = function() {
     var roll = self.roll;

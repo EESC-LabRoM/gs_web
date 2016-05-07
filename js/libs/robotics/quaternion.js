@@ -56,16 +56,19 @@ GS.ROBOTICS.Quaternion = function() {
     den = matrix3x3.r11;
     eulerXYZ.yaw = Math.atan2(num, den);
     eulerXYZ.yaw_deg = GS.ROBOTICS.rad2deg(eulerXYZ.yaw);
+    eulerXYZ.yaw_deg_f2 = eulerXYZ.yaw_deg.toFixed(2);
     
     num = -matrix3x3.r31;
     den = Math.pow(Math.pow(matrix3x3.r32, 2) + Math.pow(matrix3x3.r33, 2), 0.5);
     eulerXYZ.pitch = Math.atan2(num, den);
     eulerXYZ.pitch_deg = GS.ROBOTICS.rad2deg(eulerXYZ.pitch);
+    eulerXYZ.pitch_deg_f2 = eulerXYZ.pitch_deg.toFixed(2);
     
     num = matrix3x3.r32;
     den = matrix3x3.r33;
     eulerXYZ.roll = Math.atan2(num, den);
     eulerXYZ.roll_deg = GS.ROBOTICS.rad2deg(eulerXYZ.roll);
+    eulerXYZ.roll_deg_f2 = eulerXYZ.roll_deg.toFixed(2);
 
 
     return eulerXYZ;

@@ -2,11 +2,35 @@
 .wWaypointContent {
   .wWaypointBox {
     float:left;
+    h4, label, span {
+      font-family: times;
+    }
+    h4 {
+      font-weight: normal;
+    }
+    label {
+      text-decoration: underline;
+    }
+    span {
+      font-weight: bold;
+    }
     &.wFcuStatus {
       width:300px;
     }
     &.wFcuCurrentPose {
       width:300px;
+    }
+    &.wFcuWaypointCommandInterface {
+      float:left;
+      .wFcuWaypointCommandInterfaceMap {
+        width:600px;
+        height:450px;
+      }
+      .wFcuWaypointCommandInterfaceControls {
+        width:600px;
+        height:50px;
+        background:red;
+      }
     }
   }
 }

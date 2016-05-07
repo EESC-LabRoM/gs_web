@@ -1,8 +1,25 @@
 .wWaypointContent .wWaypointBox {
   float: left; }
+  .wWaypointContent .wWaypointBox h4, .wWaypointContent .wWaypointBox label, .wWaypointContent .wWaypointBox span {
+    font-family: times; }
+  .wWaypointContent .wWaypointBox h4 {
+    font-weight: normal; }
+  .wWaypointContent .wWaypointBox label {
+    text-decoration: underline; }
+  .wWaypointContent .wWaypointBox span {
+    font-weight: bold; }
   .wWaypointContent .wWaypointBox.wFcuStatus {
     width: 300px; }
   .wWaypointContent .wWaypointBox.wFcuCurrentPose {
     width: 300px; }
+  .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface {
+    float: left; }
+    .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceMap {
+      width: 600px;
+      height: 450px; }
+    .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls {
+      width: 600px;
+      height: 50px;
+      background: red; }
 
 /*# sourceMappingURL=main.css.map */
