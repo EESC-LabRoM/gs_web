@@ -40,7 +40,15 @@ GS.Render = function () {
     return Mustache.render(content, {
       fieldId: fieldId
     });
-  }
+  };
+  
+  this.serviceDetails = function(serviceName, serviceType) {
+    var content = templates.getContent("serviceDetails");
+    return Mustache.render(content, {
+      serviceName: serviceName,
+      serviceType: serviceType
+    });
+  };
   
   this.paramDetails = function(paramName, paramValue) {
     var content = templates.getContent("paramDetails");

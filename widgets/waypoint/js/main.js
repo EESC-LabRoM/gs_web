@@ -44,7 +44,7 @@ GS.WIDGETS.Waypoint = function() {
     $(document).delegate(selector + " .btnWFcuWaypointUpdateGPSParameters", "click", self.btnWFcuWaypointUpdateGPSParameters);
     $(document).delegate(selector + " .btnWFcuWaypointCenterReference", "click", self.btnWFcuWaypointCenterReference);
     $(document).delegate(selector + " .btnWFcuWaypointCenterCurrentPosition", "click", self.btnWFcuWaypointCenterCurrentPosition);
-  }
+  };
 
   // triggers
   this.btnWFcuWaypointUpdateGPSParameters = function(e) {
@@ -125,26 +125,39 @@ GS.WIDGETS.Waypoint = function() {
   };
   this.mapClick = function(e) {
     var label = (self.waypoints.length + 1);
-    var wp = new google.maps.Marker({
+    var wp = {relativePosition: null, globalPosition: null, marker: null};
+    var marker = new google.maps.Marker({
       position: e.latLng,
       map: self.map,
       label: 'W',
       title: 'Waypoint ' + label,
     });
-    self.waypoints.push(wp);
+    wp.marker = marker;
+    wp.globalPosition = {lat: marker.position.lat(), lng: marker.position.lng()};
+    
     var info = new google.maps.InfoWindow({
       content: "Waypoint " + label
     });
-    wp.addListener('click', function() { info.open(self.map, wp) });
-    self.waypointsInfo.push(info);
+    wp.marker.addListener('click', function() { info.open(self.map, wp) });
     
-    self.updateWaypointList();
+    var service = new ROSLIB.Service({
+      ros: ros,
+      name: "/gps_to_local_enu",
+      serviceType: "asctec_hl_comm/Wgs84ToEnu"
+    });
+    var requestObj = {lat: marker.position.lat(), lon: marker.position.lng(), alt:1000};
+    service.callService(requestObj, function(result) {
+      wp.
+      self.waypoints.push(wp);
+      self.waypointsInfo.push(info);
+      self.updateWaypointList();
+    }, function(error) {
+    });
   };
   this.updateWaypointList = function() {
     var template = self.templates.getContent("fcuWaypointList");
     var content = Mustache.render(template, self.waypoints);
-    console.log(self.waypoints);
-    console.log(content);
+    $(selector + " " + ".wFcuWaypointList").html(content);
   }
 
   // subscriptions callback functions

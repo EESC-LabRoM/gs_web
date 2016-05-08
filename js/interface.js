@@ -168,12 +168,8 @@ GS.Interface = function() {
     }
   };
   this.showServiceDetails = function(serviceName, serviceType, requestDetails, responseDetails) {
-    $(".rosDetails").hide();
-    $("#serviceDetails").show();
-    $("#serviceDetails p.name span").html(serviceName);
-    $("#serviceDetails p.type span").html(serviceType);
-    $("#hdnServiceName").val(serviceName);
-    $("#hdnServiceType").val(serviceType);
+    var content = render.serviceDetails(serviceName, serviceType);
+    $("#details").html(content);
 
     this.showServiceDetailsRequest(requestDetails, serviceType);
 

@@ -44,6 +44,17 @@
       
       <div>
         <h4>Waypoints</h4>
+        <table class="wFcuWaypointList">
+          <thead>
+            <tr>
+              <th>Lat</th>
+              <th>Lng</th>
+              <th>X</th>
+              <th>Y</th>
+              <th>Z</th>
+            </tr>
+          </thead>
+        </table>
       </div>
 
       <br />

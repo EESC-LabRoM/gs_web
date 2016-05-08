@@ -1,3 +1,3 @@
 {{#.}}
-<li>{{latLng}}</li>
+<li>{{position.lat}}, {{position.lng}}</li>
 {{/.}}

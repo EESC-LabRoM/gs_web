@@ -35,7 +35,8 @@ $(document).ready(function() {
     { name: "topicField", file: "/topics/field.tpl", content: "" },
     { name: "topicList", file: "/topics/list.tpl", content: "" },
     { name: "widgetContent", file: "/widgets/container.tpl", content: "" },
-    { name: "paramDetails", file: "/params/content.tpl", content: ""}
+    { name: "serviceDetails", file: "/services/content.tpl", content: ""},
+    { name: "paramDetails", file: "/params/content.tpl", content: ""},
   ];
   templates = new GS.Templates("/templates", items);
   templates.loadAll();

@@ -2,11 +2,11 @@
   <h3>Service details</h3>
   <p class="name">
     <label>Service</label>
-    <span></span>
+    <span>{{serviceName}}</span>
   </p>
   <p class="type">
     <label>Type</label>
-    <span></span>
+    <span>{{serviceType}}</span>
   </p>
   <div class="request">
     <h4>Request</h4>
@@ -20,8 +20,8 @@
 
   <div>
     <h4>Call service</h4>
-    <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="" />
-    <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="" />
+    <input type="hidden" id="hdnServiceName" name="hdnServiceName" value="{{serviceName}}" />
+    <input type="hidden" id="hdnServiceType" name="hdnServiceType" value="{{serviceType}}" />
     <button id="btnCallService">Call!</button>
     <button id="btnRefreshService">Refresh!</button>
   </div>
