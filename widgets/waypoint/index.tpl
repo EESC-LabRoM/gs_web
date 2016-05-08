@@ -52,8 +52,11 @@
               <th>X</th>
               <th>Y</th>
               <th>Z</th>
+              <th></th>
             </tr>
           </thead>
+          <tbody>
+          </tbody>
         </table>
       </div>
 

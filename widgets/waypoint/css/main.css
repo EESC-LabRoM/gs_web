@@ -27,3 +27,7 @@
         margin: 5px; }
       .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls label {
         margin: 5px; }
+      .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls table.wFcuWaypointList {
+        width: 100%; }
+        .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls table.wFcuWaypointList thead th {
+          font-weight: bold; }

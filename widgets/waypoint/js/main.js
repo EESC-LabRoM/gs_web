@@ -125,7 +125,7 @@ GS.WIDGETS.Waypoint = function() {
   };
   this.mapClick = function(e) {
     var label = (self.waypoints.length + 1);
-    var wp = {relativePosition: null, globalPosition: null, marker: null};
+    var wp = {relativePosition: {x:0, y:0, z:0}, globalPosition: null, marker: null};
     var marker = new google.maps.Marker({
       position: e.latLng,
       map: self.map,
@@ -147,7 +147,9 @@ GS.WIDGETS.Waypoint = function() {
     });
     var requestObj = {lat: marker.position.lat(), lon: marker.position.lng(), alt:1000};
     service.callService(requestObj, function(result) {
-      wp.
+      wp.relativePosition.x = result.x;
+      wp.relativePosition.y = result.y;
+      wp.relativePosition.z = result.z;
       self.waypoints.push(wp);
       self.waypointsInfo.push(info);
       self.updateWaypointList();
@@ -155,10 +157,27 @@ GS.WIDGETS.Waypoint = function() {
     });
   };
   this.updateWaypointList = function() {
+    var wps = [];
+    var wp, waypoint;
+    for(i in self.waypoints) {
+      waypoint = self.waypoints[i];
+      
+      gp = waypoint.globalPosition;
+      gp.lat = gp.lat.toFixed(6);
+      gp.lng = gp.lng.toFixed(6);
+      
+      lp = waypoint.relativePosition;
+      lp.x = (lp.x).toFixed(2);
+      lp.y = (lp.y).toFixed(2);
+      lp.z = (lp.z).toFixed(2);
+      
+      wp = {i:i, gp: gp, lp: lp};
+      wps.push(wp);
+    }
     var template = self.templates.getContent("fcuWaypointList");
-    var content = Mustache.render(template, self.waypoints);
-    $(selector + " " + ".wFcuWaypointList").html(content);
-  }
+    var content = Mustache.render(template, wps);
+    $(selector + " " + ".wFcuWaypointList tbody").html(content);
+  };
 
   // subscriptions callback functions
   this.statusVisualizerCallback = function(msg) {
