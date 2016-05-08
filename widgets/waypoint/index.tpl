@@ -28,7 +28,27 @@
     <div class="wFcuWaypointCommandInterfaceMap">
 
     </div>
-    <div class="wFcuWaypointCommandInterfaceControls"></div>
+    <div class="wFcuWaypointCommandInterfaceControls">
+      <button type="button" class="btnWFcuWaypointUpdateGPSParameters">Update parameters</button>
+      <button type="button" class="btnWFcuWaypointCenterReference">Center on Reference position</button>
+      <button type="button" class="btnWFcuWaypointCenterCurrentPosition">Center on Current position</button>
+
+      <br />
+
+      <label>FCU Current Pose</label>
+      <select class="jsWidgetSelectTopic" name="ddlFcuGps" data-msg-type="sensor_msgs/NavSatFix" data-callback-function="gpsVisualizerCallback">
+        <option value=""></option>
+      </select>
+      
+      <br /><br />
+      
+      <div>
+        <h4>Waypoints</h4>
+      </div>
+
+      <br />
+      <br />
+    </div>
 
 
   </div>

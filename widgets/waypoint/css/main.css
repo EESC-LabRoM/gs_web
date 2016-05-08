@@ -9,15 +9,21 @@
   .wWaypointContent .wWaypointBox span {
     font-weight: bold; }
   .wWaypointContent .wWaypointBox.wFcuStatus {
-    width: 300px; }
+    width: 300px;
+    min-height: 50px; }
   .wWaypointContent .wWaypointBox.wFcuCurrentPose {
-    width: 300px; }
+    width: 300px;
+    min-height: 50px; }
   .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface {
     float: left; }
     .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceMap {
       width: 600px;
-      height: 450px; }
+      height: 450px;
+      border: 1px solid #333; }
     .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls {
       width: 600px;
-      height: 50px;
-      background: blue; }
+      border: 1px solid #333; }
+      .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls button {
+        margin: 5px; }
+      .wWaypointContent .wWaypointBox.wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceControls label {
+        margin: 5px; }

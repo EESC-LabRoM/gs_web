@@ -1,4 +1,4 @@
-GS.WIDGETS.Waypoint = function () {
+GS.WIDGETS.Waypoint = function() {
   // important attributes and methods
   var self = this;
   var path = "/widgets/waypoint/";
@@ -15,8 +15,9 @@ GS.WIDGETS.Waypoint = function () {
   var html = new GS.Html();
   var svg = new GS.Svg();
   var templatesItems = [
-    {name: "fcuStatus", file: "/templates/fcu_status.tpl", content: ""},
-    {name: "fcuCurrentPose", file: "/templates/fcu_current_pose.tpl", content: ""}
+    { name: "fcuStatus", file: "/templates/fcu_status.tpl", content: "" },
+    { name: "fcuCurrentPose", file: "/templates/fcu_current_pose.tpl", content: "" },
+    { name: "fcuWaypointList", file: "/templates/fcu_waypoint_list.tpl", content: "" }
   ];
   this.templates = new GS.Templates(path, templatesItems);
 
@@ -24,11 +25,11 @@ GS.WIDGETS.Waypoint = function () {
   this.widgetId;
 
   // "inherited" callbacks
-  this.onStart = function () {
+  this.onStart = function() {
     // set content selector
     selector = ".widgetContent[data-widget-id=" + self.widgetId + "]";
     // get main content
-    $.get(path + "index.tpl", function (data) {
+    $.get(path + "index.tpl", function(data) {
       $(".widgetContent[data-widget-id=" + self.widgetId + "]").html(data);
       self.updateSelectsOptions();
       // config functions
@@ -36,45 +37,117 @@ GS.WIDGETS.Waypoint = function () {
     });
     // load templates
     self.templates.loadAll();
+    self.declareTriggers();
+  };
+
+  this.declareTriggers = function() {
+    $(document).delegate(selector + " .btnWFcuWaypointUpdateGPSParameters", "click", self.btnWFcuWaypointUpdateGPSParameters);
+    $(document).delegate(selector + " .btnWFcuWaypointCenterReference", "click", self.btnWFcuWaypointCenterReference);
+    $(document).delegate(selector + " .btnWFcuWaypointCenterCurrentPosition", "click", self.btnWFcuWaypointCenterCurrentPosition);
+  }
+
+  // triggers
+  this.btnWFcuWaypointUpdateGPSParameters = function(e) {
+    var latParam = new ROSLIB.Param({
+      ros: ros,
+      name: "/gps_ref_latitude"
+    });
+    var lngParam = new ROSLIB.Param({
+      ros: ros,
+      name: "/gps_ref_longitude"
+    });
+    latParam.get(function(value1) {
+      lngParam.get(function(value2) {
+        var latLng = { lat: value1, lng: value2 };
+        self.refGpsVars.marker.setPosition(latLng);
+      });
+    });
+    e.preventDefault();
+  };
+  this.btnWFcuWaypointCenterReference = function(e) {
+    self.map.setCenter(self.refGpsVars.marker.position);
+  };
+  this.btnWFcuWaypointCenterCurrentPosition = function(e) {
+    self.map.setCenter(self.currentGpsVars.marker.position);
   };
 
   // update selects' options
-  this.updateSelectsOptions = function () {
-    $(".jsWidgetSelectTopic").each(function (k1, v1) {
+  this.updateSelectsOptions = function() {
+    $(".jsWidgetSelectTopic").each(function(k1, v1) {
       $(v1).attr("data-widget-id", self.widgetId);
       var type = $(v1).attr("data-msg-type");
       $(v1).html("");
-      ros.getTopicsForType(type, function (data) {
+      ros.getTopicsForType(type, function(data) {
         $(v1).append(html.e("option", "-- select a topic to subscribe --", { value: "" }));
-        data.forEach(function (v2, k2) {
+        data.forEach(function(v2, k2) {
           $(v1).append(html.e("option", v2, { value: v2 }));
         });
       });
     });
   };
-  
+
   // init configuration functions
-  this.gpsVars = {
-    map: null,
+  this.map;
+  this.refGpsVars = {
+    marker: null
+  };
+  this.currentGpsVars = {
     marker: null
   };
   this.configWaypointCommandInterface = function() {
     var map;
     var latLng = { lat: 0, lng: 0 };
     var element = $(selector + " .wFcuWaypointCommandInterface .wFcuWaypointCommandInterfaceMap")[0];
-    console.log(element);
-    self.gpsVars.map = new google.maps.Map(element, {
+    self.map = new google.maps.Map(element, {
       center: latLng,
       zoom: 18
     });
-    self.gpsVars.marker = new google.maps.Marker({
+    this.mapCallbacks();
+    self.refGpsVars.marker = new google.maps.Marker({
       position: latLng,
-      map: self.gpsVars.map,
+      map: self.map,
+      label: "R",
+      title: 'I\'ve started here',
+    });
+    self.currentGpsVars.marker = new google.maps.Marker({
+      position: latLng,
+      map: self.map,
+      label: "C",
       title: 'I\'m here',
     });
+  };
+  this.waypoints = [];
+  this.waypointsInfo = [];
+
+  // map callbacks
+  this.mapCallbacks = function() {
+    self.map.addListener('click', self.mapClick);
+  };
+  this.mapClick = function(e) {
+    var label = (self.waypoints.length + 1);
+    var wp = new google.maps.Marker({
+      position: e.latLng,
+      map: self.map,
+      label: 'W',
+      title: 'Waypoint ' + label,
+    });
+    self.waypoints.push(wp);
+    var info = new google.maps.InfoWindow({
+      content: "Waypoint " + label
+    });
+    wp.addListener('click', function() { info.open(self.map, wp) });
+    self.waypointsInfo.push(info);
+    
+    self.updateWaypointList();
+  };
+  this.updateWaypointList = function() {
+    var template = self.templates.getContent("fcuWaypointList");
+    var content = Mustache.render(template, self.waypoints);
+    console.log(self.waypoints);
+    console.log(content);
   }
 
-  // callback functions
+  // subscriptions callback functions
   this.statusVisualizerCallback = function(msg) {
     var template = self.templates.getContent("fcuStatus");
     var content = Mustache.render(template, msg);
@@ -82,7 +155,7 @@ GS.WIDGETS.Waypoint = function () {
   };
   this.poseVisualizerCallback = function(msg) {
     var template = self.templates.getContent("fcuCurrentPose");
-    
+
     // quaternion to RPY conversion
     var quaternion = new GS.ROBOTICS.Quaternion();
     quaternion.w = msg.pose.orientation.w;
@@ -91,8 +164,13 @@ GS.WIDGETS.Waypoint = function () {
     quaternion.z = msg.pose.orientation.z;
     var eulerXYZ = new GS.ROBOTICS.RPY();
     eulerXYZ = quaternion.toRPY();
-    
-    var content = Mustache.render(template, {pose: msg.pose, rpy: eulerXYZ});
+
+    var content = Mustache.render(template, { pose: msg.pose, rpy: eulerXYZ });
     $(selector + " .wFcuCurrentPose").html(content);
   };
+  this.gpsVisualizerCallback = function(msg) {
+    var latLng = { lat: msg.latitude, lng: msg.longitude };
+    self.currentGpsVars.marker.setPosition(latLng);
+  };
+
 };

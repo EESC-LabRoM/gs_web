@@ -16,20 +16,28 @@
     }
     &.wFcuStatus {
       width:300px;
+      min-height: 50px;
     }
     &.wFcuCurrentPose {
       width:300px;
+      min-height: 50px;
     }
     &.wFcuWaypointCommandInterface {
       float:left;
       .wFcuWaypointCommandInterfaceMap {
         width:600px;
         height:450px;
+        border:1px solid #333;
       }
       .wFcuWaypointCommandInterfaceControls {
         width:600px;
-        height:50px;
-        background:blue;
+        border:1px solid #333;
+        button {
+          margin:5px;
+        }
+        label {
+          margin: 5px;
+        }
       }
     }
   }
