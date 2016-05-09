@@ -154,6 +154,7 @@ GS.WIDGETS.Waypoint = function() {
       self.waypointsInfo.push(info);
       self.updateWaypointList();
     }, function(error) {
+      wp.marker.setMap(null);
     });
   };
   this.updateWaypointList = function() {
